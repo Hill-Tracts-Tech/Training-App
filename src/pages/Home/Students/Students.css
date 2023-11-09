@@ -1,0 +1,36 @@
+.student-container {
+  background-color: #2c3e50;
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.student {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-color: #3498db;
+  border-radius: 50%;
+  animation: moveBubble 40s linear infinite;
+}
+.student2 {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #3498db;
+  border-radius: 50%;
+  animation: moveBubble 30s linear infinite;
+}
+.student,
+.student2 img {
+  border-radius: 50%;
+}
+
+@keyframes moveBubble {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100vw, 0) translateY(-100vh);
+  }
+}

@@ -1,0 +1,65 @@
+/* Round animation */
+.round-animation {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: 0 0;
+  right: -100px;
+  bottom: 0px;
+  width: 170px;
+  height: 170px;
+  border: 10px solid rgba(255, 120, 16, 0.1);
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  text-align: center;
+  display: inline-block;
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+  -webkit-transition-property: color, background, border-color;
+  transition-property: color, background, border-color;
+}
+.round-animation::before {
+  content: "";
+  border: 10px solid;
+  border-color: inherit;
+  width: 270%;
+  height: 270%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  position: absolute;
+  left: -85%;
+  top: -85%;
+  opacity: 1;
+  -webkit-animation: 2s wave-animation linear infinite;
+  animation: 2s wave-animation linear infinite;
+}
+.round-animation::after {
+  content: "";
+  border: 10px solid;
+  border-color: inherit;
+  width: 270%;
+  height: 270%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  position: absolute;
+  left: -85%;
+  top: -85%;
+  opacity: 1;
+  -webkit-animation: 4s wave-animation linear infinite;
+  animation: 4s wave-animation linear infinite;
+}
+@keyframes wave-animation {
+  0% {
+    transform: scale(0.5);
+  }
+  33% {
+    transform: scale(1);
+  }
+  66% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}

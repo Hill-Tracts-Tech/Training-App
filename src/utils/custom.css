@@ -1,0 +1,62 @@
+/* Text Underline */
+.text-underline {
+  width: 130px;
+  height: 4px;
+  background: linear-gradient(to right, #c28903, #2b00ec, #2f02c3);
+  background: #fff;
+  transition: ease 0.4s;
+  border-radius: 7px;
+  position: relative;
+}
+.text-underline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #c28903,
+    #2b00ec,
+    #2f02c3,
+    #fb0004,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #fb0094,
+    #00ff00,
+    #ffff00,
+    #fb0094
+  );
+  animation: gradientAnimation 20s linear infinite;
+  background-size: 500%;
+  border-radius: 7px;
+}
+.text-underline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #c28903,
+    #2b00ec,
+    #2f02c3,
+    #fb0004,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #fb0094,
+    #00ff00,
+    #ffff00,
+    #fb0094
+  );
+  animation: gradientAnimation 20s linear infinite;
+  background-size: 500%;
+  border-radius: 7px;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 500% 0;
+  }
+}
