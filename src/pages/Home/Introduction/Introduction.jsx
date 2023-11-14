@@ -15,7 +15,7 @@ function Introduction() {
               We Are
             </h2>
             <div>
-              <h1 className="text-4xl text-[#1C2045] my-5 font-bold">
+              <h1 className="text-4xl text-[#ffffff] my-5 font-bold">
                 Learn Computer Academy
               </h1>
               <TextUnderline custom_width={150} />
