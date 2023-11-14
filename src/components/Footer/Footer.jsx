@@ -7,50 +7,55 @@ import {
   YouTube,
 } from "@mui/icons-material";
 import RoundAnimation from "../RoundAnimation/RoundAnimation";
+import "./footer.css";
 
 function Footer() {
   return (
-    <div className="bg-base-200 overflow-hidden">
+    <div className="overflow-hidden">
       <div style={{ zIndex: "10" }} className="w-[85%] mx-auto">
-        <footer className="footer p-10 text-base-content">
+        <footer className="footer p-10">
           <nav>
-            <header className="footer-title">Useful Links</header>
-            <a className="link link-hover">Home</a>
-            <a className="link link-hover">About Us</a>
-            <a className="link link-hover">Privacy Policy</a>
+            <header className="customFooter">Useful Links</header>
+            <a className="link link-hover text-black">Home</a>
+            <a className="link link-hover text-black">About Us</a>
+            <a className="link link-hover text-black">Privacy Policy</a>
           </nav>
           <nav>
-            <a className="link link-hover">Basic MS Office</a>
-            <a className="link link-hover">Advance MS Office</a>
-            <a className="link link-hover">Basic Computer</a>
-            <a className="link link-hover">Advance Computer</a>
+            <header className="customFooter">Courses</header>
+            <a className="link link-hover text-black">Basic MS Office</a>
+            <a className="link link-hover text-black">Advance MS Office</a>
+            <a className="link link-hover text-black">Basic Computer</a>
+            <a className="link link-hover text-black">Advance Computer</a>
           </nav>
           <nav>
-            <header className="footer-title">Contact Us</header>
-            <a className="link link-hover">
+            <header className="customFooter">Contact Us</header>
+            <a className="link link-hover text-black">
               <LocationCity /> GEC More Chattogram
             </a>
-            <a href="mailto:info.ts@gmail.com" className="link link-hover">
+            <a
+              href="mailto:info.ts@gmail.com"
+              className="link link-hover text-black"
+            >
               <Mail /> info.ts@gmail.com
             </a>
-            <a href="tel:0151212112" className="link link-hover">
+            <a href="tel:0151212112" className="link link-hover text-black">
               <Phone /> 0151212112
             </a>
           </nav>
-        </footer>
-        <footer>
-          <header className="px-9 footer-title">Social Link</header>
-          <div className="flex gap-5 px-9 mb-6">
-            <a href="#" className="cursor-pointer">
-              <Twitter />
-            </a>
-            <a href="#" className="cursor-pointer">
-              <YouTube />
-            </a>
-            <a href="#" className="cursor-pointer">
-              <Facebook />
-            </a>
-          </div>
+          <nav>
+            <header className="px-9 customFooter">Social Link</header>
+            <div className="flex justify-around w-[100%]">
+              <a href="#" className="cursor-pointer text-blue-500">
+                <Twitter />
+              </a>
+              <a href="#" className="cursor-pointer text-red-500">
+                <YouTube />
+              </a>
+              <a href="#" className="cursor-pointer text-blue-500">
+                <Facebook />
+              </a>
+            </div>
+          </nav>
         </footer>
         <footer className="footer px-9 mt-4">
           <aside style={{ zIndex: "99999" }} className="w-full">

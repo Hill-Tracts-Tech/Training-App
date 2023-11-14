@@ -10,7 +10,7 @@ function VisitUs() {
         </div>
         <div className="w-full md:w-1/2 p-6">
           <div>
-            <h1 className="text-4xl text-[#1C2045] my-5 font-bold">
+            <h1 className="text-4xl text-blue-600 my-5 font-bold">
               How To Visit Learn Computer Academy?
             </h1>
             <TextUnderline custom_width={150} />
