@@ -21,7 +21,7 @@ function Navbar() {
   };
   return (
     <>
-      <div className="navbar sticky top-0 z-[99999]">
+      <div className="navbar bg-white sticky top-0 z-[99999]">
         <div className="navbar-start">
           <div className="dropdown">
             <Menu />
