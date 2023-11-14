@@ -7,7 +7,9 @@ function JoinUs() {
       <div className="w-[85%] mx-auto">
         <div className="text-center">
           <div className="w-[300px] mx-auto">
-            <h2 className="text-3xl bg-[#FF7810] text-white">How To Join</h2>
+            <h2 className="text-3xl bg-[#FF7810] text-white p-1 rounded-md">
+              How To Join
+            </h2>
           </div>
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-4xl text-[#1C2045] my-5 font-bold">

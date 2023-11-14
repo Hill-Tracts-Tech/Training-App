@@ -8,10 +8,10 @@ function Banner() {
         <div className="w-full md:w-1/2">
           <div className="my-5">
             {" "}
-            <h1 className="text-5xl text-[#ffffff] font-bold mb-2">
+            <h1 className="text-5xl text-blue-600 mb-2">
               Website Design And Development{" "}
-              <span className="text-[#FF7810] font-normal">
-                Training Institute In Habra
+              <span className="text-[#FF7810] font-bold">
+                ORION COMPUTER INSTITUTE
               </span>
             </h1>
           </div>
