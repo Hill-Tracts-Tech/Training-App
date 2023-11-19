@@ -72,8 +72,8 @@ export const menu = [
   },
   {
     id: 8,
-    label: "Dashboard",
-    to: "/dashboard",
+    label: "Registration",
+    to: "/registration",
   },
   {
     id: 9,

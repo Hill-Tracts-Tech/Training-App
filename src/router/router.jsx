@@ -11,6 +11,7 @@ import Teachers from "../pages/Teachers/Teachers";
 import UserAccount from "../pages/Account/Account";
 import Students from "../pages/Students/Students";
 import Courses from "../pages/Courses/Courses";
+import Registration from "../pages/Registration/Registration";
 
 const router = createBrowserRouter([
   {
@@ -50,8 +51,8 @@ const router = createBrowserRouter([
         element: <NoticeBoard />,
       },
       {
-        path: "/dashboard",
-        element: <div>Dashboard</div>,
+        path: "/registration",
+        element: <Registration />,
       },
       {
         path: "/gallery",
