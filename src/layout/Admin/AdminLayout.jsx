@@ -17,7 +17,7 @@ const AdminLayout = () => {
         </div>
         <div className="sidebar w-[20%] md:block hidden  ml-20">
           <div className="text-black font-semibold breadcrumbs ml-[2rem]"></div>
-          <div className="text-left bg-white  p-5 flex flex-col shadow-lg rounded-lg gap-y-4">
+          <div className="text-left bg-white  p-5 flex flex-col shadow-lg rounded-lg gap-y-4 ">
             {" "}
             <Link to="/admin/news">
               <div className="flex justify-start gap-4 hover:text-orange-400">

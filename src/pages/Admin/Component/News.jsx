@@ -26,21 +26,21 @@ const News = () => {
     <div>
       {/* <NewsForm /> */}
       <div>
-        <div className="w-full md:w-[85%] p-4">
+        <div className="me-20 ps-5">
           <Link
             className="relative top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
             to="/admin/newsForm"
           >
             Add News
           </Link>
-          <table className="w-full border-collapse border overflow-x-scroll mt-5 rounded-lg">
+          <table className="w-full border-collapse border overflow-x-scroll mt-5 ">
             <thead>
-              <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white ">
+              <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
                 <th className="border p-2">NO</th>
                 <th className="border p-2">Image</th>
                 <th className="border p-2">Title</th>
                 <th className="border p-2">Description </th>
-                <th className="border p-2">Action</th>
+                <th className="border p-2 ">Action</th>
               </tr>
             </thead>
             <tbody>
