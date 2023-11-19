@@ -12,6 +12,10 @@ import UserAccount from "../pages/Account/Account";
 import Students from "../pages/Students/Students";
 import Courses from "../pages/Courses/Courses";
 import Registration from "../pages/Registration/Registration";
+import AdminLayout from "../layout/Admin/AdminLayout";
+import AdminHome from "../pages/Admin/AdminHome";
+import News from "../pages/Admin/Component/News";
+import NewsForm from "../components/Form/NewsForm";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +26,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/admin",
-        element: <div>Admin</div>,
-      },
+
       {
         path: "/teacher",
         element: <Teachers />,
@@ -73,6 +74,24 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/admin",
+        element: <AdminHome />,
+      },
+      {
+        path: "/admin/news",
+        element: <News />,
+      },
+      {
+        path: "/admin/newsForm",
+        element: <NewsForm />,
       },
     ],
   },
