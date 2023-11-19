@@ -18,6 +18,7 @@ import News from "../pages/Admin/Component/News";
 import NewsForm from "../components/Form/NewsForm";
 import ImageGallery from "../pages/Admin/Component/ImageGallery";
 import ImageForm from "../components/Form/ImageForm";
+import AdminHome from "../pages/Admin/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/admin",
-        element: <News />,
+        element: <AdminHome />,
       },
       {
         path: "/admin/news",
@@ -102,6 +103,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/newsForm",
         element: <NewsForm />,
+      },
+      {
+        path: "/admin/result",
+        element: <Result />,
+      },
+      {
+        path: "/admin/teacher",
+        element: <Teachers />,
       },
     ],
   },
