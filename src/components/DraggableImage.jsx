@@ -44,11 +44,11 @@ const DraggableImageInput = () => {
   return (
     <>
       <div className=" ml-4 mt-4 bg-white p-3 shadow-lg mr-20 rounded-lg">
-        <h1 className="text-xl font-sans">Add News</h1>
+        <h1 className="text-xl font-bold">Add News</h1>
       </div>
-      <div className="flex  items-center justify-center h-[60vh] ml-4 mt-4 bg-white  shadow-lg mr-20 rounded-lg">
+      <div className="flex  items-center justify-center h-[75vh] ml-4 mt-4 bg-white  shadow-lg mr-20 rounded-lg ">
         <div
-          className="lg:h-[30vh] h-[40vh] w-[40%] border-2 border-dashed border-gray-400 rounded-lg p-2 text-center"
+          className="lg:h-[30vh] h-[40vh] w-[40%] border-2 border-dashed mt-[-100px] border-gray-400 rounded-lg p-2 text-center"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
@@ -81,7 +81,7 @@ const DraggableImageInput = () => {
             }
           }}
         />
-        <form className="ml-6 pt-16" onSubmit={handleSubmit}>
+        <form className="ml-6 mt-[-20px] " onSubmit={handleSubmit}>
           <div className="mb-12">
             <label
               htmlFor="imageInput"
@@ -91,7 +91,7 @@ const DraggableImageInput = () => {
             </label>
           </div>
           <div className="flex flex-col gap-y-2 w-[400px]">
-            <label className="text-lg font-semibold">Title :</label>
+            <label className="text-lg font-semibold mt-2">Title :</label>
             <input
               className="outline-none border bordered-2 rounded-md p-2"
               placeholder="Title"
@@ -102,10 +102,10 @@ const DraggableImageInput = () => {
           </div>
 
           <div className="flex flex-col gap-y-2 w-full">
-            <label className="text-lg font-semibold"> Message:</label>
+            <label className="text-lg font-semibold mt-4"> Description:</label>
             <textarea
               className="outline-none border bordered-2 rounded-md p-2 resize-none w-full h-[100px]"
-              placeholder="Message "
+              placeholder="description "
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
@@ -115,14 +115,14 @@ const DraggableImageInput = () => {
               {" "}
               <button
                 onClick={handleSubmit}
-                className=" relative top-9 p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
+                className=" relative top-9 p-2 px-4 bg-primary lg:w-32 cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
               >
                 Submit
               </button>
             </>
           ) : (
             <>
-              <button className="relative top-9 p-2 px-4   cursor-pointer   bg-gray-500 rounded-md font-semibold text-white">
+              <button className="relative top-9 p-2 px-4  lg:w-32 cursor-pointer   bg-gray-500 rounded-md font-semibold text-white">
                 Send
               </button>
             </>
