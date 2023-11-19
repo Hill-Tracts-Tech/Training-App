@@ -21,7 +21,7 @@ function Navbar() {
   };
   return (
     <>
-      <div className="navbar bg-base-100 sticky top-0 z-[99999]">
+      <div className="navbar sticky top-0 z-[99999]">
         <div className="navbar-start">
           <div className="dropdown">
             <Menu />
@@ -71,7 +71,7 @@ function Navbar() {
             </ul>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex bg-base-200 shadow-md rounded-md mb-9">
+        <div className="navbar-center hidden lg:flex shadow-md rounded-md mb-9">
           <ul className="menu menu-horizontal px-1 gap-x-4 ">
             {menu.map((m) => (
               <li

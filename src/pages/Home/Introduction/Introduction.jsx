@@ -11,11 +11,11 @@ function Introduction() {
             <img src={img} alt="" />
           </div>
           <div className="w-full md:w-[60%] px-8">
-            <h2 className="text-3xl bg-[#FF7810] w-[120px] text-center text-white">
+            <h2 className="text-3xl bg-[#FF7810] w-[120px] rounded-md p-1 text-center text-white">
               We Are
             </h2>
             <div>
-              <h1 className="text-4xl text-[#1C2045] my-5 font-bold">
+              <h1 className="text-4xl text-blue-600 my-5 font-bold">
                 Learn Computer Academy
               </h1>
               <TextUnderline custom_width={150} />

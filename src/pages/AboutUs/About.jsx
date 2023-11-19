@@ -9,13 +9,13 @@ function About() {
       {/* Left Side - About Us Description */}
       <div className="w-full md:w-2/3 md:pr-10">
         <div className="mb-4">
-          <h2 className="text-3xl bg-[#FF7810] w-[180px] text-center text-white">
+          <h2 className="text-3xl bg-[#FF7810] w-[180px] text-center text-white p-1 rounded-md">
             About Us
           </h2>
-          <h3 className="text-4xl text-[#1C2045] my-5 font-bold">
+          <h3 className="text-4xl text-blue-500 my-5 font-bold">
             About Learn Computer Academy
           </h3>
-          <p className="text-gray-600">
+          <p>
             Learn Computer Academy is the best Computer Center in Habra with
             special focus in Website Design and Development. We are situated at
             Saptapally, Khudiram Basu Road, about 1km from Habra Station. Our
@@ -26,10 +26,10 @@ function About() {
         </div>
 
         <div className="mb-8">
-          <h3 className="text-xl font-semibold text-secondary">
+          <h3 className="text-xl font-semibold text-blue-600">
             Our Facilities
           </h3>
-          <ul className="list-disc list-inside text-gray-600">
+          <ul className="list-disc list-inside">
             <li>State-of-the-art classrooms with interactive whiteboards.</li>
             <li>
               High-speed internet connectivity for a seamless learning

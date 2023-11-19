@@ -10,7 +10,6 @@ export default {
     dem: "#C3C5C9",
     extend: {},
   },
-  // themes: ["light", "dark", "cupcake"],
   themes: [],
   plugins: [require("daisyui")],
 };
