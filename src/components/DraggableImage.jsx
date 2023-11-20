@@ -43,12 +43,12 @@ const DraggableImageInput = () => {
 
   return (
     <>
-      <div className=" ml-4 mt-4 bg-white p-3 shadow-lg mr-20 rounded-lg">
+      <div className=" ml-4 mt-4 bg-white p-3 shadow-lg lg:mr-20 rounded-lg mr-5">
         <h1 className="text-xl font-bold">Add Notice</h1>
       </div>
-      <div className="flex  items-center justify-center h-[75vh] ml-4 mt-4 bg-white  shadow-lg mr-20 rounded-lg ">
+      <div className="lg:flex items-center justify-center lg:h-[75vh] h-[65vh] mt-7 ml-4 lg:mt-4 bg-white  shadow-lg lg:mr-20 mr-5 rounded-lg ">
         <div
-          className="lg:h-[30vh] h-[40vh] w-[40%] border-2 border-dashed mt-[-100px] border-gray-400 rounded-lg p-2 text-center"
+          className="lg:h-[30vh] h-[20vh] lg:w-[40%] px-2 lg:px-auto border-2 border-dashed lg:mt-[-100px] border-gray-400 rounded-lg p-2 text-center"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
