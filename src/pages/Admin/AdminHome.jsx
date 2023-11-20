@@ -1,23 +1,38 @@
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import PaidIcon from "@mui/icons-material/Paid";
+import SchoolIcon from "@mui/icons-material/School";
 const AdminHome = () => {
   return (
     <div>
       <div className="flex justify-center mr-20  gap-4">
         <div className="card  w-72 h-36 bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title text-red-500">Total Stutents :-</h2>
-            <p className="text-xl font-semibold ms-1">20</p>
+            <h2 className="card-title text-red-500 flex justify-between">
+              <span>Total Stutents :-</span> <PeopleOutlineIcon />
+            </h2>
+            <p className="text-xl font-semibold ms-1">
+              <b>৳</b> 20
+            </p>
           </div>
         </div>
         <div className="card  w-72 h-36 bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title text-blue-500">Total Income :-</h2>
-            <p className="text-xl font-semibold ms-1">20</p>
+            <h2 className="card-title text-blue-500 flex justify-between">
+              <span>Total Income :-</span> <PaidIcon />
+            </h2>
+            <p className="text-xl font-semibold ms-1">
+              <b>৳</b> 20
+            </p>
           </div>
         </div>
         <div className="card  w-72 h-36 bg-base-100 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title text-orange-500">Total Teachers :-</h2>
-            <p className="text-xl font-semibold ms-1">20</p>
+            <h2 className="card-title text-orange-500 flex justify-between">
+              <span>Total Teachers :-</span> <SchoolIcon />
+            </h2>
+            <p className="text-xl font-semibold ms-1">
+              <b>৳</b> 20
+            </p>
           </div>
         </div>
       </div>
@@ -52,7 +67,7 @@ const AdminHome = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="/tailwind-css-component-profile-2@56w.png"
+                          src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -87,7 +102,7 @@ const AdminHome = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="/tailwind-css-component-profile-3@56w.png"
+                          src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -122,7 +137,7 @@ const AdminHome = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="/tailwind-css-component-profile-4@56w.png"
+                          src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
@@ -157,7 +172,7 @@ const AdminHome = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src="/tailwind-css-component-profile-5@56w.png"
+                          src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>

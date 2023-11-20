@@ -21,8 +21,8 @@ const AdminLayout = () => {
     },
     {
       id: 2,
-      title: "News",
-      to: "/admin/news",
+      title: "Notice",
+      to: "/admin/notice",
       icon: <NewspaperIcon />,
     },
     {
@@ -74,8 +74,6 @@ const AdminLayout = () => {
         </div>
         {/* Sidebar. In larger device's block and median device's hidden */}
       </div>
-
-      <Footer />
     </div>
   );
 };

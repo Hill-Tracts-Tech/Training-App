@@ -44,7 +44,7 @@ const DraggableImageInput = () => {
   return (
     <>
       <div className=" ml-4 mt-4 bg-white p-3 shadow-lg mr-20 rounded-lg">
-        <h1 className="text-xl font-bold">Add News</h1>
+        <h1 className="text-xl font-bold">Add Notice</h1>
       </div>
       <div className="flex  items-center justify-center h-[75vh] ml-4 mt-4 bg-white  shadow-lg mr-20 rounded-lg ">
         <div
@@ -81,7 +81,7 @@ const DraggableImageInput = () => {
             }
           }}
         />
-        <form className="ml-6 mt-[-20px] " onSubmit={handleSubmit}>
+        <form className="ml-6 mt-[-5px] " onSubmit={handleSubmit}>
           <div className="mb-12">
             <label
               htmlFor="imageInput"

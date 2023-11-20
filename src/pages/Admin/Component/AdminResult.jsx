@@ -1,34 +1,32 @@
+import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-const News = () => {
+const AdminResult = () => {
   const [eye, setEye] = useState({});
   const data = [
     {
       id: 1,
-      title: "Breaking News 1",
-      image:
+      course_name: "Computer Science",
+      batch_number: "CS2023",
+      image_url:
         "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      description:
-        "This is the description for breaking news 1. It contains important information and details about the event.",
     },
     {
       id: 2,
-      title: "Latest Update 2",
-      image:
+      course_name: "Electrical Engineering",
+      batch_number: "EE2023",
+      image_url:
         "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      description:
-        "Here is the latest update on a significant event. The description provides insights and context to the readers.",
     },
     {
       id: 3,
-      title: "Special Report 3",
-      image:
+      course_name: "Mechanical Engineering",
+      batch_number: "ME2023",
+      image_url:
         "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      description:
-        "A special report with in-depth coverage and analysis. The description dives into the various aspects of the topic.",
     },
+    // Add more results as needed
   ];
   const datahandler = (id) => {
     const singleItem = data?.find((item) => item?.id === id);
@@ -36,22 +34,21 @@ const News = () => {
   };
   return (
     <div>
-      {/* <NewsForm /> */}
       <div>
         <div className="me-20 ps-5 mt-4">
           <Link
             className="relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
-            to="/admin/noticeForm"
+            to="/admin/ResultForm"
           >
-            Add Notice
+            Add Result
           </Link>
           <table className="w-full border-collapse border overflow-x-scroll mt-5 shadow-lg">
             <thead>
               <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
                 <th className="border p-2">NO</th>
-                <th className="border p-2">Image</th>
-                <th className="border p-2">Title</th>
-                <th className="border p-2">Description </th>
+                <th className="border p-2">Course Name</th>
+                <th className="border p-2"> Batch Number</th>
+                <th className="border p-2">Image/PDF </th>
                 <th className="border p-2 ">Action</th>
               </tr>
             </thead>
@@ -62,15 +59,15 @@ const News = () => {
                     <td className="border p-2 font-bold">
                       <p>{i + 1}</p>
                     </td>
+                    <td className="border p-2">{item?.course_name}</td>
+                    <td className="border p-2">{item?.batch_number}</td>
                     <td className="border p-2 font-bold">
                       <img
-                        className="w-full h-32 rounded"
-                        src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"
+                        className="w-full h-32"
+                        src={item?.image_url}
                         alt=""
                       />
                     </td>
-                    <td className="border p-2">{item?.title}</td>
-                    <td className="border p-2">{item?.description}</td>
                     <td className="border p-2">
                       <div className="flex justify-center gap-3 items-center">
                         <label
@@ -93,7 +90,7 @@ const News = () => {
       <input type="checkbox" id="my_modal_5" className="modal-toggle" />
       <div className="modal z-50">
         <div className="modal-box">
-          <div className="modal-action">
+          <div className="modal-action block">
             <label
               htmlFor="my_modal_5"
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -103,16 +100,17 @@ const News = () => {
             <div className="">
               <div>
                 <img
-                  className=" rounded h-[220px] w-full"
-                  src={eye?.image}
+                  className=" rounded h-[260px] w-full"
+                  src={eye?.image_url}
                   alt=""
                 />
                 <p className="my-3">
-                  <span className="font-bold ">Title:</span> {eye?.title}
+                  <span className=" font-bold">Batch No:</span>{" "}
+                  {eye?.batch_number}
                 </p>
                 <p>
-                  <span className="font-bold">Description:</span>{" "}
-                  {eye?.description}
+                  <span className=" font-bold">Course Name:</span>{" "}
+                  {eye?.course_name}
                 </p>
               </div>
             </div>
@@ -123,4 +121,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default AdminResult;

@@ -53,7 +53,7 @@ const ImageForm = () => {
             />
           ) : (
             <div>
-              <AddPhotoAlternateIcon style={{ fontSize: "150px" }} />
+              <AddPhotoAlternateIcon style={{ fontSize: "250px" }} />
             </div>
           )}
         </div>
