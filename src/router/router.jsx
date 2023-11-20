@@ -21,6 +21,8 @@ import ImageForm from "../components/Form/ImageForm";
 import AdminHome from "../pages/Admin/AdminHome";
 import AdminResult from "../pages/Admin/Component/AdminResult";
 import ResultForm from "../components/Form/ResultForm";
+import AdminTeacher from "../pages/Admin/Component/AdminTeacher";
+import TeacherForm from "../components/Form/TeacherForm";
 
 const router = createBrowserRouter([
   {
@@ -116,7 +118,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/teacher",
-        element: <Teachers />,
+        element: <AdminTeacher />,
+      },
+      {
+        path: "/admin/teacherForm",
+        element: <TeacherForm />,
       },
     ],
   },

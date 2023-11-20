@@ -4,7 +4,7 @@ import SchoolIcon from "@mui/icons-material/School";
 const AdminHome = () => {
   return (
     <div>
-      <div className="flex justify-center mr-20  gap-4">
+      <div className="flex lg:flex-row flex-col justify-center items-center lg:mr-20  gap-4">
         <div className="card  w-72 h-36 bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-red-500 flex justify-between">
@@ -15,7 +15,7 @@ const AdminHome = () => {
             </p>
           </div>
         </div>
-        <div className="card  w-72 h-36 bg-base-100 shadow-xl">
+        <div className="card  w-72 h-36 bg-base-100 shadow-xl my-3 lg:my-auto">
           <div className="card-body">
             <h2 className="card-title text-blue-500 flex justify-between">
               <span>Total Income :-</span> <PaidIcon />
@@ -36,7 +36,7 @@ const AdminHome = () => {
           </div>
         </div>
       </div>
-      <div className="bg-base-100 shadow-xl mr-20  mt-6 ms-5">
+      <div className="bg-base-100 shadow-xl lg:mr-20  mt-6 lg:ms-5 px-5 lg:px-0">
         <h1 className="text-xl font-semibold">Available Courses :-</h1>
         <div className="overflow-x-auto">
           <table className="table rounded-xl">
