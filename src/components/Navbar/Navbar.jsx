@@ -10,6 +10,7 @@ function Navbar() {
   const isActive = (path) => {
     return location.pathname === path;
   };
+  const admin = location.pathname;
   const [isEnquiryModalOpen, setEnquiryModalOpen] = useState(false);
 
   const openEnquiryModal = () => {
@@ -21,7 +22,15 @@ function Navbar() {
   };
   return (
     <>
-      <div className="navbar bg-white sticky top-0 z-[99999]">
+      <div
+        className={`navbar sticky top-0 ${
+          admin === "/admin/teacher" ||
+          admin === "/admin/result" ||
+          admin === "/admin/notice"
+            ? ""
+            : "z-[99999]"
+        } `}
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <Menu />

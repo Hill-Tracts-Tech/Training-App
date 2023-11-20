@@ -1,12 +1,12 @@
-import logo1 from "../../assets/img/logo1.png";
-import logo2 from "../../assets/img/logo2.png";
+import logo2 from "../../assets/icons/OCI.jpg";
+import logo1 from "../../assets/icons/OSC.jpg";
 function Brand() {
   return (
     <div className="w-[85%] mx-auto">
       <div className="flex justify-between p-6">
         <div className="left">
           <div className="w-[60px] h-[60px] rounded-full shadow-md">
-            <img className="w-full h-full object-cover" src={logo1} alt="" />
+            <img className="w-full h-full object-contain" src={logo1} alt="" />
           </div>
           <div>
             <h1 className="text-2x font-semibold uppercase mt-4">
@@ -17,7 +17,7 @@ function Brand() {
         </div>
         <div className="left">
           <div className="w-[60px] h-[60px] rounded-full shadow-md">
-            <img className="w-full h-full object-cover" src={logo2} alt="" />
+            <img className="w-full h-full object-contain" src={logo2} alt="" />
           </div>
           <div>
             <h1 className="text-2x font-semibold uppercase mt-4">
