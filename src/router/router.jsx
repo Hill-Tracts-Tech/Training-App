@@ -19,6 +19,8 @@ import NewsForm from "../components/Form/NewsForm";
 import ImageGallery from "../pages/Admin/Component/ImageGallery";
 import ImageForm from "../components/Form/ImageForm";
 import AdminHome from "../pages/Admin/AdminHome";
+import AdminResult from "../pages/Admin/Component/AdminResult";
+import ResultForm from "../components/Form/ResultForm";
 
 const router = createBrowserRouter([
   {
@@ -89,7 +91,7 @@ const router = createBrowserRouter([
         element: <AdminHome />,
       },
       {
-        path: "/admin/news",
+        path: "/admin/notice",
         element: <News />,
       },
       {
@@ -101,12 +103,16 @@ const router = createBrowserRouter([
         element: <ImageForm />,
       },
       {
-        path: "/admin/newsForm",
+        path: "/admin/noticeForm",
         element: <NewsForm />,
       },
       {
         path: "/admin/result",
-        element: <Result />,
+        element: <AdminResult />,
+      },
+      {
+        path: "/admin/resultForm",
+        element: <ResultForm />,
       },
       {
         path: "/admin/teacher",
