@@ -23,6 +23,8 @@ import AdminResult from "../pages/Admin/Component/AdminResult";
 import ResultForm from "../components/Form/ResultForm";
 import AdminTeacher from "../pages/Admin/Component/AdminTeacher";
 import TeacherForm from "../components/Form/TeacherForm";
+import AdminCourses from "../pages/Admin/Component/Courses";
+import CourseForm from "../components/Form/CourseForm";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +125,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/teacherForm",
         element: <TeacherForm />,
+      },
+      {
+        path: "/admin/courses",
+        element: <AdminCourses />,
+      },
+      {
+        path: "/admin/courseForm",
+        element: <CourseForm />,
       },
     ],
   },
