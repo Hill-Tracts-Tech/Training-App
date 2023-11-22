@@ -30,17 +30,26 @@ function Footer() {
           <nav>
             <header className="customFooter">Contact Us</header>
             <a className="link link-hover text-black">
-              <LocationCity /> GEC More Chattogram
+              <LocationCity /> S.I Villa, 6 No Ward,Satkania Municipality,
+              Chattogram.
             </a>
-            <a
-              href="mailto:info.ts@gmail.com"
-              className="link link-hover text-black"
-            >
-              <Mail /> info.ts@gmail.com
+            <a href="" className="link link-hover text-black">
+              <Mail /> orion.sat88@gmail.com
             </a>
-            <a href="tel:0151212112" className="link link-hover text-black">
-              <Phone /> 0151212112
+            <a href="" className="link link-hover text-black">
+              <Mail /> ospc.Satkania@gmail.com
             </a>
+            <div className="flex gap-2">
+              <a href="tel:01688-718450" className="link link-hover text-black">
+                <Phone /> 01688-718450,
+              </a>
+              <a href="tel:01824-779196" className="link link-hover text-black">
+                01824-779196,
+              </a>
+              <a href="tel:01839-714714" className="link link-hover text-black">
+                01839-714714.
+              </a>
+            </div>
           </nav>
           <nav>
             <header className="px-9 customFooter">Social Link</header>
@@ -51,7 +60,18 @@ function Footer() {
               <a href="#" className="cursor-pointer text-red-500">
                 <YouTube />
               </a>
-              <a href="#" className="cursor-pointer text-blue-500">
+              <a
+                title="ORION COMPUTER INSTITUTE"
+                href="https://www.facebook.com/profile.php?id=100076577532802"
+                className="cursor-pointer text-blue-500"
+              >
+                <Facebook />
+              </a>
+              <a
+                title="ORION SELAI PROSHIKHON CENTER"
+                href="https://www.facebook.com/profile.php?id=100063605783497&locale=de_DE"
+                className="cursor-pointer text-blue-500"
+              >
                 <Facebook />
               </a>
             </div>
