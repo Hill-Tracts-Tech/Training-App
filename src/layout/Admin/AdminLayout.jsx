@@ -8,6 +8,8 @@ import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import AppsIcon from "@mui/icons-material/Apps";
+
 const AdminLayout = () => {
   const isActive = (path) => {
     return location.pathname === path;
@@ -43,6 +45,12 @@ const AdminLayout = () => {
       to: "/admin/teacher",
       icon: <AccountCircleIcon />,
     },
+    {
+      id: 5,
+      title: "Courses",
+      to: "/admin/courses",
+      icon: <AppsIcon />,
+    },
   ];
   return (
     <div>
@@ -61,7 +69,7 @@ const AdminLayout = () => {
                 <div
                   className={`${
                     isActive(`${item.to}`)
-                      ? "flex justify-start gap-4 text-orange-500   "
+                      ? "flex justify-start gap-4 text-orange-500"
                       : "flex justify-start gap-4 hover:text-orange-400"
                   }`}
                 >
