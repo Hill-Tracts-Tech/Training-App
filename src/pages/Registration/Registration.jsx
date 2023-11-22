@@ -56,6 +56,39 @@ const Registration = () => {
                   />
                 </div>
               </div>
+              <div className="flex justify-between">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Contact No:</span>
+                  </label>
+
+                  <input
+                    type="name"
+                    placeholder="name"
+                    className="input input-bordered lg:w-[250px]"
+                    required
+                    {...register("name", {
+                      required: true,
+                    })}
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Gender</span>
+                  </label>
+                  <select
+                    {...register("course_Name", { required: true })}
+                    aria-invalid={errors.from ? "true" : "false"}
+                    className="select select-bordered lg:w-[240px]"
+                  >
+                    <option selected disabled value="MS office">
+                      Select gender
+                    </option>
+                    <option value="MS office">Male</option>
+                    <option value="Database Programming">Female</option>
+                  </select>
+                </div>
+              </div>
               <h1 className=" text-lg mb-[-12px] mt-5 font-semibold">
                 Education Details:
               </h1>
@@ -70,7 +103,7 @@ const Registration = () => {
                     className="select select-bordered lg:w-[240px]"
                   >
                     <option selected disabled value="MS office">
-                      Select Course
+                      Select Degree
                     </option>
                     <option value="MS office">SSC</option>
                     <option value="Database Programming">HSC</option>
