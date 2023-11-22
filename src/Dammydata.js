@@ -457,14 +457,12 @@ export const CourseModulesData = [
 
 // Slider data
 
-import img1 from "./assets/img/dengue.jpg";
-import img2 from "./assets/img/7thMarch.jpg";
-import img3 from "./assets/img/student.jpg";
-import img4 from "./assets/img/baner_ratio.jpg";
-import img5 from "./assets/img/banner_5.jpg";
-import img6 from "./assets/img/myschool.jpg";
-import img7 from "./assets/img/ssc_result_2022.jpg";
-export const imgURL = [img1, img2, img3, img4, img5, img6, img7];
+import img1 from "./assets/sliderImage/slider1.jpg";
+import img2 from "./assets/sliderImage/slider2.jpg";
+import img3 from "./assets/sliderImage/slider3.jpg";
+import img4 from "./assets/sliderImage/slider4.jpg";
+
+export const imgURL = [img1, img2, img3, img4];
 
 // Result data
 

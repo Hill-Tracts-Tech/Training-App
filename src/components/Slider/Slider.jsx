@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { imgURL } from "../../Dammydata";
-import logo from "../../assets/img/logo2.png";
+import logo from "../../assets/icons/OCI.jpg";
 
 function Slider() {
   const [currentImgIdex, setCurrentImgIndex] = useState(0);
@@ -31,7 +31,7 @@ function Slider() {
             <div className="flex justify-start gap-x-7 items-center">
               <div className="w-[90px] h-[90px] rounded-full shadow-md bg-base-300">
                 <img
-                  className="w-full h-full rounded-full shadow-md object-cover"
+                  className="w-full h-full rounded-full shadow-md object-contain"
                   src={logo}
                   alt=""
                 />
