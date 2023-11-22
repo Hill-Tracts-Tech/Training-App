@@ -63,7 +63,7 @@ const Registration = () => {
                   </label>
 
                   <input
-                    type="name"
+                    type="contact number"
                     placeholder="name"
                     className="input input-bordered lg:w-[250px]"
                     required
@@ -128,8 +128,8 @@ const Registration = () => {
                     <span className="label-text">CGPA</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="text"
+                    type="number"
+                    placeholder="CGPA"
                     className="input input-bordered lg:w-[240px]"
                     required
                   />
@@ -139,8 +139,8 @@ const Registration = () => {
                     <span className="label-text">Passing Year</span>
                   </label>
                   <input
-                    type="price"
-                    placeholder="text"
+                    type="number"
+                    placeholder="Passing Year"
                     className="input input-bordered lg:w-[240px]"
                     required
                   />
@@ -185,8 +185,8 @@ const Registration = () => {
                     <span className="label-text">Course Duration</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="number"
+                    type="number"
+                    placeholder="Course Duration"
                     className="input input-bordered lg:w-[240px]"
                     required
                   />
