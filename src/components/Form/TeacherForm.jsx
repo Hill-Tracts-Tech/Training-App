@@ -102,9 +102,19 @@ const TeacherForm = () => {
             </label>
           </div>
           <div className="flex flex-col gap-y-2 w-[400px]">
+            <label className="text-lg font-semibold mt-2">Teacher ID :</label>
+            <input
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
+              placeholder="Teacher_id"
+              type="text"
+              value={teacher_id}
+              onChange={(e) => setTeacher_id(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Teacher name :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
               placeholder="name"
               type="text"
               value={name}
@@ -114,7 +124,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Designation :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
               placeholder="designation"
               type="text"
               value={designation}
@@ -124,7 +134,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Department :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
               placeholder="department"
               type="text"
               value={department}
@@ -134,21 +144,11 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">About</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
               placeholder="about"
               type="text"
               value={about}
               onChange={(e) => setAbout(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col gap-y-2 w-[400px]">
-            <label className="text-lg font-semibold mt-2">Teacher ID :</label>
-            <input
-              className="outline-none border bordered-2 rounded-md p-2"
-              placeholder="Teacher_id"
-              type="text"
-              value={teacher_id}
-              onChange={(e) => setTeacher_id(e.target.value)}
             />
           </div>
 
