@@ -2,15 +2,29 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import { useGetTeacherQuery } from "../../../redux/api/teacherApi";
+import {
+  useDeleteTeacherMutation,
+  useGetTeacherQuery,
+} from "../../../redux/api/teacherApi";
+import toast from "react-hot-toast";
 
 const AdminTeacher = () => {
   const { data: teacherData, isLoading } = useGetTeacherQuery();
+  const [deleteTeacher] = useDeleteTeacherMutation();
   const [eye, setEye] = useState({});
 
   const datahandler = (id) => {
-    const singleItem = teacherData?.data?.find((item) => item?.id === id);
+    const singleItem = teacherData?.data?.find((item) => item?._id === id);
     setEye(singleItem);
+  };
+
+  const handleDelete = async (teacherId) => {
+    try {
+      await deleteTeacher(teacherId);
+      toast.success("Teacher Deleted Successfully");
+    } catch (error) {
+      toast.error("Fail to delete");
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -43,7 +57,7 @@ const AdminTeacher = () => {
                       <td className="border p-2 text-center">
                         {item?.teacherId}
                       </td>
-                      <td className="border p-2 font-bold flex justify-center items-center gap-3">
+                      <td className="border p-2 font-bold flex items-center gap-3">
                         <div className=" mask mask-squircle w-12 h-12">
                           <img
                             src={`${
@@ -64,12 +78,15 @@ const AdminTeacher = () => {
                         <div className="flex justify-center gap-3 items-center">
                           <label
                             htmlFor="my_modal_5"
-                            className="hover:text-blue-500"
-                            onClick={() => datahandler(item?.id)}
+                            className="hover:text-blue-500  cursor-pointer"
+                            onClick={() => datahandler(item?._id)}
                           >
                             <VisibilityIcon />
                           </label>
-                          <DeleteIcon className="text-red-400 hover:text-black" />
+                          <DeleteIcon
+                            className="text-red-400 hover:text-black  cursor-pointer"
+                            onClick={() => handleDelete(item?._id)}
+                          />
                         </div>
                       </td>
                     </tr>
