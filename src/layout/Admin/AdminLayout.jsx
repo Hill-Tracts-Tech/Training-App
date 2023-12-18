@@ -56,7 +56,7 @@ const AdminLayout = () => {
     <div>
       <Brand />
       <Navbar />
-      <div className="flex flex-row-reverse mt-[-20px] h-[100%] mb-10">
+      <div className="flex flex-row-reverse mt-[-20px] h-[100%] ">
         <div className="content md:w-[80%] w-full">
           <Outlet />
         </div>
