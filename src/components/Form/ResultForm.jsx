@@ -26,17 +26,9 @@ const ResultForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("user", currentUser?._id);
-    formData.append("prescription", uploadimg);
-    console.log("Form data", course, batchNo);
-    // formDataRequest.post(`/prescription/add-prescription`, formData);
-    // Swal.fire({
-    //   title: "Prescription Uploaded Successfully",
-    //   icon: "success",
-    //   confirmButtonColor: "#3CBD96 ",
-    // });
-    document.getElementById("my_modal_1").click();
-    setImage(null);
+    formData.append("file", uploadimg);
+    formData.append("courseName", course);
+    formData.append("batchNo", batchNo);
   };
 
   return (
@@ -97,7 +89,7 @@ const ResultForm = () => {
                 Course Name :
               </label>
               <input
-                className="outline-none border bordered-2 rounded-md p-2"
+                className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
                 placeholder="course name "
                 type="text"
                 value={course}
@@ -111,7 +103,7 @@ const ResultForm = () => {
                 Batch NO/Name:
               </label>
               <input
-                className="outline-none border bordered-2 rounded-md p-2"
+                className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
                 placeholder="EE23-16 "
                 type="text"
                 value={course}
