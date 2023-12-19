@@ -44,7 +44,7 @@ const News = () => {
           <table className="w-full border-collapse border overflow-x-scroll mt-5 shadow-lg">
             <thead>
               <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
-                <th className="border p-2">NO</th>
+                <th className="border p-2">Notice Id</th>
                 <th className="border p-2">Image</th>
                 <th className="border p-2">Title</th>
                 <th className="border p-2">Description </th>
@@ -55,7 +55,7 @@ const News = () => {
               {newsData?.data?.map((item, i) => (
                 <>
                   <tr key={i}>
-                    <td className="border p-2 font-bold">
+                    <td className="border p-2 font-bold text-center">
                       <p>{i + 1}</p>
                     </td>
                     <td className="border p-2 font-bold">

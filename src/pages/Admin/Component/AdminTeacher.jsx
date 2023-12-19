@@ -3,8 +3,10 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useGetTeacherQuery } from "../../../redux/api/baseApi";
-import { useDeleteTeacherMutation } from "../../../redux/features/teacher/teacherApi";
+import {
+  useDeleteTeacherMutation,
+  useGetTeacherQuery,
+} from "../../../redux/features/teacher/teacherApi";
 
 const AdminTeacher = () => {
   const { data: teacherData, isLoading } = useGetTeacherQuery();

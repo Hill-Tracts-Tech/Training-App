@@ -7,5 +7,3 @@ export const baseApi = createApi({
   endpoints: () => ({}),
   tagTypes: ["teacher", "notice"],
 });
-
-export const { useGetTeacherQuery } = baseApi;
