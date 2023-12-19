@@ -2,38 +2,34 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import {
+  useDeleteNoticeMutation,
+  useGetNoticeQuery,
+} from "../../../redux/features/notice/noticeApi";
+import toast from "react-hot-toast";
 const News = () => {
+  const [deleteNotice] = useDeleteNoticeMutation();
+  const { data: newsData, isLoading } = useGetNoticeQuery();
   const [eye, setEye] = useState({});
-  const data = [
-    {
-      id: 1,
-      title: "Breaking News 1",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      description:
-        "This is the description for breaking news 1. It contains important information and details about the event.",
-    },
-    {
-      id: 2,
-      title: "Latest Update 2",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      description:
-        "Here is the latest update on a significant event. The description provides insights and context to the readers.",
-    },
-    {
-      id: 3,
-      title: "Special Report 3",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      description:
-        "A special report with in-depth coverage and analysis. The description dives into the various aspects of the topic.",
-    },
-  ];
+
   const datahandler = (id) => {
-    const singleItem = data?.find((item) => item?.id === id);
+    const singleItem = newsData?.data?.find((item) => item?._id === id);
     setEye(singleItem);
   };
+
+  const handleDelete = async (noticeId) => {
+    try {
+      const result = await deleteNotice(noticeId).unwrap();
+      if (result?.statusCode === 200) {
+        toast.success("Notice deleted successfully");
+      }
+    } catch (error) {
+      toast.error("Fail to delete");
+    }
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div>
       {/* <NewsForm /> */}
@@ -56,7 +52,7 @@ const News = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, i) => (
+              {newsData?.data?.map((item, i) => (
                 <>
                   <tr key={i}>
                     <td className="border p-2 font-bold">
@@ -65,22 +61,27 @@ const News = () => {
                     <td className="border p-2 font-bold">
                       <img
                         className="w-full h-32 rounded"
-                        src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"
+                        src={`${import.meta.env.VITE_APP_IMAGE_URL}/notices/${
+                          item?.file
+                        }`}
                         alt=""
                       />
                     </td>
                     <td className="border p-2">{item?.title}</td>
-                    <td className="border p-2">{item?.description}</td>
+                    <td className="border p-2">{item?.desc}</td>
                     <td className="border p-2">
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
-                          className="hover:text-blue-500"
-                          onClick={() => datahandler(item?.id)}
+                          className="hover:text-blue-500 cursor-pointer"
+                          onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
                         </label>
-                        <DeleteIcon className="text-red-400 hover:text-black" />
+                        <DeleteIcon
+                          className="text-red-400 hover:text-black cursor-pointer"
+                          onClick={() => handleDelete(item?._id)}
+                        />
                       </div>
                     </td>
                   </tr>
@@ -104,15 +105,16 @@ const News = () => {
               <div>
                 <img
                   className=" rounded h-[220px] w-full"
-                  src={eye?.image}
+                  src={`${import.meta.env.VITE_APP_IMAGE_URL}/notices/${
+                    eye?.file
+                  }`}
                   alt=""
                 />
                 <p className="my-3">
                   <span className="font-bold ">Title:</span> {eye?.title}
                 </p>
                 <p>
-                  <span className="font-bold">Description:</span>{" "}
-                  {eye?.description}
+                  <span className="font-bold">Description:</span> {eye?.desc}
                 </p>
               </div>
             </div>

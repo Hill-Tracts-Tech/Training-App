@@ -3,12 +3,19 @@ import { useState } from "react";
 // import { formDataRequest } from "../requestMethod";
 // import Swal from "sweetalert2";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useAddNoticeMutation } from "../redux/features/notice/noticeApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 const DraggableImageInput = () => {
+  const [addNotice] = useAddNoticeMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [title, settitle] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
 
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -28,17 +35,18 @@ const DraggableImageInput = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("user", currentUser?._id);
-    formData.append("prescription", uploadimg);
-    console.log("Form data", title, message);
-    // formDataRequest.post(`/prescription/add-prescription`, formData);
-    // Swal.fire({
-    //   title: "Prescription Uploaded Successfully",
-    //   icon: "success",
-    //   confirmButtonColor: "#3CBD96 ",
-    // });
-    document.getElementById("my_modal_1").click();
-    setImage(null);
+    formData.append("file", uploadimg);
+    formData.append("title", title);
+    formData.append("desc", desc);
+    try {
+      const result = await addNotice(formData).unwrap();
+      if (result.statusCode === 200) {
+        toast.success("Notice added successfully");
+        navigate("/admin/notice");
+      }
+    } catch (error) {
+      toast.error("Fail to add notice");
+    }
   };
 
   return (
@@ -91,26 +99,26 @@ const DraggableImageInput = () => {
             </label>
           </div>
           <div className="flex flex-col gap-y-2 w-[400px]">
-            <label className="text-lg font-semibold mt-2">Title :</label>
+            <label className="text-lg font-semibold mt-2">Title</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2"
-              placeholder="Title"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
+              placeholder="title"
               type="text"
               value={title}
-              onChange={(e) => settitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col gap-y-2 w-full">
-            <label className="text-lg font-semibold mt-4"> Description:</label>
+            <label className="text-lg font-semibold mt-4"> Description</label>
             <textarea
-              className="outline-none border bordered-2 rounded-md p-2 resize-none w-full h-[100px]"
+              className="outline-none border bordered-2 rounded-md p-2 resize-none w-full h-[100px] bg-slate-100 text-black"
               placeholder="description "
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </div>
-          {uploadimg && title && message ? (
+          {uploadimg && title && desc ? (
             <>
               {" "}
               <button

@@ -2,7 +2,7 @@ import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useAddTeacherMutation } from "../../redux/api/teacherApi";
+import { useAddTeacherMutation } from "../../redux/features/teacher/teacherApi";
 
 const TeacherForm = () => {
   const [addTeacher] = useAddTeacherMutation();
