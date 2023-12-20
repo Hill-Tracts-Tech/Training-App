@@ -9,6 +9,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AppsIcon from "@mui/icons-material/Apps";
+import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -23,6 +24,12 @@ const AdminLayout = () => {
       title: "Overview",
       to: "/admin",
       icon: <MenuBookIcon />,
+    },
+    {
+      id: 6,
+      title: "Thumbnail",
+      to: "/admin/thumbnail",
+      icon: <ViewCarouselIcon />,
     },
     {
       id: 2,
