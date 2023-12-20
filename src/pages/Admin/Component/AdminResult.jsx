@@ -44,12 +44,14 @@ const AdminResult = () => {
               {resultData?.data?.map((item, i) => (
                 <>
                   <tr key={i}>
-                    <td className="border p-2 font-bold">
+                    <td className="border p-2 text-center font-bold">
                       <p>{i + 1}</p>
                     </td>
-                    <td className="border p-2">{item?.courseName}</td>
-                    <td className="border p-2">{item?.batchNo}</td>
-                    <td className="border p-2 font-bold">
+                    <td className="border p-2 text-center">
+                      {item?.courseName}
+                    </td>
+                    <td className="border p-2 text-center">{item?.batchNo}</td>
+                    <td className="border p-2 text-center font-bold flex justify-center items-center">
                       {isPDF(item?.file) ? (
                         <a
                           href={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
@@ -63,7 +65,7 @@ const AdminResult = () => {
                         </a>
                       ) : (
                         <img
-                          className="w-full h-32"
+                          className="w-24 h-12"
                           src={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
                             item?.file
                           }`}
@@ -71,7 +73,7 @@ const AdminResult = () => {
                         />
                       )}
                     </td>
-                    <td className="border p-2">
+                    <td className="border p-2 text-center">
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
