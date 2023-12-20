@@ -106,7 +106,7 @@ const ResultForm = () => {
                 className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
                 placeholder="EE23-16 "
                 type="text"
-                value={course}
+                value={batchNo}
                 onChange={(e) => setBatchNo(e.target.value)}
               />
             </div>

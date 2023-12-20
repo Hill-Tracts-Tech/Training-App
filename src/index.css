@@ -14,4 +14,9 @@ body {
   input[type="number"] {
     -moz-appearance: textfield;
   }
+  button[disabled] {
+    cursor: not-allowed; /* Change cursor on hover */
+    background-color: #cccccc !important; /* Background color */
+    /* Add any other styles you want for the disabled state */
+  }
 }

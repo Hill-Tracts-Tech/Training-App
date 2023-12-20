@@ -277,8 +277,8 @@ const CourseForm = () => {
               >
                 + Add Module
               </div>
-              <button className="p-2 px-4 cursor-pointer bg-gray-500 rounded-md font-semibold text-white">
-                Send
+              <button className="p-2 px-4 bg-primary bg-gradient-to-r cursor-pointer from-cyan-500 to-blue-500 rounded-md font-semibold text-white">
+                Submit
               </button>
             </div>
           </form>
