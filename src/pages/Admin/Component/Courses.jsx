@@ -2,15 +2,29 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import { useGetCoursesQuery } from "../../../redux/features/course/courseApi";
+import {
+  useDeleteCourseMutation,
+  useGetCoursesQuery,
+} from "../../../redux/features/course/courseApi";
+import toast from "react-hot-toast";
 
 const AdminCourses = () => {
   const { data: courses, isLoading } = useGetCoursesQuery();
+  const [deleteCourse] = useDeleteCourseMutation();
   const [eye, setEye] = useState({});
 
   const datahandler = (id) => {
     const singleItem = courses?.data?.find((item) => item?._id === id);
     setEye(singleItem);
+  };
+
+  const handleDelete = async (courseId) => {
+    try {
+      await deleteCourse(courseId);
+      toast.success("Course deleted successfully");
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -73,7 +87,10 @@ const AdminCourses = () => {
                         >
                           <VisibilityIcon />
                         </label>
-                        <DeleteIcon className="text-red-400 hover:text-black cursor-pointer" />
+                        <DeleteIcon
+                          className="text-red-400 hover:text-black cursor-pointer"
+                          onClick={() => handleDelete(item?._id)}
+                        />
                       </div>
                     </td>
                   </tr>
