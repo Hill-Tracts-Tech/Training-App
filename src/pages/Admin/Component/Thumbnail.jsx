@@ -3,25 +3,27 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import {
-  useDeleteCourseMutation,
-  useGetCoursesQuery,
-} from "../../../redux/features/course/courseApi";
+  useDeleteThumbnailsMutation,
+  useGetThumbnailsQuery,
+} from "../../../redux/features/thumbnail/thumbnailApi";
 import toast from "react-hot-toast";
 
-const AdminCourses = () => {
-  const { data: courses, isLoading } = useGetCoursesQuery();
-  const [deleteCourse] = useDeleteCourseMutation();
+const Thumbnail = () => {
+  const { data: thumbnailData, isLoading } = useGetThumbnailsQuery();
+  const [deleteThumbnail] = useDeleteThumbnailsMutation();
   const [eye, setEye] = useState({});
 
   const datahandler = (id) => {
-    const singleItem = courses?.data?.find((item) => item?._id === id);
+    const singleItem = thumbnailData?.data?.find((item) => item?._id === id);
     setEye(singleItem);
   };
 
-  const handleDelete = async (courseId) => {
+  const handleDelete = async (thumbnailId) => {
     try {
-      await deleteCourse(courseId);
-      toast.success("Course deleted successfully");
+      const res = await deleteThumbnail(thumbnailId).unwrap();
+      if (res.statusCode === 200) {
+        toast.success("Thumbnail deleted successfully");
+      }
     } catch (error) {
       toast.error(error);
     }
@@ -35,49 +37,38 @@ const AdminCourses = () => {
         <div className="me-20 ps-5 mt-4">
           <Link
             className="relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
-            to="/admin/courseForm"
+            to="/admin/thumbnailForm"
           >
-            Add New Course
+            Add Thumbnail
           </Link>
           <table className="w-full border-collapse border overflow-x-scroll mt-5 shadow-lg">
             <thead>
               <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+                <th className="border p-2">NO</th>
                 <th className="border p-2">Title</th>
+                <th className="border p-2"> Description</th>
                 <th className="border p-2">Thumbnail</th>
-                <th className="border p-2">Instructor</th>
-                <th className="border p-2">Price</th>
-                <th className="border p-2">Duration</th>
                 <th className="border p-2 ">Action</th>
               </tr>
             </thead>
             <tbody>
-              {courses?.data?.map((item, i) => (
+              {thumbnailData?.data?.map((item, i) => (
                 <>
                   <tr key={i}>
-                    <td className="border p-2 text-center">{item?.title}</td>
                     <td className="border p-2 text-center font-bold">
-                      <div className="w-20 h-12">
-                        <img
-                          src={`${import.meta.env.VITE_APP_IMAGE_URL}/courses/${
-                            item?.image
-                          }`}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </td>
-                    <td className="border p-2 text-center flex items-center gap-6">
-                      <div className="mask mask-squircle w-12 h-12 ">
-                        <img
-                          src={`${
-                            import.meta.env.VITE_APP_IMAGE_URL
-                          }/teachers/${item?.instructor?.image}`}
-                          alt="Avatar Tailwind CSS Component"
-                        />{" "}
-                      </div>
-                      <span>{item?.instructor?.name}</span>
+                      <p>{i + 1}</p>
                     </td>
                     <td className="border p-2 text-center">{item?.title}</td>
-                    <td className="border p-2 text-center">{item?.duration}</td>
+                    <td className="border p-2 text-center">{item?.desc}</td>
+                    <td className="border p-2 text-center font-bold flex justify-center items-center">
+                      <img
+                        className="w-24 h-12"
+                        src={`${import.meta.env.VITE_APP_IMAGE_URL}/banners/${
+                          item?.image
+                        }`}
+                        alt=""
+                      />
+                    </td>
                     <td className="border p-2 text-center">
                       <div className="flex justify-center gap-3 items-center">
                         <label
@@ -110,27 +101,20 @@ const AdminCourses = () => {
             >
               X
             </label>
-            <div className="flex justify-center gap-4">
-              <img
-                className="h-38 w-48 "
-                src={`${import.meta.env.VITE_APP_IMAGE_URL}/courses/${
-                  eye?.image
-                }`}
-                alt=""
-              />
+            <div className="">
               <div>
+                <img
+                  className=" rounded h-[260px] w-full"
+                  src={`${import.meta.env.VITE_APP_IMAGE_URL}/banners/${
+                    eye?.image
+                  }`}
+                  alt=""
+                />
                 <p className="my-3">
-                  <span className=" font-bold">Title:</span> {eye?.title}
+                  <span className=" font-bold">Title: </span> {eye?.title}
                 </p>
                 <p>
-                  <span className=" font-bold">Instructor:</span>{" "}
-                  {eye?.instructor?.name}
-                </p>
-                <p className="my-3">
-                  <span className=" font-bold">Duration:</span> {eye?.duration}
-                </p>
-                <p>
-                  <span className=" font-bold">Price:</span> {eye?.price}
+                  <span className=" font-bold">Description:</span> {eye?.desc}
                 </p>
               </div>
             </div>
@@ -141,4 +125,4 @@ const AdminCourses = () => {
   );
 };
 
-export default AdminCourses;
+export default Thumbnail;

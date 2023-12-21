@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Brand from "../../components/Brand/Brand";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -9,17 +9,27 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AppsIcon from "@mui/icons-material/Apps";
+import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
 
 const AdminLayout = () => {
+  const location = useLocation();
+
   const isActive = (path) => {
     return location.pathname === path;
   };
+
   const list = [
     {
       id: 1,
       title: "Overview",
       to: "/admin",
       icon: <MenuBookIcon />,
+    },
+    {
+      id: 6,
+      title: "Thumbnail",
+      to: "/admin/thumbnail",
+      icon: <ViewCarouselIcon />,
     },
     {
       id: 2,
@@ -56,21 +66,21 @@ const AdminLayout = () => {
     <div>
       <Brand />
       <Navbar />
-      <div className="flex flex-row-reverse mt-[-20px] h-[100%] mb-10">
+      <div className="flex flex-row-reverse mt-[-20px] h-[100%] ">
         <div className="content md:w-[80%] w-full">
           <Outlet />
         </div>
         <div className="sidebar w-[20%] md:block hidden  ml-20">
           <div className="text-black font-semibold breadcrumbs ml-[2rem]"></div>
-          <div className="text-left bg-white  p-5 flex flex-col shadow-lg rounded-lg gap-y-4 ">
+          <div className="text-left h-[100vh] bg-white  p-5 flex flex-col shadow-lg rounded-lg gap-y-4 ">
             {" "}
             {list?.map((item, i) => (
               <Link key={item?.id} to={item?.to}>
                 <div
                   className={`${
                     isActive(`${item.to}`)
-                      ? "flex justify-start gap-4 text-orange-500"
-                      : "flex justify-start gap-4 hover:text-orange-400"
+                      ? "flex justify-start gap-4 text-orange-500 bg-gray-300 rounded-lg px-5 py-3"
+                      : "flex justify-start gap-4 hover:text-orange-400 px-5 py-3"
                   }`}
                 >
                   {item?.icon}

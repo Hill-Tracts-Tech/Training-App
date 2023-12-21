@@ -1,11 +1,18 @@
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useState } from "react";
-const ResultForm = () => {
+import { useAddThumbnailMutation } from "../../redux/features/thumbnail/thumbnailApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
+const ThumbnailForm = () => {
+  const [addThumbnail] = useAddThumbnailMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [course, setCourse] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
 
-  const [batchNo, setBatchNo] = useState("");
+  const navigate = useNavigate();
+
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -20,15 +27,24 @@ const ResultForm = () => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    // ........................
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", uploadimg);
-    formData.append("courseName", course);
-    formData.append("batchNo", batchNo);
+    formData.append("image", uploadimg);
+    formData.append("title", title);
+    formData.append("desc", desc);
+
+    try {
+      const res = await addThumbnail(formData).unwrap();
+      if (res.statusCode === 200) {
+        toast.success("Thumbnail uploaded successfully");
+        navigate("/admin/thumbnail");
+      }
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   return (
@@ -85,32 +101,30 @@ const ResultForm = () => {
               </label>
             </div>
             <div className="flex flex-col gap-y-2 w-[400px]">
-              <label className="text-lg font-semibold mt-2">
-                Course Name :
-              </label>
+              <label className="text-lg font-semibold mt-2">Title:</label>
               <input
                 className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
-                placeholder="course name "
+                placeholder="title"
                 type="text"
-                value={course}
-                onChange={(e) => setCourse(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
             <div className="flex flex-col gap-y-2 w-full">
               <label className="text-lg font-semibold mt-4">
                 {" "}
-                Batch NO/Name:
+                Description:
               </label>
               <input
                 className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
-                placeholder="EE23-16 "
+                placeholder="description"
                 type="text"
-                value={batchNo}
-                onChange={(e) => setBatchNo(e.target.value)}
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
               />
             </div>
-            {uploadimg && course && batchNo ? (
+            {uploadimg && title && desc ? (
               <>
                 {" "}
                 <button
@@ -134,4 +148,4 @@ const ResultForm = () => {
   );
 };
 
-export default ResultForm;
+export default ThumbnailForm;

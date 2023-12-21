@@ -2,44 +2,33 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import {
+  useDeleteTeacherMutation,
+  useGetTeacherQuery,
+} from "../../../redux/features/teacher/teacherApi";
+
 const AdminTeacher = () => {
+  const { data: teacherData, isLoading } = useGetTeacherQuery();
+  const [deleteTeacher] = useDeleteTeacherMutation();
   const [eye, setEye] = useState({});
-  const data = [
-    {
-      id: 1,
-      name: "John Smith",
-      designation: "Professor",
-      age: 40,
-      image_url:
-        "https://www.shareicon.net/data/512x512/2016/07/26/802026_man_512x512.png",
-      teacher_id: "T001",
-      department: "CS",
-    },
-    {
-      id: 2,
-      name: "Emily Johnson",
-      designation: "Assistant Professor",
-      age: 35,
-      image_url:
-        "https://www.shareicon.net/data/512x512/2016/07/26/802026_man_512x512.png",
-      teacher_id: "T002",
-      department: "EE",
-    },
-    {
-      id: 3,
-      name: "Robert Davis",
-      designation: "Lecturer",
-      age: 30,
-      image_url:
-        "https://www.shareicon.net/data/512x512/2016/07/26/802026_man_512x512.png",
-      teacher_id: "T003",
-      department: "CE",
-    },
-  ];
+
   const datahandler = (id) => {
-    const singleItem = data?.find((item) => item?.id === id);
+    const singleItem = teacherData?.data?.find((item) => item?._id === id);
     setEye(singleItem);
   };
+
+  const handleDelete = async (teacherId) => {
+    try {
+      await deleteTeacher(teacherId);
+      toast.success("Teacher Deleted Successfully");
+    } catch (error) {
+      toast.error("Fail to delete");
+    }
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <div>
@@ -53,51 +42,56 @@ const AdminTeacher = () => {
           <table className="w-full border-collapse border overflow-x-scroll mt-5 shadow-lg">
             <thead>
               <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
-                <th className="border p-2">NO</th>
                 <th className="border p-2">Teacher ID</th>
-                <th className="border p-2">Image </th>
-                <th className="border p-2">Teacher Name</th>
+                <th className="border p-2">Teacher </th>
                 <th className="border p-2">Designation</th>
                 <th className="border p-2">Department</th>
-                <th className="border p-2">Age</th>
                 <th className="border p-2 ">Action</th>
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, i) => (
-                <>
-                  <tr key={i}>
-                    <td className="border p-2 font-bold">
-                      <p>{i + 1}</p>
-                    </td>
-                    <td className="border p-2">{item?.teacher_id}</td>
-                    <td className="border p-2 font-bold">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={item?.image_url}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </td>
-                    <td className="border p-2">{item?.name}</td>
-                    <td className="border p-2">{item?.designation}</td>
-                    <td className="border p-2">{item?.department}</td>
-                    <td className="border p-2">{item?.age}</td>
-                    <td className="border p-2">
-                      <div className="flex justify-center gap-3 items-center">
-                        <label
-                          htmlFor="my_modal_5"
-                          className="hover:text-blue-500"
-                          onClick={() => datahandler(item?.id)}
-                        >
-                          <VisibilityIcon />
-                        </label>
-                        <DeleteIcon className="text-red-400 hover:text-black" />
-                      </div>
-                    </td>
-                  </tr>
-                </>
-              ))}
+              {teacherData?.data.length > 0 &&
+                teacherData?.data?.map((item, i) => (
+                  <>
+                    <tr key={i}>
+                      <td className="border p-2 text-center">
+                        {item?.teacherId}
+                      </td>
+                      <td className="border p-2 font-bold flex items-center gap-3">
+                        <div className=" mask mask-squircle w-12 h-12">
+                          <img
+                            src={`${
+                              import.meta.env.VITE_APP_IMAGE_URL
+                            }/teachers/${item?.image}`}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                        <span>{item?.name}</span>
+                      </td>
+                      <td className="border p-2 text-center">
+                        {item?.designation}
+                      </td>
+                      <td className="border p-2 text-center">
+                        {item?.department}
+                      </td>
+                      <td className="border p-2">
+                        <div className="flex justify-center gap-3 items-center">
+                          <label
+                            htmlFor="my_modal_5"
+                            className="hover:text-blue-500  cursor-pointer"
+                            onClick={() => datahandler(item?._id)}
+                          >
+                            <VisibilityIcon />
+                          </label>
+                          <DeleteIcon
+                            className="text-red-400 hover:text-black  cursor-pointer"
+                            onClick={() => handleDelete(item?._id)}
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  </>
+                ))}
             </tbody>
           </table>
         </div>
@@ -115,12 +109,14 @@ const AdminTeacher = () => {
             <div className="flex justify-center gap-4">
               <img
                 className="  h-38 w-48 rounded-full "
-                src={eye?.image_url}
+                src={`${import.meta.env.VITE_APP_IMAGE_URL}/teachers/${
+                  eye?.image
+                }`}
                 alt=""
               />
               <div>
                 <p className="my-3">
-                  <span className=" font-bold">ID:</span> {eye?.teacher_id}
+                  <span className=" font-bold">ID:</span> {eye?.teacherId}
                 </p>
                 <p>
                   <span className=" font-bold">Name:</span> {eye?.name}
@@ -134,7 +130,7 @@ const AdminTeacher = () => {
                   {eye?.department}
                 </p>
                 <p className="my-3">
-                  <span className=" font-bold">Age:</span> {eye?.age}
+                  <span className=" font-bold">About:</span> {eye?.about}
                 </p>
               </div>
             </div>

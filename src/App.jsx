@@ -1,10 +1,15 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./router/router";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
 function App() {
   return (
-    <div>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </div>
+      <Toaster position="top-center" />
+    </Provider>
   );
 }
 
