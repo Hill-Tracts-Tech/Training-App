@@ -1,11 +1,28 @@
-import img1 from "../../../assets/img/center.jpg";
-import img2 from "../../../assets/img/banner_5.jpg";
-import img3 from "../../../assets/img/facilities.png";
-import img4 from "../../../assets/img/center.jpg";
-import img5 from "../../../assets/img/baner_ratio.jpg";
 import { Link } from "react-router-dom";
+import {
+  useDeleteImageMutation,
+  useGetImagesQuery,
+} from "../../../redux/features/gallery/galleryApi";
+import DeleteIcon from "@mui/icons-material/Delete";
+import toast from "react-hot-toast";
+
 const ImageGallery = () => {
-  const images = [img1, img2, img3, img4, img5];
+  const { data: images, isLoading } = useGetImagesQuery();
+  const [deleteImage] = useDeleteImageMutation();
+
+  const handleDelete = async (imageId) => {
+    try {
+      const result = await deleteImage(imageId).unwrap();
+      if (result.statusCode === 200) {
+        toast.success("Image deleted successfully");
+      }
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div className="ml-3">
       <Link
@@ -15,15 +32,21 @@ const ImageGallery = () => {
         Add Image
       </Link>
       <div className="flex flex-wrap mt-6 gap-2 gap-3lex-wrap justify-start bg-white shadow-lg p-5  mr-20">
-        {images?.map((image, index) => (
+        {images?.data?.map((item, index) => (
           <div key={index} className="w-200px">
             <div>
               <img
-                src={image}
+                src={`${import.meta.env.VITE_APP_IMAGE_URL}/gallery/${
+                  item.image
+                }`}
                 alt={`Image ${index + 1}`}
                 className=" -z-40 cursor-pointer hover:scale-110 ease-in-out duration-300 h-[160px] w-[200px] rounded-md"
               />
             </div>
+            <DeleteIcon
+              className="text-red-400 hover:text-black cursor-pointer"
+              onClick={() => handleDelete(item?._id)}
+            />
           </div>
         ))}
       </div>

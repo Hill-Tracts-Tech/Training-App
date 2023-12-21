@@ -2,36 +2,24 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import { useGetResultQuery } from "../../../redux/features/result/resultApi";
+
 const AdminResult = () => {
+  const { data: resultData, isLoading } = useGetResultQuery();
   const [eye, setEye] = useState({});
-  const data = [
-    {
-      id: 1,
-      course_name: "Computer Science",
-      batch_number: "CS2023",
-      image_url:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-    },
-    {
-      id: 2,
-      course_name: "Electrical Engineering",
-      batch_number: "EE2023",
-      image_url:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-    },
-    {
-      id: 3,
-      course_name: "Mechanical Engineering",
-      batch_number: "ME2023",
-      image_url:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-    },
-    // Add more results as needed
-  ];
+
   const datahandler = (id) => {
-    const singleItem = data?.find((item) => item?.id === id);
+    const singleItem = resultData?.data?.find((item) => item?._id === id);
     setEye(singleItem);
   };
+
+  // file identified
+  const isPDF = (fileName) => {
+    return fileName.toLowerCase().endsWith(".pdf");
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <div>
@@ -53,27 +41,44 @@ const AdminResult = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, i) => (
+              {resultData?.data?.map((item, i) => (
                 <>
                   <tr key={i}>
-                    <td className="border p-2 font-bold">
+                    <td className="border p-2 text-center font-bold">
                       <p>{i + 1}</p>
                     </td>
-                    <td className="border p-2">{item?.course_name}</td>
-                    <td className="border p-2">{item?.batch_number}</td>
-                    <td className="border p-2 font-bold">
-                      <img
-                        className="w-full h-32"
-                        src={item?.image_url}
-                        alt=""
-                      />
+                    <td className="border p-2 text-center">
+                      {item?.courseName}
                     </td>
-                    <td className="border p-2">
+                    <td className="border p-2 text-center">{item?.batchNo}</td>
+                    <td className="border p-2 text-center font-bold flex justify-center items-center">
+                      {isPDF(item?.file) ? (
+                        <a
+                          href={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
+                            item?.file
+                          }`}
+                          target="_blank"
+                          className="cursor-pointer underline"
+                          rel="noreferrer"
+                        >
+                          {item?.file}
+                        </a>
+                      ) : (
+                        <img
+                          className="w-24 h-12"
+                          src={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
+                            item?.file
+                          }`}
+                          alt=""
+                        />
+                      )}
+                    </td>
+                    <td className="border p-2 text-center">
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
                           className="hover:text-blue-500"
-                          onClick={() => datahandler(item?.id)}
+                          onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
                         </label>

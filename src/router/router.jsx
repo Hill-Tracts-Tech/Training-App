@@ -25,6 +25,8 @@ import AdminTeacher from "../pages/Admin/Component/AdminTeacher";
 import TeacherForm from "../components/Form/TeacherForm";
 import AdminCourses from "../pages/Admin/Component/Courses";
 import CourseForm from "../components/Form/CourseForm";
+import Thumbnail from "../pages/Admin/Component/Thumbnail";
+import ThumbnailForm from "../components/Form/ThumbnailForm";
 
 const router = createBrowserRouter([
   {
@@ -117,6 +119,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/resultForm",
         element: <ResultForm />,
+      },
+      {
+        path: "/admin/thumbnail",
+        element: <Thumbnail />,
+      },
+      {
+        path: "/admin/thumbnailForm",
+        element: <ThumbnailForm />,
       },
       {
         path: "/admin/teacher",

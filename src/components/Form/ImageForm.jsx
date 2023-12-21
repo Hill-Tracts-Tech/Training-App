@@ -1,9 +1,16 @@
 import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useAddImageMutation } from "../../redux/features/gallery/galleryApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ImageForm = () => {
+  const [addImage] = useAddImageMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
+
+  const navigate = useNavigate();
+
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -19,20 +26,20 @@ const ImageForm = () => {
   const handleDragOver = (e) => {
     e.preventDefault();
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append("user", currentUser?._id);
-    formData.append("prescription", uploadimg);
-    console.log("Form data", formData);
-    // formDataRequest.post(`/prescription/add-prescription`, formData);
-    // Swal.fire({
-    //   title: "Prescription Uploaded Successfully",
-    //   icon: "success",
-    //   confirmButtonColor: "#3CBD96 ",
-    // });
-    document.getElementById("my_modal_1").click();
-    setImage(null);
+    formData.append("image", uploadimg);
+    try {
+      const result = await addImage(formData).unwrap();
+      if (result.statusCode === 200) {
+        toast.success("Image added successfully");
+        navigate("/admin/image");
+      }
+    } catch (error) {
+      toast.error("Fail to add image");
+    }
   };
   return (
     <div className="">
