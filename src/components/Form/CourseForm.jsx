@@ -2,22 +2,46 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CloseIcon from "@mui/icons-material/Close";
-import { useAddCourseMutation } from "../../redux/features/course/courseApi";
+import {
+  useAddCourseMutation,
+  useUpdateCourseMutation,
+} from "../../redux/features/course/courseApi";
 import { useGetTeacherQuery } from "../../redux/features/teacher/teacherApi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CourseForm = () => {
-  const [addCourse] = useAddCourseMutation();
+  const [addCourse, { isLoading: addLoading }] = useAddCourseMutation();
   const { data: teachers } = useGetTeacherQuery();
+  const [updateCourse, { isLoading: updateLoading }] =
+    useUpdateCourseMutation();
+  const location = useLocation();
+  const { state } = location;
+  const navigate = useNavigate();
+
+  const {
+    title: defaultTitle,
+    desc: defaultDesc,
+    price: defaultPrice,
+    instructor: defaultInstructor,
+    duration: defaultDuration,
+    module: defaultModule,
+    image: defaultImage,
+    _id: courseId,
+  } = state?.item || {};
+
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [instructor, setInstructor] = useState("");
-  const [duration, setDuration] = useState("");
-
-  const navigate = useNavigate();
+  const [title, setTitle] = useState(defaultTitle ? defaultTitle : "");
+  const [price, setPrice] = useState(defaultPrice ? defaultPrice : "");
+  const [description, setDescription] = useState(
+    defaultDesc ? defaultDesc : ""
+  );
+  const [instructor, setInstructor] = useState(
+    defaultInstructor?._id ? defaultInstructor?._id : ""
+  );
+  const [duration, setDuration] = useState(
+    defaultDuration ? defaultDuration : ""
+  );
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -40,27 +64,54 @@ const CourseForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", uploadimg);
-    formData.append("desc", description);
-    formData.append("title", title);
-    formData.append("price", price);
-    formData.append("duration", duration);
-    formData.append("instructor", instructor);
-    formData.append("module", JSON.stringify(modules));
+    if (uploadimg) {
+      formData.append("image", uploadimg);
+    }
+    if (description) {
+      formData.append("desc", description);
+    }
+    if (title) {
+      formData.append("title", title);
+    }
+    if (price) {
+      formData.append("price", price);
+    }
+    if (duration) {
+      formData.append("duration", duration);
+    }
+    if (instructor) {
+      formData.append("instructor", instructor);
+    }
+    if (modules) {
+      formData.append("module", JSON.stringify(modules));
+    }
 
     try {
-      const res = await addCourse(formData).unwrap();
-      if (res.statusCode === 200) {
-        toast.success("Course added successfully");
-        navigate("/admin/course");
+      if (state?.editMode) {
+        const res = await updateCourse({
+          courseId,
+          courseData: formData,
+        }).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Course updated successfully");
+          navigate("/admin/courses");
+        }
+      } else {
+        const res = await addCourse(formData).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Course added successfully");
+          navigate("/admin/courses");
+        }
       }
     } catch (error) {
       toast.error(error);
     }
   };
 
+  const parsedModule = defaultModule && JSON.parse(defaultModule);
+
   // module logic
-  const [modules, setModules] = useState([]);
+  const [modules, setModules] = useState(parsedModule ? parsedModule : []);
 
   const addModule = () => {
     const newModule = {
@@ -112,6 +163,8 @@ const CourseForm = () => {
     },
   ];
 
+  if (addLoading || updateLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <>
@@ -124,7 +177,15 @@ const CourseForm = () => {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
           >
-            {image ? (
+            {defaultImage && !image ? (
+              <img
+                src={`${
+                  import.meta.env.VITE_APP_IMAGE_URL
+                }/courses/${defaultImage}`}
+                alt="Uploaded"
+                className="lg:h-[25vh] h-[30vh] w-[100%] object-contain"
+              />
+            ) : image ? (
               <img
                 src={image}
                 alt="Uploaded"
