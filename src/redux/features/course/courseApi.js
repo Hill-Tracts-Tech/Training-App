@@ -14,10 +14,10 @@ export const courseApi = baseApi.injectEndpoints({
       query: () => "/course",
     }),
     updateCourse: builder.mutation({
-      query: (course) => ({
-        url: `/course/${course?.courseId}`,
-        method: "PUT",
-        body: course.courseData,
+      query: ({ courseId, courseData }) => ({
+        url: `/course/${courseId}`,
+        method: "PATCH",
+        body: courseData,
       }),
       invalidatesTags: ["course"],
     }),
