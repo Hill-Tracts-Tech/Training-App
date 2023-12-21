@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import logo2 from "../../assets/icons/OCI.jpg";
 import logo1 from "../../assets/icons/OSC.jpg";
 import { useEffect, useState } from "react";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 const Registration = () => {
   const [active, setActive] = useState(true);
+  const [image, setImage] = useState(null);
+  const [uploadimg, setUpLoadimg] = useState(null);
   const {
     register,
     handleSubmit,
@@ -39,6 +42,25 @@ const Registration = () => {
   }, []); // Empty dependency array ensures that useEffect runs only once when the component mounts
 
   const formattedDate = currentDate.toDateString();
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("prescription", uploadimg);
+    console.log("Form data");
+  };
   return (
     <div className="w-[85%] mx-auto mb-9">
       <div className="bg-white card-bordered shadow-lg px-2 font-semibold rounded-lg w-36 py-2">
@@ -94,7 +116,7 @@ const Registration = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body ml-[-30px]"
               >
-                <div className=" flex justify-between">
+                <div className=" lg:flex justify-between">
                   <div className="join">
                     <button className=" uppercase btn join-item rounded-r-full lg:w-[188px]">
                       Admission No
@@ -105,13 +127,60 @@ const Registration = () => {
                       placeholder="Admission No"
                     />
                   </div>
-                  <div className="bg-gradient-to-r from-blue-500  to-cyan-500  py-2 px-2  text-center  text-white text-lg rounded-lg font-semibold">
+                  <div className="btn py-2 px-2  text-center  text-black text-lg rounded-lg font-semibold">
                     <p>{formattedDate}</p>
                   </div>
                 </div>
-
-                <div className=" my-3 bg-gradient-to-r uppercase  line-clamp-4  from-blue-500  to-cyan-500  py-2 px-2 lg:w-[30vw] text-center  text-white text-lg rounded-lg font-semibold">
-                  Application Form for Admission
+                <div className="lg:flex justify-between">
+                  <div className="mt-[200px] my-3 bg-gradient-to-r h-[100%] uppercase  line-clamp-4  from-blue-500  to-cyan-500  py-2 px-2 lg:w-[30vw] text-center  text-white text-lg rounded-lg font-semibold">
+                    Application Form for Admission
+                  </div>
+                  <div>
+                    <div
+                      className="lg:h-[30vh] h-[20vh] w-64  px-2 lg:px-auto border-2 border-dashed   border-gray-400 rounded-lg p-2 text-center"
+                      onDrop={handleDrop}
+                      onDragOver={handleDragOver}
+                    >
+                      {image ? (
+                        <img
+                          src={image}
+                          alt="Uploaded"
+                          className="   lg:h-[25vh] h-[30vh] w-[30vw] object-contain"
+                        />
+                      ) : (
+                        <div>
+                          <AddPhotoAlternateIcon
+                            style={{ fontSize: "150px" }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      type="file"
+                      id="imageInput"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        setUpLoadimg(file);
+                        if (file && file.type.startsWith("image/")) {
+                          const reader = new FileReader();
+                          reader.onload = () => {
+                            setImage(reader.result);
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    />
+                    <div className="mb-12">
+                      <label
+                        htmlFor="imageInput"
+                        className=" relative top-9 p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
+                      >
+                        Upload Image
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="join">
