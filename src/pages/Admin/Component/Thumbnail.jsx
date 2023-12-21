@@ -1,7 +1,8 @@
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link, useNavigate } from "react-router-dom";
 import {
   useDeleteThumbnailsMutation,
   useGetThumbnailsQuery,
@@ -27,6 +28,12 @@ const Thumbnail = () => {
     } catch (error) {
       toast.error(error);
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleEditClick = (item) => {
+    navigate("/admin/thumbnailForm", { state: { editMode: true, item } });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -73,11 +80,15 @@ const Thumbnail = () => {
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
-                          className="hover:text-blue-500 cursor-pointer"
+                          className="hover:text-black text-green-500 cursor-pointer"
                           onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
                         </label>
+                        <EditIcon
+                          onClick={() => handleEditClick(item)}
+                          className=" text-blue-400 hover:text-black cursor-pointer"
+                        />
                         <DeleteIcon
                           className="text-red-400 hover:text-black cursor-pointer"
                           onClick={() => handleDelete(item?._id)}

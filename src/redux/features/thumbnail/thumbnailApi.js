@@ -13,6 +13,14 @@ export const thumbnailApi = baseApi.injectEndpoints({
     getThumbnails: builder.query({
       query: () => "/banner",
     }),
+    updateThumbnail: builder.mutation({
+      query: ({ thumbnailId, thumbnailData }) => ({
+        url: `/banner/${thumbnailId}`,
+        method: "PATCH",
+        body: thumbnailData,
+      }),
+      invalidatesTags: ["banner"],
+    }),
     deleteThumbnails: builder.mutation({
       query: (thumbnailId) => ({
         url: `/banner/${thumbnailId}`,
@@ -27,4 +35,5 @@ export const {
   useAddThumbnailMutation,
   useGetThumbnailsQuery,
   useDeleteThumbnailsMutation,
+  useUpdateThumbnailMutation,
 } = thumbnailApi;

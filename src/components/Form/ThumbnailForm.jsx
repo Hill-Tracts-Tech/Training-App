@@ -1,15 +1,30 @@
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useState } from "react";
-import { useAddThumbnailMutation } from "../../redux/features/thumbnail/thumbnailApi";
+import {
+  useAddThumbnailMutation,
+  useUpdateThumbnailMutation,
+} from "../../redux/features/thumbnail/thumbnailApi";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ThumbnailForm = () => {
   const [addThumbnail] = useAddThumbnailMutation();
+  const [updateThumbnail] = useUpdateThumbnailMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+
+  const location = useLocation();
+  const { state } = location;
+
+  const {
+    title: defaultTitle,
+    desc: defaultDesc,
+    image: defaultImage,
+    _id: thumbnailId,
+  } = state?.item || {};
+
+  const [title, setTitle] = useState(defaultTitle ? defaultTitle : "");
+  const [desc, setDesc] = useState(defaultDesc ? defaultDesc : "");
 
   const navigate = useNavigate();
 
@@ -32,15 +47,26 @@ const ThumbnailForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", uploadimg);
-    formData.append("title", title);
-    formData.append("desc", desc);
+    uploadimg && formData.append("image", uploadimg);
+    title && formData.append("title", title);
+    desc && formData.append("desc", desc);
 
     try {
-      const res = await addThumbnail(formData).unwrap();
-      if (res.statusCode === 200) {
-        toast.success("Thumbnail uploaded successfully");
-        navigate("/admin/thumbnail");
+      if (state?.editMode) {
+        const res = await updateThumbnail({
+          thumbnailId,
+          thumbnailData: formData,
+        }).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Thumbnail updated successfully");
+          navigate("/admin/thumbnail");
+        }
+      } else {
+        const res = await addThumbnail(formData).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Thumbnail uploaded successfully");
+          navigate("/admin/thumbnail");
+        }
       }
     } catch (error) {
       toast.error(error);
@@ -51,7 +77,9 @@ const ThumbnailForm = () => {
     <div>
       <>
         <div className=" ml-4 mt-4 bg-white p-3 shadow-lg mr-20 rounded-lg">
-          <h1 className="text-xl font-bold">Add Result</h1>
+          <h1 className="text-xl font-bold">
+            {state?.editMode ? "Update" : "Add"} Thumbnail
+          </h1>
         </div>
         <div className="flex  items-center justify-center h-[75vh] ml-4 mt-4 bg-white  shadow-lg mr-20 rounded-lg ">
           <div
@@ -59,7 +87,15 @@ const ThumbnailForm = () => {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
           >
-            {image ? (
+            {defaultImage && !image ? (
+              <img
+                src={`${
+                  import.meta.env.VITE_APP_IMAGE_URL
+                }/banners/${defaultImage}`}
+                alt="Uploaded"
+                className="   lg:h-[25vh] h-[30vh] w-[30vw] object-contain"
+              />
+            ) : image ? (
               <img
                 src={image}
                 alt="Uploaded"
@@ -124,7 +160,7 @@ const ThumbnailForm = () => {
                 onChange={(e) => setDesc(e.target.value)}
               />
             </div>
-            {uploadimg && title && desc ? (
+            {title && desc ? (
               <>
                 {" "}
                 <button
