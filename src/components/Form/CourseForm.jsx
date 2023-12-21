@@ -169,7 +169,9 @@ const CourseForm = () => {
     <div>
       <>
         <div className=" ml-4 mt-4 bg-white p-3 shadow-lg lg:mr-20 rounded-lg mr-5">
-          <h1 className="text-xl font-bold">Add New Course</h1>
+          <h1 className="text-xl font-bold">
+            {state?.editMode ? "Update Course" : "Add New Course"}{" "}
+          </h1>
         </div>
         <div className="p-8 ml-4 lg:mt-4 bg-white  shadow-lg lg:mr-20 mr-5 rounded-lg ">
           <div
