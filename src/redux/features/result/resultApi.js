@@ -3,15 +3,23 @@ import { baseApi } from "../../api/baseApi";
 export const resultApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addResult: builder.mutation({
-      query: (galleryData) => ({
+      query: (resultData) => ({
         url: "/result/add-result",
         method: "POST",
-        body: galleryData,
+        body: resultData,
       }),
       invalidatesTags: ["result"],
     }),
     getResult: builder.query({
       query: () => "/result",
+    }),
+    updateResult: builder.mutation({
+      query: ({ resultId, resultData }) => ({
+        url: `/result/${resultId}`,
+        method: "PATCH",
+        body: resultData,
+      }),
+      invalidatesTags: ["result"],
     }),
     deleteResult: builder.mutation({
       query: (imageId) => ({
@@ -27,4 +35,5 @@ export const {
   useAddResultMutation,
   useGetResultQuery,
   useDeleteResultMutation,
+  useUpdateResultMutation,
 } = resultApi;

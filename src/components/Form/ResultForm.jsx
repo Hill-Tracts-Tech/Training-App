@@ -1,11 +1,29 @@
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  useAddResultMutation,
+  useUpdateResultMutation,
+} from "../../redux/features/result/resultApi";
 const ResultForm = () => {
+  const [addResult] = useAddResultMutation();
+  const [updateResult] = useUpdateResultMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [course, setCourse] = useState("");
 
-  const [batchNo, setBatchNo] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { state } = location;
+  const {
+    courseName: defaultCourse,
+    batchNo: defaultBatchNo,
+    file: defaultFile,
+    _id: resultId,
+  } = state?.item || {};
+  const [course, setCourse] = useState(defaultCourse ? defaultCourse : "");
+  const [batchNo, setBatchNo] = useState(defaultBatchNo ? defaultBatchNo : "");
+
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -20,22 +38,43 @@ const ResultForm = () => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    // ........................
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", uploadimg);
-    formData.append("courseName", course);
-    formData.append("batchNo", batchNo);
+    uploadimg && formData.append("file", uploadimg);
+    course && formData.append("courseName", course);
+    batchNo && formData.append("batchNo", batchNo);
+    try {
+      if (state?.editMode) {
+        const res = await updateResult({
+          resultId,
+          resultData: formData,
+        }).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Result updated Successfully");
+          navigate("/admin/result");
+        }
+      } else {
+        const res = await addResult(formData).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Result Published Successfully");
+          navigate("/admin/result");
+        }
+      }
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   return (
     <div>
       <>
         <div className=" ml-4 mt-4 bg-white p-3 shadow-lg mr-20 rounded-lg">
-          <h1 className="text-xl font-bold">Add Result</h1>
+          <h1 className="text-xl font-bold">
+            {state?.editMode ? "Update" : "Add"} Result
+          </h1>
         </div>
         <div className="flex  items-center justify-center h-[75vh] ml-4 mt-4 bg-white  shadow-lg mr-20 rounded-lg ">
           <div
@@ -43,7 +82,15 @@ const ResultForm = () => {
             onDrop={handleDrop}
             onDragOver={handleDragOver}
           >
-            {image ? (
+            {defaultFile && !image ? (
+              <img
+                src={`${
+                  import.meta.env.VITE_APP_IMAGE_URL
+                }/result/${defaultFile}`}
+                alt="Uploaded"
+                className="   lg:h-[25vh] h-[30vh] w-[30vw] object-contain"
+              />
+            ) : image ? (
               <img
                 src={image}
                 alt="Uploaded"
@@ -110,7 +157,7 @@ const ResultForm = () => {
                 onChange={(e) => setBatchNo(e.target.value)}
               />
             </div>
-            {uploadimg && course && batchNo ? (
+            {course && batchNo ? (
               <>
                 {" "}
                 <button
