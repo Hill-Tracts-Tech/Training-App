@@ -84,7 +84,7 @@ const AdminResult = () => {
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
-                          className="text-blue-500 cursor-pointer hover:text-black"
+                          className="text-green-500 cursor-pointer hover:text-black"
                           onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
