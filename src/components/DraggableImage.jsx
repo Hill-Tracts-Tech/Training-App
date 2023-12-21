@@ -3,18 +3,31 @@ import { useState } from "react";
 // import { formDataRequest } from "../requestMethod";
 // import Swal from "sweetalert2";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { useAddNoticeMutation } from "../redux/features/notice/noticeApi";
+import {
+  useAddNoticeMutation,
+  useUpdateNoticeMutation,
+} from "../redux/features/notice/noticeApi";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DraggableImageInput = () => {
   const [addNotice] = useAddNoticeMutation();
+  const [updateNotice] = useUpdateNoticeMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { state } = location;
+  const {
+    title: defaultTitle,
+    desc: defaultDesc,
+    file: defaultFile,
+    _id: noticeId,
+  } = state?.item || {};
+
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-
-  const navigate = useNavigate();
+  const [title, setTitle] = useState(defaultTitle ? defaultTitle : "");
+  const [desc, setDesc] = useState(defaultDesc ? defaultDesc : "");
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -35,14 +48,25 @@ const DraggableImageInput = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", uploadimg);
-    formData.append("title", title);
-    formData.append("desc", desc);
+    uploadimg && formData.append("file", uploadimg);
+    title && formData.append("title", title);
+    desc && formData.append("desc", desc);
     try {
-      const result = await addNotice(formData).unwrap();
-      if (result.statusCode === 200) {
-        toast.success("Notice added successfully");
-        navigate("/admin/notice");
+      if (state?.editMode) {
+        const res = await updateNotice({
+          noticeId,
+          noticeData: formData,
+        }).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Notice updated successfully");
+          navigate("/admin/notice");
+        }
+      } else {
+        const res = await addNotice(formData).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Notice added successfully");
+          navigate("/admin/notice");
+        }
       }
     } catch (error) {
       toast.error("Fail to add notice");
@@ -60,7 +84,15 @@ const DraggableImageInput = () => {
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
-          {image ? (
+          {defaultFile && !image ? (
+            <img
+              src={`${
+                import.meta.env.VITE_APP_IMAGE_URL
+              }/notices/${defaultFile}`}
+              alt="Uploaded"
+              className="   lg:h-[25vh] h-[30vh] w-[30vw] object-contain"
+            />
+          ) : image ? (
             <img
               src={image}
               alt="Uploaded"
@@ -118,7 +150,7 @@ const DraggableImageInput = () => {
               onChange={(e) => setDesc(e.target.value)}
             />
           </div>
-          {uploadimg && title && desc ? (
+          {title && desc ? (
             <>
               {" "}
               <button

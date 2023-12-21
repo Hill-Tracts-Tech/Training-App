@@ -3,15 +3,22 @@ import { baseApi } from "../../api/baseApi";
 export const noticeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addNotice: builder.mutation({
-      query: (teacherData) => ({
+      query: (noticeData) => ({
         url: "/notice/add-notice",
         method: "POST",
-        body: teacherData,
+        body: noticeData,
       }),
       invalidatesTags: ["notice"],
     }),
     getNotice: builder.query({
       query: () => "/notice",
+    }),
+    updateNotice: builder.mutation({
+      query: ({ noticeId, noticeData }) => ({
+        url: `/notice/${noticeId}`,
+        method: "PATCH",
+        body: noticeData,
+      }),
     }),
     deleteNotice: builder.mutation({
       query: (noticeId) => ({
@@ -27,4 +34,5 @@ export const {
   useAddNoticeMutation,
   useGetNoticeQuery,
   useDeleteNoticeMutation,
+  useUpdateNoticeMutation,
 } = noticeApi;

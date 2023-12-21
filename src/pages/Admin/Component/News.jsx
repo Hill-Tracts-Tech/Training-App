@@ -1,12 +1,14 @@
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   useDeleteNoticeMutation,
   useGetNoticeQuery,
 } from "../../../redux/features/notice/noticeApi";
 import toast from "react-hot-toast";
+
 const News = () => {
   const [deleteNotice] = useDeleteNoticeMutation();
   const { data: newsData, isLoading } = useGetNoticeQuery();
@@ -26,6 +28,12 @@ const News = () => {
     } catch (error) {
       toast.error("Fail to delete");
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleEditClick = (item) => {
+    navigate("/admin/noticeForm", { state: { editMode: true, item } });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -60,7 +68,7 @@ const News = () => {
                     </td>
                     <td className="border p-2 font-bold">
                       <img
-                        className="w-full h-32 rounded"
+                        className="w-12 rounded object-contain"
                         src={`${import.meta.env.VITE_APP_IMAGE_URL}/notices/${
                           item?.file
                         }`}
@@ -73,11 +81,15 @@ const News = () => {
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
-                          className="hover:text-blue-500 cursor-pointer"
+                          className="text-green-500 cursor-pointer hover:text-black"
                           onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
                         </label>
+                        <EditIcon
+                          onClick={() => handleEditClick(item)}
+                          className=" text-blue-400 hover:text-black cursor-pointer"
+                        />
                         <DeleteIcon
                           className="text-red-400 hover:text-black cursor-pointer"
                           onClick={() => handleDelete(item?._id)}
