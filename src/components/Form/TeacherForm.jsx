@@ -1,18 +1,42 @@
 import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { useAddTeacherMutation } from "../../redux/features/teacher/teacherApi";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  useAddTeacherMutation,
+  useUpdateTeacherMutation,
+} from "../../redux/features/teacher/teacherApi";
 
 const TeacherForm = () => {
-  const [addTeacher] = useAddTeacherMutation();
+  const [addTeacher, { isLoading: addLoading }] = useAddTeacherMutation();
+  const [updateTeacher, { isLoading: updateLoading }] =
+    useUpdateTeacherMutation();
+  const location = useLocation();
+  const { state } = location;
+
+  const {
+    name: defaultName,
+    designation: defaultDesignation,
+    department: defaultDepartment,
+    about: defaultAbout,
+    teacherId: defaultTeacherId,
+    image: defaultImage,
+    _id: teacherId,
+  } = state?.item || {};
+
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
-  const [name, setName] = useState("");
-  const [about, setAbout] = useState("");
-  const [designation, setDesignation] = useState("");
-  const [department, setDepartment] = useState("");
-  const [teacher_id, setTeacher_id] = useState("");
+  const [name, setName] = useState(defaultName ? defaultName : "");
+  const [about, setAbout] = useState(defaultAbout ? defaultAbout : "");
+  const [designation, setDesignation] = useState(
+    defaultDesignation ? defaultDesignation : ""
+  );
+  const [department, setDepartment] = useState(
+    defaultDepartment ? defaultDepartment : ""
+  );
+  const [teacher_id, setTeacher_id] = useState(
+    defaultTeacherId ? defaultTeacherId : ""
+  );
 
   const navigate = useNavigate();
 
@@ -37,25 +61,42 @@ const TeacherForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", uploadimg);
-    formData.append("name", name);
-    formData.append("about", about);
-    formData.append("designation", designation);
-    formData.append("department", department);
-    formData.append("teacherId", teacher_id);
+    uploadimg && formData.append("image", uploadimg);
+    name && formData.append("name", name);
+    about && formData.append("about", about);
+    designation && formData.append("designation", designation);
+    department && formData.append("department", department);
+    teacher_id && formData.append("teacherId", teacher_id);
     try {
-      await addTeacher(formData);
-      toast.success("Teacher added successfully");
-      navigate("/admin/teacher");
+      if (state?.editMode) {
+        const res = await updateTeacher({
+          teacherId,
+          teacherData: formData,
+        }).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Teacher updated successfully");
+          navigate("/admin/teacher");
+        }
+      } else {
+        const res = await addTeacher(formData).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Teacher added successfully");
+          navigate("/admin/teacher");
+        }
+      }
     } catch (error) {
       toast.error("Can't add teacher");
     }
   };
 
+  if (addLoading || updateLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <div className=" ml-4 mt-4 bg-white p-3 shadow-lg lg:mr-20 rounded-lg mr-5">
-        <h1 className="text-xl font-bold">Add New Teacher</h1>
+        <h1 className="text-xl font-bold">
+          {state?.editMode ? "Update" : " Add New"} Teacher
+        </h1>
       </div>
       <div className="lg:flex items-center justify-center lg:h-[98vh] h-[65vh] mt-7 ml-4 lg:mt-4 bg-white  shadow-lg lg:mr-20 mr-5 rounded-lg ">
         <div
@@ -63,7 +104,15 @@ const TeacherForm = () => {
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
-          {image ? (
+          {defaultImage && !image ? (
+            <img
+              src={`${
+                import.meta.env.VITE_APP_IMAGE_URL
+              }/teachers/${defaultImage}`}
+              alt="Uploaded"
+              className="   lg:h-[25vh] h-[30vh] w-[30vw] object-contain"
+            />
+          ) : image ? (
             <img
               src={image}
               alt="Uploaded"
@@ -104,7 +153,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Teacher ID :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
               placeholder="Teacher_id"
               type="text"
               value={teacher_id}
@@ -114,7 +163,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Teacher name :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
               placeholder="name"
               type="text"
               value={name}
@@ -124,7 +173,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Designation :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
               placeholder="designation"
               type="text"
               value={designation}
@@ -134,7 +183,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">Department :</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
               placeholder="department"
               type="text"
               value={department}
@@ -144,7 +193,7 @@ const TeacherForm = () => {
           <div className="flex flex-col gap-y-2 w-[400px]">
             <label className="text-lg font-semibold mt-2">About</label>
             <input
-              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100"
+              className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
               placeholder="about"
               type="text"
               value={about}
@@ -152,12 +201,7 @@ const TeacherForm = () => {
             />
           </div>
 
-          {uploadimg &&
-          name &&
-          department &&
-          designation &&
-          about &&
-          teacher_id ? (
+          {name && department && designation && about && teacher_id ? (
             <>
               {" "}
               <button

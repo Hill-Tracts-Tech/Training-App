@@ -1,7 +1,8 @@
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import {
   useDeleteTeacherMutation,
@@ -25,6 +26,12 @@ const AdminTeacher = () => {
     } catch (error) {
       toast.error("Fail to delete");
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleEditClick = (item) => {
+    navigate("/admin/teacherForm", { state: { editMode: true, item } });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -83,6 +90,10 @@ const AdminTeacher = () => {
                           >
                             <VisibilityIcon />
                           </label>
+                          <EditIcon
+                            onClick={() => handleEditClick(item)}
+                            className=" text-blue-400 hover:text-black cursor-pointer"
+                          />
                           <DeleteIcon
                             className="text-red-400 hover:text-black  cursor-pointer"
                             onClick={() => handleDelete(item?._id)}

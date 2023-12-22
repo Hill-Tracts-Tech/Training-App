@@ -1,7 +1,8 @@
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetResultQuery } from "../../../redux/features/result/resultApi";
 
 const AdminResult = () => {
@@ -15,7 +16,13 @@ const AdminResult = () => {
 
   // file identified
   const isPDF = (fileName) => {
-    return fileName.toLowerCase().endsWith(".pdf");
+    return fileName?.toLowerCase().endsWith(".pdf");
+  };
+
+  const navigate = useNavigate();
+
+  const handleEditClick = (item) => {
+    navigate("/admin/ResultForm", { state: { editMode: true, item } });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -77,12 +84,16 @@ const AdminResult = () => {
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
-                          className="hover:text-blue-500"
+                          className="text-green-500 cursor-pointer hover:text-black"
                           onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
                         </label>
-                        <DeleteIcon className="text-red-400 hover:text-black" />
+                        <EditIcon
+                          onClick={() => handleEditClick(item)}
+                          className=" text-blue-400 hover:text-black cursor-pointer"
+                        />
+                        <DeleteIcon className="text-red-400 hover:text-black cursor-pointer" />
                       </div>
                     </td>
                   </tr>
@@ -104,18 +115,32 @@ const AdminResult = () => {
             </label>
             <div className="">
               <div>
-                <img
-                  className=" rounded h-[260px] w-full"
-                  src={eye?.image_url}
-                  alt=""
-                />
+                {isPDF(eye?.file) ? (
+                  <a
+                    href={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
+                      eye?.file
+                    }`}
+                    target="_blank"
+                    className="cursor-pointer underline"
+                    rel="noreferrer"
+                  >
+                    {eye?.file}
+                  </a>
+                ) : (
+                  <img
+                    className="w-24 h-12"
+                    src={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
+                      eye?.file
+                    }`}
+                    alt=""
+                  />
+                )}
                 <p className="my-3">
-                  <span className=" font-bold">Batch No:</span>{" "}
-                  {eye?.batch_number}
+                  <span className=" font-bold">Batch No:</span> {eye?.batchNo}
                 </p>
                 <p>
                   <span className=" font-bold">Course Name:</span>{" "}
-                  {eye?.course_name}
+                  {eye?.courseName}
                 </p>
               </div>
             </div>

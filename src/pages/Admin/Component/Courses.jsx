@@ -1,7 +1,8 @@
 import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link, useNavigate } from "react-router-dom";
 import {
   useDeleteCourseMutation,
   useGetCoursesQuery,
@@ -25,6 +26,12 @@ const AdminCourses = () => {
     } catch (error) {
       toast.error(error);
     }
+  };
+
+  const navigate = useNavigate();
+
+  const handleEditClick = (item) => {
+    navigate("/admin/courseForm", { state: { editMode: true, item } });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -82,11 +89,16 @@ const AdminCourses = () => {
                       <div className="flex justify-center gap-3 items-center">
                         <label
                           htmlFor="my_modal_5"
-                          className="hover:text-blue-500 cursor-pointer"
+                          className="text-green-400 hover:text-black-500 cursor-pointer"
                           onClick={() => datahandler(item?._id)}
                         >
                           <VisibilityIcon />
                         </label>
+
+                        <EditIcon
+                          onClick={() => handleEditClick(item)}
+                          className=" text-blue-400 hover:text-black cursor-pointer"
+                        />
                         <DeleteIcon
                           className="text-red-400 hover:text-black cursor-pointer"
                           onClick={() => handleDelete(item?._id)}
