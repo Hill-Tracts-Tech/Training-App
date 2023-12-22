@@ -81,7 +81,7 @@ function Navbar() {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex shadow-md rounded-md mb-9">
-          <ul className="menu menu-horizontal px-1 gap-x-4 ">
+          <ul className="menu menu-horizontal px-1 gap-x-4 bg-white">
             {menu.map((m) => (
               <li
                 key={m.id}
