@@ -4,8 +4,8 @@ import TextUnderline from "../../../utils/textUnderline";
 import "./Introduction.css";
 function Introduction() {
   return (
-    <div className="bg-pattern p-9">
-      <div className="w-[85%] px-4">
+    <div className="bg-pattern lg:p-9">
+      <div className="w-[85%] mx-auto lg:px-4">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-x-10">
           <div className="w-full md:w-[40%] my-9 bounce">
             <img src={img} alt="" />
@@ -19,7 +19,7 @@ function Introduction() {
                 Learn Computer Academy
               </h1>
               <TextUnderline custom_width={150} />
-              <p className="my-5">
+              <p className="my-5 text-justify">
                 We are the{" "}
                 <span className="font-bold">
                   best computer institute in Habra
