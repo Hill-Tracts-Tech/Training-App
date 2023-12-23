@@ -4,7 +4,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import AppsIcon from "@mui/icons-material/Apps";
 import { Link, useLocation } from "react-router-dom";
-import { menu } from "../Navbar/Navdata";
+import { bottomdata } from "../Navbar/Navdata";
 const Bottombar = () => {
   const location = useLocation();
   const isActive = (path) => {
@@ -21,10 +21,10 @@ const Bottombar = () => {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 relative left-[-20px] mb-2"
         >
           <li>
-            {menu.map((m) => (
+            {bottomdata.map((m) => (
               <li
                 key={m.id}
                 className={`${

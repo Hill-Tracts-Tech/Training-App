@@ -402,25 +402,25 @@ const Registration = () => {
           </div>
         </div>
       ) : (
-        <div className="hero flex justify-start lg:my-16 my-10 ">
+        <div className="hero flex justify-start lg:my-16 my-10  ">
           <div className=" ">
             <div className=" card w-full  bg-base-100">
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="card-body ml-[-30px]"
+                className=" bg-white card-body ml-[-30px]"
               >
                 <div className=" flex justify-between">
-                  <div className="join">
-                    <button className=" uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <div className="join ">
+                    <button className="p-2 font-medium bg-slate-100 uppercase  join-item rounded-r-full lg:w-[188px]">
                       Admission No
                     </button>
                     <input
                       type="number"
-                      className="input input-bordered join-item"
+                      className="input bg-white input-bordered join-item"
                       placeholder="Admission No"
                     />
                   </div>
-                  <div className="btn py-2 px-2  text-center  text-black text-lg rounded-lg font-semibold">
+                  <div className=" bg-slate-300 py-2 px-2  text-center  text-white text-lg rounded-lg font-semibold">
                     <p>{formattedDate}</p>
                   </div>
                 </div>
@@ -477,7 +477,7 @@ const Registration = () => {
                 </div>
 
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase  btn  join-item rounded-r-full lg:w-[188px]">
                     Student Name
                   </button>
                   <input
