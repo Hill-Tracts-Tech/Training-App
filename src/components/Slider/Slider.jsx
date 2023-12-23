@@ -15,7 +15,7 @@ function Slider() {
   }, [currentImgIdex, imgURL.length]);
 
   return (
-    <div className="w-[85%] mx-auto mb-9">
+    <div className="lg:w-[85%] mx-auto mb-9">
       <div
         className="hero h-[300px] w-full ease-in-out duration-300"
         style={{

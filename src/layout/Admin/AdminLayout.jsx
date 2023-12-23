@@ -10,6 +10,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AppsIcon from "@mui/icons-material/Apps";
 import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
+import Bottombar from "../../components/Bottombar/Bottombar";
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -66,6 +67,9 @@ const AdminLayout = () => {
     <div>
       <Brand />
       <Navbar />
+      <div className="lg:hidden">
+        <Bottombar />
+      </div>
       <div className="flex flex-row-reverse mt-[-20px] h-[100%] ">
         <div className="content md:w-[80%] w-full">
           <Outlet />

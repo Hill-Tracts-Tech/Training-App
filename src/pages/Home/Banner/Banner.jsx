@@ -8,7 +8,7 @@ function Banner() {
         <div className="w-full md:w-1/2">
           <div className="my-5">
             {" "}
-            <h1 className="text-5xl text-blue-600 mb-2">
+            <h1 className="text-3xl lg:text-5xl text-blue-600 mb-2">
               Website Design And Development{" "}
               <span className="text-[#FF7810] font-bold">
                 ORION COMPUTER INSTITUTE
@@ -17,7 +17,7 @@ function Banner() {
           </div>
           <div className="my-4">
             {" "}
-            <p className="text-lg">
+            <p className=" text-justify lg:text-lg">
               We provide the best hands-on training in Graphics Design, Website
               Design and Development. Join our computer center today and become
               a successful professional in the IT industry.
@@ -27,7 +27,7 @@ function Banner() {
             Know More
           </button>
         </div>
-        <div className="bg-shape">
+        <div className="bg-shape mt-10 lg:mt-auto md:mt-auto">
           <img src={banner} alt="Banner" className="w-full h-auto z-30" />
         </div>
       </div>
