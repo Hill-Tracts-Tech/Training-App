@@ -1,25 +1,28 @@
-import { useState, useEffect } from "react";
-import { imgURL } from "../../Dammydata";
 import logo from "../../assets/icons/OCI.jpg";
+import { useState, useEffect } from "react";
+import { useGetThumbnailsQuery } from "../../redux/features/thumbnail/thumbnailApi";
+import { ImageUrl } from "../../utils/imageUrl";
 
 function Slider() {
+  const { data: thumbnailData } = useGetThumbnailsQuery();
+
   const [currentImgIdex, setCurrentImgIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const nextImage = (currentImgIdex + 1) % imgURL.length;
+      const nextImage = (currentImgIdex + 1) % thumbnailData?.data?.length;
       setCurrentImgIndex(nextImage);
     }, 5000);
     return () => {
       clearInterval(intervalId);
     };
-  }, [currentImgIdex, imgURL.length]);
+  }, [currentImgIdex, thumbnailData?.data?.length]);
 
   return (
     <div className="lg:w-[85%] mx-auto mb-9">
       <div
         className="hero h-[300px] w-full ease-in-out duration-300"
         style={{
-          backgroundImage: `url(${imgURL[currentImgIdex]})`,
+          backgroundImage: `url(${`${ImageUrl}/banners/${thumbnailData?.data[currentImgIdex]?.image} `})`,
           backgroundRepeat: "no-repeat",
           objectFit: "cover",
         }}
@@ -37,11 +40,11 @@ function Slider() {
                 />
               </div>
               <h1 className="text-start text-3xl font-bold text-[#fff]">
-                Orion
+                {thumbnailData?.data[currentImgIdex]?.title}
               </h1>
             </div>
             <p className="text-2xl font-semibold text-white mt-4">
-              একটি অত্যাধুনিক ও বিশ্বস্ত প্রশিক্ষণ কেন্দ্র
+              {thumbnailData?.data[currentImgIdex]?.desc}
             </p>
           </div>
         </dir>

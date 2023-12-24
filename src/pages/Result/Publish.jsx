@@ -1,7 +1,9 @@
 import { Download } from "@mui/icons-material";
-import { resultData } from "../../Dammydata";
+import moment from "moment";
+import { useGetResultQuery } from "../../redux/features/result/resultApi";
 
 const PublishedResult = () => {
+  const { data: resultData } = useGetResultQuery();
   return (
     <div>
       <h1 className="text-3xl font-semibold p-7">Result Publish</h1>
@@ -15,20 +17,28 @@ const PublishedResult = () => {
           className="w-full border flex justify-center items-center text-[#4262a8] font-semibold text-xl"
         >
           <h1>
-            **Advance MS Office Application result is Published**Database
-            Programming Course Result is published.
+            {resultData?.data[0]?.courseName} result published at{" "}
+            {moment(resultData?.data[0]?.createdAt).format("LLLL")}
           </h1>
         </marquee>
         <div>
           <h1 className="text-2xl font-semibold my-3">
             Click or download the result using provided pdf url
           </h1>
-          {resultData.map((result) => (
-            <div key={result.id}>
+          {resultData?.data?.map((result) => (
+            <div key={result._id}>
               <ul>
                 <li className="font-semibold text-[#4262a8]">
-                  <a rel="noreferrer" href={result.pdfURL} target="_blank">
-                    {result.examName} {result.published}{" "}
+                  <a
+                    href={`${import.meta.env.VITE_APP_IMAGE_URL}/result/${
+                      result?.file
+                    }`}
+                    target="_blank"
+                    className="cursor-pointer hover:underline"
+                    rel="noreferrer"
+                  >
+                    {result.courseName} - {result.batchNo} -{" "}
+                    {moment(result?.createdAt).format("LL")}
                     <Download className="bounce" />
                   </a>
                 </li>
