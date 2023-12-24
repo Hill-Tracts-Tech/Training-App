@@ -31,7 +31,7 @@ function Navbar() {
             : "z-[99999]"
         } `}
       >
-        <div className="navbar-start">
+        <div className="navbar-start hidden">
           <div className="dropdown">
             <Menu />
             {/* Mobile view */}

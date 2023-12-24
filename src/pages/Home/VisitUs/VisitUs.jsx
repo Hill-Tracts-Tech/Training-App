@@ -16,7 +16,7 @@ function VisitUs() {
             <TextUnderline custom_width={150} />
           </div>
           <div>
-            <p className="leading-8 mt-4">
+            <p className="leading-8 mt-4 text-justify">
               Our institute is Located in Habra, a township of West Bengal
               India. We are situated in a locality called, Saptapally. We are at
               15 mins walking distance from Habra Station and 5 mins from Habra
