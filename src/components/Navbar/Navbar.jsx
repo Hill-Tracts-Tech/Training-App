@@ -31,7 +31,7 @@ function Navbar() {
             : "z-[99999]"
         } `}
       >
-        <div className="navbar-start hidden">
+        <div className="navbar-start hidden  lg:block">
           <div className="dropdown">
             <Menu />
             {/* Mobile view */}
@@ -80,6 +80,7 @@ function Navbar() {
             </ul>
           </div>
         </div>
+        <div></div>
         <div className="navbar-center hidden lg:flex shadow-md rounded-md mb-9">
           <ul className="menu menu-horizontal px-1 gap-x-4 bg-white">
             {menu.map((m) => (
