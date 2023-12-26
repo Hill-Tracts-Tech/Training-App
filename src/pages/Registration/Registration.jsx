@@ -66,8 +66,8 @@ const Registration = () => {
       <div className="bg-white card-bordered shadow-lg px-2 font-semibold rounded-lg w-36 py-2">
         <p>Click The Icon</p>
       </div>
-      <div className="grid grid-cols-12 gap-2">
-        <div className=" col-span-2  hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-blue-500 to-blue-500 rounded-md font-semibold text-white">
+      <div className="lg:grid grid-cols-12 gap-2">
+        <div className=" lg:col-span-2 w-[50%] lg:w-auto mb-2 lg:mb-auto hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-blue-500 to-blue-500 rounded-md font-semibold text-white">
           <div className=" grid grid-cols-2 gap-3">
             {active ? (
               <>
@@ -100,7 +100,7 @@ const Registration = () => {
               </>
             ) : (
               <>
-                <h1 className="text-2xl font-semibold uppercase ">
+                <h1 className="text-2xl py-4 lg:py-auto font-semibold uppercase ">
                   Orion computer Institute
                 </h1>
               </>
@@ -109,7 +109,7 @@ const Registration = () => {
         </div>
       </div>
       {active ? (
-        <div className="hero flex justify-start lg:my-16 my-10 ">
+        <div className="hero lg:flex justify-start lg:my-16 my-10 ">
           <div className=" ">
             <div className=" card w-full  bg-base-100">
               <form
@@ -117,7 +117,7 @@ const Registration = () => {
                 className="card-body ml-[-30px]"
               >
                 <div className=" lg:flex justify-between">
-                  <div className="join">
+                  <div className="lg:flex block join mb-5 lg:mb-auto">
                     <button className=" uppercase btn join-item rounded-r-full lg:w-[188px]">
                       Admission No
                     </button>
@@ -132,7 +132,7 @@ const Registration = () => {
                   </div>
                 </div>
                 <div className="lg:flex justify-between">
-                  <div className="mt-[200px] my-3 bg-gradient-to-r h-[100%] uppercase  line-clamp-4  from-blue-500  to-cyan-500  py-2 px-2 lg:w-[30vw] text-center  text-white text-lg rounded-lg font-semibold">
+                  <div className="lg:mt-[200px] my-3 bg-gradient-to-r h-[100%] uppercase  line-clamp-4  from-blue-500  to-cyan-500  py-2 px-2 lg:w-[30vw] w-[85vw] text-center  text-white text-lg rounded-lg font-semibold">
                     Application Form for Admission
                   </div>
                   <div>
@@ -189,7 +189,7 @@ const Registration = () => {
                   </button>
                   <input
                     type="text"
-                    className="lg:w-[70vw]  input input-bordered join-item"
+                    className="lg:w-[70vw] w-[55vw] input input-bordered join-item"
                     placeholder="Student Name"
                     required
                     {...register("name", {
@@ -204,7 +204,7 @@ const Registration = () => {
                   </button>
                   <input
                     type="text"
-                    className="lg:w-[70vw]  input input-bordered join-item"
+                    className="lg:w-[70vw] w-[55vw] input input-bordered join-item"
                     placeholder="father's Name"
                     required
                     {...register("fatherName", {
@@ -232,7 +232,7 @@ const Registration = () => {
                   </button>
                   <input
                     type="text"
-                    className="lg:w-[70vw]  input input-bordered join-item"
+                    className="lg:w-[70vw] w-[43vw]  input input-bordered join-item"
                     placeholder="permanent address"
                     required
                     {...register("permanentAddress", {
@@ -246,7 +246,7 @@ const Registration = () => {
                   </button>
                   <input
                     type="text"
-                    className="lg:w-[70vw]  input input-bordered join-item"
+                    className="lg:w-[70vw] w-[49vw] input input-bordered join-item"
                     placeholder="present address"
                     required
                     {...register("presentAddress", {
@@ -254,14 +254,14 @@ const Registration = () => {
                     })}
                   />
                 </div>
-                <div className="flex justify-between gap-2">
-                  <div className="join">
+                <div className="lg:flex justify-between gap-2 ">
+                  <div className="join lg:mb-auto mb-3">
                     <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
                       Nationality:
                     </button>
                     <input
                       type="text"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[57vw] input input-bordered join-item"
                       placeholder="nationality"
                       required
                       {...register("nationality", {
@@ -275,7 +275,7 @@ const Registration = () => {
                     </button>
                     <input
                       type="text"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[63vw] input input-bordered join-item"
                       placeholder="religion"
                       required
                       {...register("religion", {
@@ -285,14 +285,14 @@ const Registration = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between gap-2">
+                <div className="lg:flex justify-between gap-2">
                   <div className="join">
                     <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
                       Call Number
                     </button>
                     <input
                       type="number"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[63vw] lg:mb-auto mb-3 input input-bordered join-item"
                       placeholder="call"
                       required
                       {...register("callNumber", {
@@ -306,7 +306,7 @@ const Registration = () => {
                     </button>
                     <input
                       type="number"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[63vw] input input-bordered join-item"
                       placeholder="another call"
                       required
                       {...register("anotherCallNumber", {
@@ -321,7 +321,7 @@ const Registration = () => {
                   </button>
                   <input
                     type="text"
-                    className="lg:w-[70vw]  input input-bordered join-item"
+                    className="lg:w-[70vw] w-[44vw] input input-bordered join-item"
                     placeholder=" national id (if any)"
                     required
                     {...register(" nationalID ", {
@@ -329,14 +329,14 @@ const Registration = () => {
                     })}
                   />
                 </div>
-                <div className="flex justify-between gap-2">
+                <div className="lg:flex justify-between gap-2">
                   <div className="join">
                     <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
                       Passport No (If any):
                     </button>
                     <input
                       type="number"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[43vw] input input-bordered join-item"
                       placeholder="passport no"
                       required
                       {...register("passportNo", {
@@ -344,13 +344,13 @@ const Registration = () => {
                       })}
                     />
                   </div>
-                  <div className="join">
+                  <div className="join lg:mt-auto mt-3">
                     <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
                       Date of Birth:
                     </button>
                     <input
                       type="date"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[63vw]  input input-bordered join-item"
                       placeholder="date of birth"
                       required
                       {...register("dateBirth", {
@@ -359,14 +359,14 @@ const Registration = () => {
                     />
                   </div>
                 </div>
-                <div className="flex justify-between gap-2">
-                  <div className="join">
+                <div className="lg:flex justify-between gap-2">
+                  <div className="join lg:mb-auto mb-2">
                     <button className=" uppercase btn join-item rounded-r-full lg:w-[188px]">
                       E-mail
                     </button>
                     <input
                       type="text"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] w-[70vw] input input-bordered join-item"
                       placeholder="e-mail"
                       required
                       {...register("email", {
@@ -381,7 +381,7 @@ const Registration = () => {
                     <select
                       {...register("course_Name", { required: true })}
                       aria-invalid={errors.from ? "true" : "false"}
-                      className="select select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
+                      className="select  select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
                     >
                       <option selected disabled value="MS office">
                         Select gender
@@ -393,7 +393,7 @@ const Registration = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                  <button className=" hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white">
+                  <button className="w-[86svw] lg:w-auto hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white">
                     Registration
                   </button>
                 </div>
@@ -659,7 +659,7 @@ const Registration = () => {
                     </button>
                     <input
                       type="number"
-                      className="lg:w-[28vw]  input input-bordered join-item"
+                      className="lg:w-[28vw] input input-bordered join-item"
                       placeholder="passport no"
                       required
                       {...register("passportNo", {
