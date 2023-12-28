@@ -2,7 +2,7 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import Brand from "../../components/Brand/Brand";
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
+
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import ListAltIcon from "@mui/icons-material/ListAlt";
@@ -68,7 +68,7 @@ const AdminLayout = () => {
       <Brand />
       <Navbar />
       <div className="lg:hidden">
-        <Bottombar />
+        <Bottombar list={list} />
       </div>
       <div className="flex flex-row-reverse mt-[-20px] h-[100%] ">
         <div className="content md:w-[80%] w-full">
