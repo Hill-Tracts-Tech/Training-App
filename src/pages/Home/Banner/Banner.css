@@ -11,7 +11,7 @@
   position: relative; /* Add this to create a positioning context */
 }
 
-.bg-shape::before {
+/* .bg-shape::before {
   content: "";
   position: absolute;
   top: 0;
@@ -20,8 +20,8 @@
   height: 100%;
   background: #fb9609;
   border-radius: 100% 16% 26% 47% / 47% 42% 72% 41%;
-  animation: rotation 20s linear infinite; /* Apply the rotation animation to the background shape */
-  z-index: -1; /* Place the background shape behind the content */
+  animation: rotation 20s linear infinite; 
+  z-index: -1; 
 }
 
 @keyframes rotation {
@@ -31,4 +31,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
+} */

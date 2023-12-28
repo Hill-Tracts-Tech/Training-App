@@ -13,7 +13,7 @@ const MainLayout = () => {
       <Navbar />
       {registor === "/registration" ? "" : <Slider />}
       <div className="lg:hidden">
-        <Bottombar />
+        <Bottombar list={""} />
       </div>
       <Outlet />
       <Footer />
