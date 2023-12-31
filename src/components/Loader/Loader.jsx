@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "./Loader.css";
 const Loader = ({ type }) => {
   return (
@@ -7,20 +8,17 @@ const Loader = ({ type }) => {
       {type === "List" ? (
         <>
           <Skeleton count={1} height={"40px"} width={"15%"} />
-          <Skeleton count={6} height={"100px"} width={"100%"} />
+          <Skeleton count={4} height={"100px"} width={"92%"} />
         </>
-      ) : type === "bookingDetails" ? (
+      ) : type === "Image" ? (
         <>
           <div>
-            <Skeleton count={1} height={"300px"} width={"500px"} />
+            <Skeleton count={1} height={"30px"} width={"15%"} />
             <div>
-              <Skeleton count={1} height={"195px"} width={"600px"} />
-              <Skeleton count={1} height={"100px"} width={"35%"} />
+              <Skeleton count={1} height={"100px"} width={"90%"} />
+              <Skeleton count={1} height={"100px"} width={"90%"} />
             </div>
           </div>
-          <>
-            <Skeleton count={1} height={"220px"} width={"100%"} />
-          </>
         </>
       ) : type === "roomDetails" ? (
         <>
@@ -36,7 +34,23 @@ const Loader = ({ type }) => {
           <Skeleton count={3} height={"140px"} width={"600px"} />
         </div>
       ) : (
-        <></>
+        <>
+          <div style={{ marginLeft: "100px" }}>
+            <Skeleton count={1} height={"40px"} width={"90%"} />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+              marginTop: "30px",
+            }}
+          >
+            <Skeleton count={1} height={"200px"} width={"250px"} />
+            <Skeleton count={1} height={"200px"} width={"500px"} />
+            <Skeleton count={1} height={"200px"} width={"360px"} />
+          </div>
+        </>
       )}
     </div>
   );

@@ -8,6 +8,7 @@ import {
   useGetThumbnailsQuery,
 } from "../../../redux/features/thumbnail/thumbnailApi";
 import toast from "react-hot-toast";
+
 import Loader from "../../../components/Loader/Loader";
 
 const Thumbnail = () => {
@@ -40,8 +41,7 @@ const Thumbnail = () => {
   if (isLoading)
     return (
       <div>
-        <Loader type={""} />
-        lofsdflkjh
+        <Loader type={"List"} />
       </div>
     );
 

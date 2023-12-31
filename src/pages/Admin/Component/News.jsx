@@ -8,6 +8,7 @@ import {
   useGetNoticeQuery,
 } from "../../../redux/features/notice/noticeApi";
 import toast from "react-hot-toast";
+import Loader from "../../../components/Loader/Loader";
 
 const News = () => {
   const [deleteNotice] = useDeleteNoticeMutation();
@@ -36,7 +37,13 @@ const News = () => {
     navigate("/admin/noticeForm", { state: { editMode: true, item } });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        {" "}
+        <Loader type={"List"} />
+      </div>
+    );
 
   return (
     <div>
@@ -106,7 +113,7 @@ const News = () => {
       <input type="checkbox" id="my_modal_5" className="modal-toggle" />
       <div className="modal z-50">
         <div className="modal-box">
-          <div className="modal-action">
+          <div className="modal-action block">
             <label
               htmlFor="my_modal_5"
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
