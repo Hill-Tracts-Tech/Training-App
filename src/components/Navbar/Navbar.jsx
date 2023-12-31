@@ -26,7 +26,9 @@ function Navbar() {
         className={`navbar sticky top-0 ${
           admin === "/admin/teacher" ||
           admin === "/admin/result" ||
-          admin === "/admin/notice"
+          admin === "/admin/notice" ||
+          admin === "/admin/thumbnail" ||
+          admin === "/admin/courses"
             ? ""
             : "z-[99999]"
         } `}

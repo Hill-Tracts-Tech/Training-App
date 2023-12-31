@@ -5,6 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Link, useNavigate } from "react-router-dom";
 import { useGetResultQuery } from "../../../redux/features/result/resultApi";
 
+import Loader from "../../../components/Loader/Loader";
 const AdminResult = () => {
   const { data: resultData, isLoading } = useGetResultQuery();
   const [eye, setEye] = useState({});
@@ -25,7 +26,12 @@ const AdminResult = () => {
     navigate("/admin/ResultForm", { state: { editMode: true, item } });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader type={"List"} />
+      </div>
+    );
 
   return (
     <div>

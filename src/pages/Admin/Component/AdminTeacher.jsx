@@ -8,6 +8,7 @@ import {
   useDeleteTeacherMutation,
   useGetTeacherQuery,
 } from "../../../redux/features/teacher/teacherApi";
+import Loader from "../../../components/Loader/Loader";
 
 const AdminTeacher = () => {
   const { data: teacherData, isLoading } = useGetTeacherQuery();
@@ -34,7 +35,13 @@ const AdminTeacher = () => {
     navigate("/admin/teacherForm", { state: { editMode: true, item } });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        {" "}
+        <Loader type={"List"} />
+      </div>
+    );
 
   return (
     <div>

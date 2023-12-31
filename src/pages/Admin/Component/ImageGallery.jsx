@@ -5,6 +5,7 @@ import {
 } from "../../../redux/features/gallery/galleryApi";
 import DeleteIcon from "@mui/icons-material/Delete";
 import toast from "react-hot-toast";
+import Loader from "../../../components/Loader/Loader";
 
 const ImageGallery = () => {
   const { data: images, isLoading } = useGetImagesQuery();
@@ -21,7 +22,12 @@ const ImageGallery = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader type={"Image"} />
+      </div>
+    );
 
   return (
     <div className="ml-3">

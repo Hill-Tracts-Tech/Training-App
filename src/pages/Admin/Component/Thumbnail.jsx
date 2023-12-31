@@ -9,6 +9,8 @@ import {
 } from "../../../redux/features/thumbnail/thumbnailApi";
 import toast from "react-hot-toast";
 
+import Loader from "../../../components/Loader/Loader";
+
 const Thumbnail = () => {
   const { data: thumbnailData, isLoading } = useGetThumbnailsQuery();
   const [deleteThumbnail] = useDeleteThumbnailsMutation();
@@ -36,14 +38,19 @@ const Thumbnail = () => {
     navigate("/admin/thumbnailForm", { state: { editMode: true, item } });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader type={"List"} />
+      </div>
+    );
 
   return (
     <div>
       <div>
         <div className="me-20 ps-5 mt-4">
           <Link
-            className="relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
+            className="relative shadow-lg top-2 p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
             to="/admin/thumbnailForm"
           >
             Add Thumbnail

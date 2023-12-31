@@ -1,6 +1,7 @@
 import { useGetNoticeQuery } from "../../redux/features/notice/noticeApi";
 import moment from "moment";
 import { ImageUrl } from "../../utils/imageUrl";
+import Loader from "../../components/Loader/Loader";
 
 const NoticeBoard = () => {
   const { data: notices, isLoading, isError, error } = useGetNoticeQuery();
@@ -8,7 +9,11 @@ const NoticeBoard = () => {
   let content = null;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div>
+        <Loader type={""} />
+      </div>
+    );
   } else if (!isLoading && isError) {
     content = <div>{error}</div>;
   } else {

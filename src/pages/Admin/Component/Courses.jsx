@@ -9,6 +9,8 @@ import {
 } from "../../../redux/features/course/courseApi";
 import toast from "react-hot-toast";
 
+import Loader from "../../../components/Loader/Loader";
+
 const AdminCourses = () => {
   const { data: courses, isLoading } = useGetCoursesQuery();
   const [deleteCourse] = useDeleteCourseMutation();
@@ -34,7 +36,12 @@ const AdminCourses = () => {
     navigate("/admin/courseForm", { state: { editMode: true, item } });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader type={"List"} />
+      </div>
+    );
 
   return (
     <div>
