@@ -27,6 +27,8 @@ import AdminCourses from "../pages/Admin/Component/Courses";
 import CourseForm from "../components/Form/CourseForm";
 import Thumbnail from "../pages/Admin/Component/Thumbnail";
 import ThumbnailForm from "../components/Form/ThumbnailForm";
+import Batch from "../pages/Admin/Component/Batch";
+import BatchForm from "../components/Form/BatchForm";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +125,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/thumbnail",
         element: <Thumbnail />,
+      },
+      {
+        path: "/admin/batch",
+        element: <Batch />,
+      },
+      {
+        path: "/admin/batchForm",
+        element: <BatchForm />,
       },
       {
         path: "/admin/thumbnailForm",

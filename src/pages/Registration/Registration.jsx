@@ -2,21 +2,59 @@
 import { useForm } from "react-hook-form";
 import logo2 from "../../assets/icons/OCI.jpg";
 import logo1 from "../../assets/icons/OSC.jpg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
+import { useRegisterStudentMutation } from "../../redux/features/studentRegistration/studentRegistrationApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
 const Registration = () => {
+  // get course data
+  const { data: courseData } = useGetCoursesQuery();
+  const { data: batchData } = useGetAllBatchQuery();
+  const [registerStudent, { isLoading }] = useRegisterStudentMutation();
   const [active, setActive] = useState(true);
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("image", uploadimg);
+    formData.append("admissionNo", data?.admissionNo);
+    formData.append("studentId", data?.studentId);
+    formData.append("studentName", data?.studentName);
+    formData.append("fatherName", data?.fatherName);
+    formData.append("motherName", data?.motherName);
+    formData.append("permanentAddress", data?.permanentAddress);
+    formData.append("presentAddress", data?.presentAddress);
+    formData.append("nationality", data?.nationality);
+    formData.append("religion", data?.religion);
+    formData.append("phoneNumber1", data?.phoneNumber1);
+    formData.append("phoneNumber2", data?.phoneNumber2);
+    formData.append("nidNo", data?.nidNo);
+    formData.append("passportNo", data?.passportNo);
+    formData.append("dateOfBirth", data?.dateOfBirth);
+    formData.append("email", data?.email);
+    formData.append("course", data?.course);
+    formData.append("gender", data?.gender);
+    formData.append("batch", data?.batch);
+    try {
+      const res = await registerStudent(formData).unwrap();
+      if (res.statusCode === 200) {
+        toast.success("Course added successfully");
+        navigate("/student");
+      }
+    } catch (error) {
+      toast.error(error);
+    }
   };
   const handleState = (type) => {
     const delay = 500;
@@ -30,18 +68,6 @@ const Registration = () => {
       }
     }, delay);
   };
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000); // Update every 1000 milliseconds (1 second)
-
-    // Cleanup the interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures that useEffect runs only once when the component mounts
-
-  const formattedDate = currentDate.toDateString();
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -122,13 +148,13 @@ const Registration = () => {
                     Admission No
                   </button>
                   <input
-                    type="number"
+                    type="string"
                     className="input input-bordered join-item"
                     placeholder="Admission No"
+                    {...register("admissionNo", {
+                      required: true,
+                    })}
                   />
-                </div>
-                <div className="btn py-2 px-2  text-center  text-black text-lg rounded-lg font-semibold">
-                  <p>{formattedDate}</p>
                 </div>
               </div>
               <div className="lg:flex justify-between">
@@ -190,7 +216,7 @@ const Registration = () => {
                   className="lg:w-[70vw] w-[55vw] input input-bordered join-item"
                   placeholder="Student Name"
                   required
-                  {...register("name", {
+                  {...register("studentName", {
                     required: true,
                   })}
                 />
@@ -226,7 +252,7 @@ const Registration = () => {
               </div>
               <div className="join">
                 <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                  Permanent Address:
+                  Permanent Address
                 </button>
                 <input
                   type="text"
@@ -240,7 +266,7 @@ const Registration = () => {
               </div>
               <div className="join">
                 <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                  Present Address:
+                  Present Address
                 </button>
                 <input
                   type="text"
@@ -255,7 +281,42 @@ const Registration = () => {
               <div className="lg:flex justify-between gap-2 ">
                 <div className="join lg:mb-auto mb-3">
                   <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                    Nationality:
+                    Student Id
+                  </button>
+                  <input
+                    type="text"
+                    className="lg:w-[28vw] w-[57vw] input input-bordered join-item"
+                    placeholder="student Id"
+                    required
+                    {...register("studentId", {
+                      required: true,
+                    })}
+                  />
+                </div>
+                <div className="join">
+                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                    Batch Name:
+                  </button>
+                  <select
+                    {...register("batch", { required: true })}
+                    aria-invalid={errors.from ? "true" : "false"}
+                    className="select  select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
+                  >
+                    <option selected disabled value="@">
+                      Select batch
+                    </option>
+                    {batchData?.data?.map((batch) => (
+                      <option key={batch._id} value={batch._id}>
+                        {batch?.batchName}{" "}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="lg:flex justify-between gap-2 ">
+                <div className="join lg:mb-auto mb-3">
+                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                    Nationality
                   </button>
                   <input
                     type="text"
@@ -269,7 +330,7 @@ const Registration = () => {
                 </div>
                 <div className="join">
                   <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                    Religion:
+                    Religion
                   </button>
                   <input
                     type="text"
@@ -289,11 +350,11 @@ const Registration = () => {
                     Call Number
                   </button>
                   <input
-                    type="number"
+                    type="string"
                     className="lg:w-[28vw] w-[63vw] lg:mb-auto mb-3 input input-bordered join-item"
                     placeholder="call"
                     required
-                    {...register("callNumber", {
+                    {...register("phoneNumber1", {
                       required: true,
                     })}
                   />
@@ -303,29 +364,48 @@ const Registration = () => {
                     Another Call
                   </button>
                   <input
-                    type="number"
+                    type="text"
                     className="lg:w-[28vw] w-[63vw] input input-bordered join-item"
                     placeholder="another call"
                     required
-                    {...register("anotherCallNumber", {
+                    {...register("phoneNumber2", {
                       required: true,
                     })}
                   />
                 </div>
               </div>
-              <div className="join">
-                <button className="uppercase btn join-item rounded-r-full lg:w-[190px]">
-                  National ID (If any):
-                </button>
-                <input
-                  type="text"
-                  className="lg:w-[70vw] w-[44vw] input input-bordered join-item"
-                  placeholder=" national id (if any)"
-                  required
-                  {...register(" nationalID ", {
-                    required: true,
-                  })}
-                />
+              <div className="lg:flex justify-between gap-2">
+                <div className="join">
+                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                    National ID (If any)
+                  </button>
+                  <input
+                    type="text"
+                    className="lg:w-[28vw] w-[63vw] lg:mb-auto mb-3 input input-bordered join-item"
+                    placeholder="national id (if any)"
+                    required
+                    {...register("nidNo")}
+                  />
+                </div>
+                <div className="join">
+                  <button className="uppercase btn join-item  lg:w-[188px]">
+                    Course
+                  </button>
+                  <select
+                    {...register("course", { required: true })}
+                    aria-invalid={errors.from ? "true" : "false"}
+                    className="select  select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
+                  >
+                    <option selected disabled value="MS office">
+                      Select course
+                    </option>
+                    {courseData?.data?.map((course) => (
+                      <option key={course._id} value={course._id}>
+                        {course?.title}{" "}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div className="lg:flex justify-between gap-2">
                 <div className="join">
@@ -337,21 +417,19 @@ const Registration = () => {
                     className="lg:w-[28vw] w-[43vw] input input-bordered join-item"
                     placeholder="passport no"
                     required
-                    {...register("passportNo", {
-                      required: true,
-                    })}
+                    {...register("passportNo")}
                   />
                 </div>
                 <div className="join lg:mt-auto mt-3">
                   <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                    Date of Birth:
+                    Date of Birth
                   </button>
                   <input
                     type="date"
                     className="lg:w-[28vw] w-[63vw]  input input-bordered join-item"
                     placeholder="date of birth"
                     required
-                    {...register("dateBirth", {
+                    {...register("dateOfBirth", {
                       required: true,
                     })}
                   />
@@ -367,9 +445,7 @@ const Registration = () => {
                     className="lg:w-[28vw] w-[70vw] input input-bordered join-item"
                     placeholder="e-mail"
                     required
-                    {...register("email", {
-                      required: true,
-                    })}
+                    {...register("email")}
                   />
                 </div>
                 <div className="join">
@@ -377,22 +453,23 @@ const Registration = () => {
                     Gender
                   </button>
                   <select
-                    {...register("course_Name", { required: true })}
+                    {...register("gender", { required: true })}
                     aria-invalid={errors.from ? "true" : "false"}
                     className="select  select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
                   >
                     <option selected disabled value="MS office">
                       Select gender
                     </option>
-                    <option value="MS office">Male</option>
-                    <option value="Database Programming">Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
                   </select>
                 </div>
               </div>
 
               <div className="form-control mt-6">
                 <button className="w-[86svw] lg:w-auto hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white">
-                  Registration
+                  {isLoading ? "Loading..." : "Registration"}
                 </button>
               </div>
             </form>
