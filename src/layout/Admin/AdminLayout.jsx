@@ -33,6 +33,12 @@ const AdminLayout = () => {
       icon: <ViewCarouselIcon />,
     },
     {
+      id: 6,
+      title: "Batch",
+      to: "/admin/batch",
+      icon: <ViewCarouselIcon />,
+    },
+    {
       id: 2,
       title: "Notice",
       to: "/admin/notice",
