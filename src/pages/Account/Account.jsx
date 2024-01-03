@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import img from "../../assets/img/mission.png";
 // Fake data
 const user = {
@@ -21,6 +22,11 @@ const user = {
 };
 
 const UserAccount = () => {
+  const location = useLocation();
+
+  const { state } = location;
+  console.log(state);
+
   return (
     <div>
       {" "}
