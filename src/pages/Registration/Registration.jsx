@@ -38,7 +38,7 @@ const Registration = () => {
     formData.append("nationality", data?.nationality);
     formData.append("religion", data?.religion);
     formData.append("phoneNumber1", data?.phoneNumber1);
-    formData.append("phoneNumber2", data?.phoneNumber2);
+    formData.append("guardianNo", data?.guardianNo);
     formData.append("nidNo", data?.nidNo);
     formData.append("passportNo", data?.passportNo);
     formData.append("dateOfBirth", data?.dateOfBirth);
@@ -56,6 +56,7 @@ const Registration = () => {
       toast.error(error);
     }
   };
+
   const handleState = (type) => {
     const delay = 500;
     console.log(type);
@@ -329,30 +330,35 @@ const Registration = () => {
                   />
                 </div>
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase btn join-item  lg:w-[188px]">
                     Religion
                   </button>
-                  <input
-                    type="text"
-                    className="lg:w-[28vw] w-[63vw] input input-bordered join-item"
-                    placeholder="religion"
-                    required
-                    {...register("religion", {
-                      required: true,
-                    })}
-                  />
+                  <select
+                    {...register("religion", { required: true })}
+                    aria-invalid={errors.from ? "true" : "false"}
+                    className="select select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
+                  >
+                    <option selected disabled value="@">
+                      Select religion
+                    </option>
+                    <option value="Islam">Islam</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Buddhist">Buddhist</option>
+                    <option value="Christian">Christian</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
               </div>
 
               <div className="lg:flex justify-between gap-2">
                 <div className="join">
                   <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                    Call Number
+                    Phone Number
                   </button>
                   <input
                     type="string"
                     className="lg:w-[28vw] w-[63vw] lg:mb-auto mb-3 input input-bordered join-item"
-                    placeholder="call"
+                    placeholder="phone number"
                     required
                     {...register("phoneNumber1", {
                       required: true,
@@ -361,14 +367,14 @@ const Registration = () => {
                 </div>
                 <div className="join">
                   <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                    Another Call
+                    Guardian Number
                   </button>
                   <input
                     type="text"
                     className="lg:w-[28vw] w-[63vw] input input-bordered join-item"
-                    placeholder="another call"
+                    placeholder="guardian number"
                     required
-                    {...register("phoneNumber2", {
+                    {...register("guardianNo", {
                       required: true,
                     })}
                   />
@@ -401,7 +407,7 @@ const Registration = () => {
                     </option>
                     {courseData?.data?.map((course) => (
                       <option key={course._id} value={course._id}>
-                        {course?.title}{" "}
+                        {course?.title} - {course?.duration}{" "}
                       </option>
                     ))}
                   </select>
@@ -455,9 +461,9 @@ const Registration = () => {
                   <select
                     {...register("gender", { required: true })}
                     aria-invalid={errors.from ? "true" : "false"}
-                    className="select  select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
+                    className="select select-bordered lg:w-[28vw] rounded-r-lg rounded-l-none "
                   >
-                    <option selected disabled value="MS office">
+                    <option selected disabled value="@">
                       Select gender
                     </option>
                     <option value="male">Male</option>
