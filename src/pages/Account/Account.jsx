@@ -41,19 +41,13 @@ const UserAccount = () => {
     { "Batch Name": studentData.batch?.batchName },
     { "Batch No": studentData.batch?.batchNo },
   ];
-  const courseInfoArray = [
-    { "Running Course": studentData.course.title },
-    { "price ": studentData.course.price },
-    { Duration: studentData.course.duration },
-    { image: studentData.course.image },
-    { desc: studentData.course.desc },
-  ];
+
   return (
     <div>
-      <div className="w-full md:w-[85%] mx-auto p-4 mb-10">
+      <div className="w-full md:w-[83%] mx-auto  p-4 lg:mb-10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="lg:grid grid-cols-12 gap-2">
-            <div className=" col-span-4 py-2 card-bordered  h-full  lg:h-[330px] lg:w-[15vw] shadow-lg  flex flex-col justify-start items-center rounded-xl">
+            <div className=" col-span-4 py-2 card-bordered  h-[43s%]  lg:h-[330px] lg:w-[15vw] shadow-lg  flex flex-col justify-start items-center rounded-xl">
               <div
                 className="tooltip tooltip-open tooltip-top"
                 data-tip={
@@ -69,27 +63,33 @@ const UserAccount = () => {
               </div>
               <div
                 onClick={handlerPD}
-                className="text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 hover:bg-orange-300 hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1"
+                className={`text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 ${
+                  status === "PD" ? "text-orange-300 " : ""
+                }hover:bg-orange-300  hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1`}
               >
                 <InfoIcon />
                 <p>Personal Detail</p>
               </div>
               <div
                 onClick={handlerCD}
-                className="text-center flex justify-start my-2  items-center gap-3 text-lg font-semibold px-3 hover:bg-orange-300 hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1"
+                className={`text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 ${
+                  status === "CD" ? "text-orange-300  " : ""
+                }hover:bg-orange-300  hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1 my-1`}
               >
                 <AppsOutageIcon />
                 <p> Course Detail</p>
               </div>
               <div
                 onClick={handlerPH}
-                className="text-center flex justify-start   items-center gap-3 text-lg font-semibold px-3 hover:bg-orange-300 hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1"
+                className={`text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 ${
+                  status === "PH" ? "text-orange-300  " : ""
+                }hover:bg-orange-300  hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1`}
               >
                 <PaymentsIcon />
                 <p>Payment History</p>
               </div>
             </div>
-            <div className="lg:w-[60vw] w-full lg:ms-10 mt-5 lg:mt-0 card-bordered rounded-xl  col-span-8 shadow-lg px-6 py-4">
+            <div className="lg:w-[63vw] w-full lg:ms-10 mt-5 lg:mt-0 card-bordered rounded-xl  col-span-8 shadow-lg px-6 py-4">
               {status === "PD" ? (
                 // personal info..........................................
                 <>
@@ -98,7 +98,7 @@ const UserAccount = () => {
                     <p className="text font-semibold text-xl text-cyan-400">
                       Information
                     </p>
-                    <DriveFileRenameOutlineIcon className="text-cyan-400" />
+                    <DriveFileRenameOutlineIcon className="text-cyan-400 hover:text-orange-400" />
                   </div>
                   <div className="mt-3 border border-t-[1px border-gray-300 border-dashed"></div>
                   <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 gap-3">
@@ -151,17 +151,37 @@ const UserAccount = () => {
                       <AppsOutageIcon className="text-cyan-400" />
                     </div>
                     <div className="mt-3 border border-t-[1px border-gray-300 border-dashed"></div>
-
-                    {courseInfoArray.map((item, i) => (
-                      <div key={i}>
-                        <p className="text-md inline-block text-gray-400 font-semibold">
-                          {Object.keys(item)[0]} :
-                        </p>{" "}
-                        <span className="text-xl font-semibold">
-                          {item[Object.keys(item)[0]]}
-                        </span>
+                    <div className="grid lg:grid-cols-8 my-6 shadow-md rounded-md">
+                      <div className=" col-span-4">
+                        <img
+                          src={`${import.meta.env.VITE_APP_IMAGE_URL}/courses/${
+                            studentData.course.image
+                          }`}
+                          className=" rounded-md w-92 p-4"
+                          alt={studentData.course.image}
+                        />
                       </div>
-                    ))}
+                      <div className=" col-span-4">
+                        <p className=" card-title text-2xl mb-5">
+                          {studentData.course.title}
+                        </p>
+                        <p>{studentData.course.desc.slice(0, 200)}...</p>
+                        <div className="flex justify-between me-4 my-6">
+                          <p>
+                            <span className="text-gray-500 font-semibold">
+                              Duration:{" "}
+                            </span>
+                            {studentData.course.duration}
+                          </p>
+                          <p>
+                            <span className="text-gray-500 font-semibold">
+                              Price:{" "}
+                            </span>
+                            {studentData.course.price}
+                          </p>
+                        </div>
+                      </div>
+                    </div>{" "}
                   </div>
                 </>
               ) : (
@@ -176,7 +196,7 @@ const UserAccount = () => {
                     </div>
                     <div className="mt-3 border border-t-[1px border-gray-300 border-dashed"></div>
 
-                    <div className="flex justify-center gap-56 card-bordered p-4 shadow-lg rounded-lg mt-6">
+                    <div className="flex justify-center lg:gap-56 gap-16 card-bordered p-4 shadow-lg rounded-lg mt-6 ">
                       <div>
                         <p className="text-md inline-block text-gray-400 font-semibold">
                           Course price:

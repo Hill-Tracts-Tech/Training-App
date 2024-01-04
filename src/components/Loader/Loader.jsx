@@ -20,6 +20,31 @@ const Loader = ({ type }) => {
             </div>
           </div>
         </>
+      ) : type === "Student" ? (
+        <>
+          <div style={{ marginLeft: "86px" }} className="flex gap-5">
+            <div>
+              <Skeleton count={1} height={"40px"} width={"500px"} />
+            </div>
+            <div>
+              <Skeleton count={1} height={"40px"} width={"500px"} />
+            </div>
+            <div>
+              <Skeleton count={1} height={"40px"} width={"100px"} />
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+              marginTop: "30px",
+              marginLeft: "20px",
+            }}
+          >
+            <Skeleton count={1} height={"200px"} width={"1120px"} />
+          </div>
+        </>
       ) : type === "roomDetails" ? (
         <>
           <div className="roomDetails">
