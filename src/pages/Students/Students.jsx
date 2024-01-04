@@ -8,6 +8,7 @@ import {
 import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const Students = () => {
   const { data: students, isLoading } = useGetRegisterStudentQuery();
@@ -78,7 +79,7 @@ const Students = () => {
   return (
     <div>
       {isLoading ? (
-        "Loading..."
+        <Loader type={"Student"} />
       ) : (
         <div className="w-full md:w-[85%] mx-auto p-4">
           <div className="flex space-x-4 mb-4">

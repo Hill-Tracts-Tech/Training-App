@@ -1,3 +1,4 @@
+import Loader from "../../components/Loader/Loader";
 import { useGetTeacherQuery } from "../../redux/features/teacher/teacherApi";
 import { ImageUrl } from "../../utils/imageUrl";
 
@@ -6,7 +7,11 @@ const Teachers = () => {
 
   let content = null;
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div>
+        <Loader type={"Teacher"} />
+      </div>
+    );
   } else if (!isLoading && isError) {
     content = <div>{error}</div>;
   } else {

@@ -60,11 +60,7 @@ export const menu = [
     label: "Students",
     to: "/student",
   },
-  {
-    id: 6,
-    label: "Account",
-    to: "/account",
-  },
+
   {
     id: 7,
     label: "Notice",
