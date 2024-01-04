@@ -6,6 +6,8 @@ import AppsOutageIcon from "@mui/icons-material/AppsOutage";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { useState } from "react";
+import PaymentComponent from "../../components/Modal/Modal";
+import { ImageUrl } from "../../utils/imageUrl";
 
 const UserAccount = () => {
   const [status, setStatus] = useState("PD");
@@ -22,7 +24,6 @@ const UserAccount = () => {
   const location = useLocation();
   const { state } = location;
   const studentData = state?.item;
-  console.log(studentData);
   const infoArray = [
     { "Student Name": studentData.studentName },
     { Email: studentData.email },
@@ -51,19 +52,21 @@ const UserAccount = () => {
               <div
                 className="tooltip tooltip-open tooltip-top"
                 data-tip={
-                  studentData?.paymentStatus === "pending" ? "Draft" : "Clear"
+                  studentData?.registrationStatus === "pending"
+                    ? "Draft"
+                    : "Paid"
                 }
               ></div>
               <div className="text-center md:text-left mb-5">
                 <img
-                  src={img}
+                  src={`${ImageUrl}/students/${studentData?.image}` || img}
                   alt={img}
                   className="w-38 h-40 rounded-full border-gradient"
                 />
               </div>
               <div
                 onClick={handlerPD}
-                className={`text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 ${
+                className={`text-center flex justify-start cursor-pointer items-center gap-3 text-lg font-semibold px-3 ${
                   status === "PD" ? "text-orange-300 " : ""
                 }hover:bg-orange-300  hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1`}
               >
@@ -72,7 +75,7 @@ const UserAccount = () => {
               </div>
               <div
                 onClick={handlerCD}
-                className={`text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 ${
+                className={`text-center flex justify-start cursor-pointer items-center gap-3 text-lg font-semibold px-3 ${
                   status === "CD" ? "text-orange-300  " : ""
                 }hover:bg-orange-300  hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1 my-1`}
               >
@@ -81,7 +84,7 @@ const UserAccount = () => {
               </div>
               <div
                 onClick={handlerPH}
-                className={`text-center flex justify-start    items-center gap-3 text-lg font-semibold px-3 ${
+                className={`text-center flex justify-start cursor-pointer items-center gap-3 text-lg font-semibold px-3 ${
                   status === "PH" ? "text-orange-300  " : ""
                 }hover:bg-orange-300  hover:text-white hover:border-l-4 hover:border-cyan-400  lg:w-[15vw] w-full py-1`}
               >
@@ -192,22 +195,25 @@ const UserAccount = () => {
                       <p className="text font-semibold text-xl text-cyan-400">
                         Payment History
                       </p>
-                      <PaymentsIcon className="text-cyan-400" />
+                      <label
+                        htmlFor="payment_modal"
+                        className="text-cyan-400 cursor-pointer"
+                      >
+                        <PaymentsIcon className="text-cyan-400" />
+                      </label>
                     </div>
                     <div className="mt-3 border border-t-[1px border-gray-300 border-dashed"></div>
 
                     <div className="flex justify-center lg:gap-56 gap-16 card-bordered p-4 shadow-lg rounded-lg mt-6 ">
                       <div>
                         <p className="text-md inline-block text-gray-400 font-semibold">
-                          Course price:
+                          Course price: {studentData.course.price}
                         </p>
-                        <p>{studentData.course.price}</p>
                       </div>
                       <div>
                         <p className="text-md inline-block text-gray-400 font-semibold">
-                          Payment Status:
+                          Payment Status: {studentData?.registrationStatus}
                         </p>
-                        <p>{studentData?.paymentStatus}</p>
                       </div>
                     </div>
                     <div className=" grid lg:grid-cols-2 grid-cols-1 gap-5 mt-6">
@@ -234,6 +240,11 @@ const UserAccount = () => {
           </div>
         </div>
       </div>
+      <PaymentComponent
+        coursePrice={studentData.course.price}
+        paid={studentData?.paid}
+        id={studentData?._id}
+      />
     </div>
   );
 };
