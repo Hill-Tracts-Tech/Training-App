@@ -11,7 +11,11 @@ const MainLayout = () => {
     <div>
       <Brand />
       <Navbar />
-      {registor === "/registration" ? "" : <Slider />}
+      {registor === "/registration" || registor === "/account" ? (
+        ""
+      ) : (
+        <Slider />
+      )}
       <div className="lg:hidden">
         <Bottombar list={""} />
       </div>
