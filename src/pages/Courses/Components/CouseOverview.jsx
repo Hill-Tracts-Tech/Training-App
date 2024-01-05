@@ -1,5 +1,5 @@
-import { CoursesOverview } from "../../Dammydata";
-import TextUnderline from "../../utils/textUnderline";
+import { CoursesOverview } from "../../../Dammydata";
+import TextUnderline from "../../../utils/textUnderline";
 
 function CourseOverview() {
   return (

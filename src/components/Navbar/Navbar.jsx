@@ -7,6 +7,7 @@ import "./Navbar.css";
 
 function Navbar() {
   const location = useLocation();
+
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -99,7 +100,7 @@ function Navbar() {
                   <details>
                     <summary>{m.label}</summary>
                     <ul className="p-2 w-[250px]">
-                      {m.submenu.map((subitem) => (
+                      {m?.submenu?.map((subitem) => (
                         <li
                           key={subitem.id}
                           className={`${
@@ -108,16 +109,9 @@ function Navbar() {
                               : ""
                           }`}
                         >
-                          <details>
-                            <summary>{subitem.label}</summary>
-                            <ul>
-                              {subitem.sibling.map((s, i) => (
-                                <li key={i}>
-                                  <Link to={s.to}>{s.label}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </details>
+                          <summary>
+                            <Link to={subitem.to}>{subitem.label}</Link>
+                          </summary>
                         </li>
                       ))}
                     </ul>

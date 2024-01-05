@@ -8,8 +8,11 @@ import {
 } from "@mui/icons-material";
 import RoundAnimation from "../RoundAnimation/RoundAnimation";
 import "./footer.css";
+import { useLocation } from "react-router-dom";
 
 function Footer() {
+  const location = useLocation();
+  const home = location.pathname;
   return (
     <div className="overflow-hidden">
       <div style={{ zIndex: "10" }} className="w-[85%] mx-auto">
@@ -77,18 +80,25 @@ function Footer() {
             </div>
           </nav>
         </footer>
-        <footer className="footer px-9 mt-4">
-          <aside style={{ zIndex: "99999" }} className="w-full hidden lg:block">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.855568300565!2d91.81917207503444!3d22.359081790762772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd89aaa8239cd%3A0x6e65fa00001dd59f!2sGEC%20More%2C%20Chittagong!5e0!3m2!1sen!2sbd!4v1698037624684!5m2!1sen!2sbd"
-              width="100%"
-              height="450"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </aside>
-        </footer>
+        {home === "/" ? (
+          <footer className="footer px-9 mt-4">
+            <aside
+              style={{ zIndex: "99999" }}
+              className="w-full hidden lg:block"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.855568300565!2d91.81917207503444!3d22.359081790762772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd89aaa8239cd%3A0x6e65fa00001dd59f!2sGEC%20More%2C%20Chittagong!5e0!3m2!1sen!2sbd!4v1698037624684!5m2!1sen!2sbd"
+                width="100%"
+                height="450"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </aside>
+          </footer>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="relative">
         <RoundAnimation c_height={200} c_width={200} />

@@ -1,6 +1,6 @@
 import { Check } from "@mui/icons-material";
-import { CourseModulesData } from "../../Dammydata";
-import TextUnderline from "../../utils/textUnderline";
+import { CourseModulesData } from "../../../Dammydata";
+import TextUnderline from "../../../utils/textUnderline";
 
 function CourseModules() {
   return (
