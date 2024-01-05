@@ -28,6 +28,7 @@ function Navbar() {
           admin === "/admin/result" ||
           admin === "/admin/notice" ||
           admin === "/admin/thumbnail" ||
+          admin === "/teacher" ||
           admin === "/admin/courses"
             ? ""
             : "z-[99999]"
