@@ -1,4 +1,4 @@
-import TextUnderline from "../../utils/textUnderline";
+import TextUnderline from "../../../utils/textUnderline";
 import img from "../../assets/img/course.png";
 import img2 from "../../assets/img/courses2.png";
 import { AccessTimeFilled, Check, School } from "@mui/icons-material";

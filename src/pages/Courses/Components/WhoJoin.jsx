@@ -1,4 +1,4 @@
-import TextUnderline from "../../utils/textUnderline";
+import TextUnderline from "../../../utils/textUnderline";
 import img from "../../assets/img/whoShouldJoin.png";
 import { DoneAll } from "@mui/icons-material";
 

@@ -22,7 +22,7 @@ export const menu = [
       {
         id: 41,
         label: "Orion Selai Proshikhon Center",
-        to: "#",
+        to: "/course/orion_selai_proshikhon_center",
         sibling: [
           {
             id: 411,
@@ -34,7 +34,7 @@ export const menu = [
       {
         id: 42,
         label: "Orion Computer Institute",
-        to: "#",
+        to: "/course/orion_computer_institute",
         sibling: [
           {
             id: 421,

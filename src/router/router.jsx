@@ -29,6 +29,7 @@ import Thumbnail from "../pages/Admin/Component/Thumbnail";
 import ThumbnailForm from "../components/Form/ThumbnailForm";
 import Batch from "../pages/Admin/Component/Batch";
 import BatchForm from "../components/Form/BatchForm";
+import CourseDetails from "../pages/Courses/Components/CourseDetails";
 
 const router = createBrowserRouter([
   {
@@ -45,13 +46,14 @@ const router = createBrowserRouter([
         element: <Teachers />,
       },
       {
-        path: "/course/:courseName",
+        path: "/course/:category",
         element: <Courses />,
       },
       {
-        path: "/course/:id",
-        element: <Courses />,
+        path: "/course/:category/:id",
+        element: <CourseDetails />,
       },
+
       {
         path: "/student",
         element: <Students />,
