@@ -124,22 +124,22 @@ const AdminTeacher = () => {
             >
               X
             </label>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 items-center">
               <img
-                className="  h-38 w-48 rounded-full "
+                className="  h-38 w-48 rounded-lg border-2 border-cyan-400"
                 src={`${import.meta.env.VITE_APP_IMAGE_URL}/teachers/${
                   eye?.image
                 }`}
                 alt=""
               />
               <div>
-                <p className="my-3">
+                <p className="my-2">
                   <span className=" font-bold">ID:</span> {eye?.teacherId}
                 </p>
                 <p>
                   <span className=" font-bold">Name:</span> {eye?.name}
                 </p>
-                <p className="my-3">
+                <p className="my-2">
                   <span className=" font-bold">Designation:</span>{" "}
                   {eye?.designation}
                 </p>
@@ -147,11 +147,11 @@ const AdminTeacher = () => {
                   <span className=" font-bold">Department:</span>{" "}
                   {eye?.department}
                 </p>
-                <p className="my-3">
-                  <span className=" font-bold">About:</span> {eye?.about}
-                </p>
               </div>
             </div>
+            <p className="my-5 text-justify ">
+              <span className=" font-bold">About:</span> {eye?.about}
+            </p>
           </div>
         </div>
       </div>

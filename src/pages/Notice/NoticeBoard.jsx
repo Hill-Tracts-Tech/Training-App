@@ -54,15 +54,48 @@ const NoticeBoard = () => {
                 </div>
                 <div className="p-4">
                   <button
+                    onClick={() =>
+                      document.getElementById("my_modal_3").showModal()
+                    }
                     style={{
                       background:
                         "linear-gradient(90deg,#009688 0%,#2196F3 100%)",
                       color: "#fff",
                     }}
-                    className="px-6 py-2 rounded-md"
+                    className="px-6 py-2 rounded-md "
                   >
                     Read Details
                   </button>
+                  <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                          ✕
+                        </button>
+                      </form>
+                      <p className="text-gray-400 text-sm my-2">
+                        {moment(notice?.createdAt).format("LL")}
+                      </p>
+                      <div className="">
+                        <div>
+                          <img
+                            className=" rounded h-[220px] w-full"
+                            src={`${ImageUrl}/notices/${notice?.file}`}
+                            alt=""
+                          />
+                          <p className="my-3">
+                            <span className="font-bold ">Title:</span>{" "}
+                            {notice?.title}
+                          </p>
+                          <p>
+                            <span className="font-bold">Description:</span>{" "}
+                            {notice?.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </dialog>
                 </div>
               </div>
             </div>
