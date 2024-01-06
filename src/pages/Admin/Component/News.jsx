@@ -12,7 +12,7 @@ import Loader from "../../../components/Loader/Loader";
 
 const News = () => {
   const [deleteNotice] = useDeleteNoticeMutation();
-  const { data: newsData, isLoading } = useGetNoticeQuery();
+  const { data: newsData, isLoading, refetch } = useGetNoticeQuery();
   const [eye, setEye] = useState({});
 
   const datahandler = (id) => {
@@ -25,6 +25,7 @@ const News = () => {
       const result = await deleteNotice(noticeId).unwrap();
       if (result?.statusCode === 200) {
         toast.success("Notice deleted successfully");
+        refetch();
       }
     } catch (error) {
       toast.error("Fail to delete");

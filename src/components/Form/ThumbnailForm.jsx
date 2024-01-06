@@ -2,6 +2,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useState } from "react";
 import {
   useAddThumbnailMutation,
+  useGetThumbnailsQuery,
   useUpdateThumbnailMutation,
 } from "../../redux/features/thumbnail/thumbnailApi";
 import toast from "react-hot-toast";
@@ -9,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const ThumbnailForm = () => {
   const [addThumbnail] = useAddThumbnailMutation();
+  const { refetch } = useGetThumbnailsQuery();
   const [updateThumbnail] = useUpdateThumbnailMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
@@ -59,12 +61,14 @@ const ThumbnailForm = () => {
         }).unwrap();
         if (res.statusCode === 200) {
           toast.success("Thumbnail updated successfully");
+          refetch();
           navigate("/admin/thumbnail");
         }
       } else {
         const res = await addThumbnail(formData).unwrap();
         if (res.statusCode === 200) {
           toast.success("Thumbnail uploaded successfully");
+          refetch();
           navigate("/admin/thumbnail");
         }
       }
