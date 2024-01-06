@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import Loader from "../../../components/Loader/Loader";
 
 const AdminCourses = () => {
-  const { data: courses, isLoading } = useGetCoursesQuery();
+  const { data: courses, isLoading, refetch } = useGetCoursesQuery();
   const [deleteCourse] = useDeleteCourseMutation();
   const [eye, setEye] = useState({});
 
@@ -25,6 +25,7 @@ const AdminCourses = () => {
     try {
       await deleteCourse(courseId);
       toast.success("Course deleted successfully");
+      refetch();
     } catch (error) {
       toast.error(error);
     }

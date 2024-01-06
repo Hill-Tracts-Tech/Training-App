@@ -3,11 +3,16 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link, useNavigate } from "react-router-dom";
-import { useGetResultQuery } from "../../../redux/features/result/resultApi";
+import {
+  useDeleteResultMutation,
+  useGetResultQuery,
+} from "../../../redux/features/result/resultApi";
 
 import Loader from "../../../components/Loader/Loader";
+import toast from "react-hot-toast";
 const AdminResult = () => {
-  const { data: resultData, isLoading } = useGetResultQuery();
+  const { data: resultData, isLoading, refetch } = useGetResultQuery();
+  const [deleteResult] = useDeleteResultMutation();
   const [eye, setEye] = useState({});
 
   const datahandler = (id) => {
@@ -24,6 +29,16 @@ const AdminResult = () => {
 
   const handleEditClick = (item) => {
     navigate("/admin/ResultForm", { state: { editMode: true, item } });
+  };
+
+  const handleDelete = async (resultId) => {
+    try {
+      await deleteResult(resultId);
+      toast.success("Result deleted successfully");
+      refetch();
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   if (isLoading)
@@ -99,7 +114,10 @@ const AdminResult = () => {
                           onClick={() => handleEditClick(item)}
                           className=" text-blue-400 hover:text-black cursor-pointer"
                         />
-                        <DeleteIcon className="text-red-400 hover:text-black cursor-pointer" />
+                        <DeleteIcon
+                          onClick={() => handleDelete(item?._id)}
+                          className="text-red-400 hover:text-black cursor-pointer"
+                        />
                       </div>
                     </td>
                   </tr>

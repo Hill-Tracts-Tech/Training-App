@@ -4,6 +4,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   useAddCourseMutation,
+  useGetCoursesQuery,
   useUpdateCourseMutation,
 } from "../../redux/features/course/courseApi";
 import { useGetTeacherQuery } from "../../redux/features/teacher/teacherApi";
@@ -11,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const CourseForm = () => {
   const [addCourse, { isLoading: addLoading }] = useAddCourseMutation();
+  const { refetch } = useGetCoursesQuery();
   const { data: teachers } = useGetTeacherQuery();
   const [updateCourse, { isLoading: updateLoading }] =
     useUpdateCourseMutation();
@@ -94,12 +96,14 @@ const CourseForm = () => {
         }).unwrap();
         if (res.statusCode === 200) {
           toast.success("Course updated successfully");
+          refetch();
           navigate("/admin/courses");
         }
       } else {
         const res = await addCourse(formData).unwrap();
         if (res.statusCode === 200) {
           toast.success("Course added successfully");
+          refetch();
           navigate("/admin/courses");
         }
       }

@@ -4,10 +4,12 @@ import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   useAddResultMutation,
+  useGetResultQuery,
   useUpdateResultMutation,
 } from "../../redux/features/result/resultApi";
 const ResultForm = () => {
   const [addResult] = useAddResultMutation();
+  const { refetch } = useGetResultQuery();
   const [updateResult] = useUpdateResultMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
@@ -54,12 +56,14 @@ const ResultForm = () => {
         }).unwrap();
         if (res.statusCode === 200) {
           toast.success("Result updated Successfully");
+          refetch();
           navigate("/admin/result");
         }
       } else {
         const res = await addResult(formData).unwrap();
         if (res.statusCode === 200) {
           toast.success("Result Published Successfully");
+          refetch();
           navigate("/admin/result");
         }
       }
