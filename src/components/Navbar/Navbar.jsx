@@ -21,6 +21,28 @@ function Navbar() {
   const closeEnquiryModal = () => {
     setEnquiryModalOpen(false);
   };
+
+  // close dropdown onClick
+  document.querySelectorAll("summary").forEach((summary) => {
+    summary.addEventListener("click", (event) => {
+      document.querySelectorAll("details").forEach((details) => {
+        if (details !== event.target.parentNode) {
+          details.removeAttribute("open");
+        }
+      });
+    });
+  });
+
+  // Close the dropdown when clicking outside the dropdown
+  document.addEventListener("click", (event) => {
+    const dropdown = document.querySelector(".dropdown");
+    if (!dropdown.contains(event.target)) {
+      document.querySelectorAll("details").forEach((details) => {
+        details.removeAttribute("open");
+      });
+    }
+  });
+
   return (
     <>
       <div

@@ -15,7 +15,7 @@ const CourseDetails = () => {
     <Loader type={""} />;
   }
   {
-    newModule = JSON.parse(cousreDetails?.module);
+    newModule = cousreDetails?.module && JSON?.parse(cousreDetails?.module);
   }
 
   const [openAccordion, setOpenAccordion] = useState(null);
