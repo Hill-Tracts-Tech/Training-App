@@ -5,7 +5,10 @@ import logo1 from "../../assets/icons/OSC.jpg";
 import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
-import { useRegisterStudentMutation } from "../../redux/features/studentRegistration/studentRegistrationApi";
+import {
+  useGetRegisterStudentQuery,
+  useRegisterStudentMutation,
+} from "../../redux/features/studentRegistration/studentRegistrationApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
@@ -14,6 +17,7 @@ const Registration = () => {
   const { data: courseData } = useGetCoursesQuery();
   const { data: batchData } = useGetAllBatchQuery();
   const [registerStudent, { isLoading }] = useRegisterStudentMutation();
+  const { refetch } = useGetRegisterStudentQuery();
   const [active, setActive] = useState(true);
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
@@ -50,6 +54,7 @@ const Registration = () => {
       const res = await registerStudent(formData).unwrap();
       if (res.statusCode === 200) {
         toast.success("Course added successfully");
+        refetch();
         navigate("/student");
       }
     } catch (error) {

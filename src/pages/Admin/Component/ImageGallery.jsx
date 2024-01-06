@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Loader from "../../../components/Loader/Loader";
 
 const ImageGallery = () => {
-  const { data: images, isLoading } = useGetImagesQuery();
+  const { data: images, isLoading, refetch } = useGetImagesQuery();
   const [deleteImage] = useDeleteImageMutation();
 
   const handleDelete = async (imageId) => {
@@ -16,6 +16,7 @@ const ImageGallery = () => {
       const result = await deleteImage(imageId).unwrap();
       if (result.statusCode === 200) {
         toast.success("Image deleted successfully");
+        refetch();
       }
     } catch (error) {
       toast.error(error);
