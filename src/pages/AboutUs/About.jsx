@@ -13,10 +13,10 @@ function About() {
             About Us
           </h2>
           <h3 className="text-4xl text-blue-500 my-5 font-bold">
-            About Learn Computer Academy
+            About ORION COMPUTER INSTITUTE
           </h3>
           <p>
-            Learn Computer Academy is the best Computer Center in Habra with
+            ORION COMPUTER INSTITUTE is the best Computer Center in Habra with
             special focus in Website Design and Development. We are situated at
             Saptapally, Khudiram Basu Road, about 1km from Habra Station. Our
             goal is to provide cost-Effective, Quality & Real time Training

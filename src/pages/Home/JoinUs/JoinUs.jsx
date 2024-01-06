@@ -14,7 +14,7 @@ function JoinUs() {
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-4xl text-[#1C2045] my-5 font-bold">
               3 Steps For Joining <br />
-              Learn Computer Academy
+              ORION COMPUTER INSTITUTE
             </h1>
             <TextUnderline custom_width={150} />
           </div>

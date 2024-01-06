@@ -23,7 +23,7 @@ function JoinToday() {
             </h1>
             <TextUnderline custom_width={150} />
             <p className="my-5">
-              Learn Computer Academy provides hands on training in Graphics
+              ORION COMPUTER INSTITUTE provides hands on training in Graphics
               Design. With the growing number of business going online, the
               demand of Graphics Designers are increasing daily. We teach
               Creative skills to our students.

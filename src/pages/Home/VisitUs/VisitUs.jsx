@@ -11,7 +11,7 @@ function VisitUs() {
         <div className="w-full md:w-1/2 p-6">
           <div>
             <h1 className="text-4xl text-blue-600 my-5 font-bold">
-              How To Visit Learn Computer Academy?
+              How To Visit ORION COMPUTER INSTITUTE?
             </h1>
             <TextUnderline custom_width={150} />
           </div>

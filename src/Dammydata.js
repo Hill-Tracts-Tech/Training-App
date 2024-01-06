@@ -70,7 +70,7 @@ export const facilities = [
     icon: `${certification}`,
     title: "Certification",
     description:
-      "Once you are successfully through the course, you will be awarded certificate from Learn Computer Academy.",
+      "Once you are successfully through the course, you will be awarded certificate from ORION COMPUTER INSTITUTE.",
   },
   {
     id: 6,

@@ -16,7 +16,7 @@ function Introduction() {
             </h2>
             <div>
               <h1 className="text-4xl text-blue-600 my-5 font-bold">
-                Learn Computer Academy
+                ORION COMPUTER INSTITUTE
               </h1>
               <TextUnderline custom_width={150} />
               <p className="my-5 text-justify">
