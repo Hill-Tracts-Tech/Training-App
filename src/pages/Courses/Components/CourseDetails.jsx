@@ -23,6 +23,7 @@ const CourseDetails = () => {
   const handleAccordionToggle = (index) => {
     setOpenAccordion(openAccordion === index ? null : index);
   };
+
   return (
     <div className="w-[85%] mx-auto">
       {isLoading ? (
