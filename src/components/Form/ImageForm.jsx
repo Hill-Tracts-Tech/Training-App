@@ -1,10 +1,14 @@
 import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import { useAddImageMutation } from "../../redux/features/gallery/galleryApi";
+import {
+  useAddImageMutation,
+  useGetImagesQuery,
+} from "../../redux/features/gallery/galleryApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ImageForm = () => {
+  const { refetch } = useGetImagesQuery();
   const [addImage] = useAddImageMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
@@ -35,6 +39,7 @@ const ImageForm = () => {
       const result = await addImage(formData).unwrap();
       if (result.statusCode === 200) {
         toast.success("Image added successfully");
+        refetch();
         navigate("/admin/image");
       }
     } catch (error) {

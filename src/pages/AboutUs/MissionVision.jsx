@@ -20,7 +20,7 @@ function MissionVision() {
       title: "Successful Professional Career For Our Students",
       underline: <TextUnderline />,
       content:
-        "Learn Computer Academy was born out of the need to provide trained, employable tech expects to the ever expanding IT industry. We strive to promote professionalism and quality of service.<br/>In a tough job market, our mission is to provide students the foundation for a successful career.",
+        "ORION COMPUTER INSTITUTE was born out of the need to provide trained, employable tech expects to the ever expanding IT industry. We strive to promote professionalism and quality of service.<br/>In a tough job market, our mission is to provide students the foundation for a successful career.",
       imageSrc: mission,
     },
     {

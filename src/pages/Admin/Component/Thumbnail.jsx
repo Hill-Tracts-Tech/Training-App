@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import Loader from "../../../components/Loader/Loader";
 
 const Thumbnail = () => {
-  const { data: thumbnailData, isLoading } = useGetThumbnailsQuery();
+  const { data: thumbnailData, isLoading, refetch } = useGetThumbnailsQuery();
   const [deleteThumbnail] = useDeleteThumbnailsMutation();
   const [eye, setEye] = useState({});
 
@@ -26,6 +26,7 @@ const Thumbnail = () => {
       const res = await deleteThumbnail(thumbnailId).unwrap();
       if (res.statusCode === 200) {
         toast.success("Thumbnail deleted successfully");
+        refetch();
       }
     } catch (error) {
       toast.error(error);

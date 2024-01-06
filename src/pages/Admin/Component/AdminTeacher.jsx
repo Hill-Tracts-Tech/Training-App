@@ -11,7 +11,7 @@ import {
 import Loader from "../../../components/Loader/Loader";
 
 const AdminTeacher = () => {
-  const { data: teacherData, isLoading } = useGetTeacherQuery();
+  const { data: teacherData, isLoading, refetch } = useGetTeacherQuery();
   const [deleteTeacher] = useDeleteTeacherMutation();
   const [eye, setEye] = useState({});
 
@@ -24,6 +24,7 @@ const AdminTeacher = () => {
     try {
       await deleteTeacher(teacherId);
       toast.success("Teacher Deleted Successfully");
+      refetch();
     } catch (error) {
       toast.error("Fail to delete");
     }

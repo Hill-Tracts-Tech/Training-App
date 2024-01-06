@@ -4,7 +4,6 @@ import CourseList from "../CourseList/CourseList";
 import Facilities from "../Facilities/Facilities";
 import Introduction from "../Introduction/Introduction";
 import JoinUs from "../JoinUs/JoinUs";
-import Students from "../Students/Students";
 import VisitUs from "../VisitUs/VisitUs";
 import "./Home.css";
 
@@ -16,7 +15,6 @@ const Home = () => {
       <Facilities />
       <VisitUs />
       {/* <CourseList /> */}
-      <Students />
       <JoinUs />
       <CourseList />
     </div>

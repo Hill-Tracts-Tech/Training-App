@@ -12,7 +12,7 @@ import {
 } from "../../../redux/features/batch/batchApi";
 
 const Batch = () => {
-  const { data: batchData, isLoading } = useGetAllBatchQuery();
+  const { data: batchData, isLoading, refetch } = useGetAllBatchQuery();
   const [deleteBatch] = useDeleteBatchMutation();
   const [eye, setEye] = useState({});
 
@@ -26,6 +26,7 @@ const Batch = () => {
       const res = await deleteBatch(batchId).unwrap();
       if (res.statusCode === 200) {
         toast.success("Batch deleted successfully");
+        refetch();
       }
     } catch (error) {
       toast.error(error);

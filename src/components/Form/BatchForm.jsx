@@ -3,11 +3,13 @@ import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   useAddBatchMutation,
+  useGetAllBatchQuery,
   useUpdateBatchMutation,
 } from "../../redux/features/batch/batchApi";
 
 const BatchForm = () => {
   const [addBatch] = useAddBatchMutation();
+  const { refetch } = useGetAllBatchQuery();
   const [updateBatch] = useUpdateBatchMutation();
 
   const location = useLocation();
@@ -48,12 +50,14 @@ const BatchForm = () => {
         }).unwrap();
         if (res.statusCode === 200) {
           toast.success("Batch updated successfully");
+          refetch();
           navigate("/admin/batch");
         }
       } else {
         const res = await addBatch(data).unwrap();
         if (res.statusCode === 200) {
           toast.success("Batch uploaded successfully");
+          refetch();
           navigate("/admin/batch");
         }
       }

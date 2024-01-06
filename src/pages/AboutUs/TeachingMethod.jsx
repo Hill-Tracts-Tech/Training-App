@@ -19,7 +19,7 @@ function TeachingMethod() {
               </h1>
               <TextUnderline custom_width={150} />
               <p className="my-5">
-                At Learn Computer Academy, we realize that not all students
+                At ORION COMPUTER INSTITUTE, we realize that not all students
                 learn at the same pace. In a classroom of more than six
                 students, certain students will get left behind because of the
                 lack of communication between the students and the instructor.

@@ -5,6 +5,7 @@ import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import {
   useAddNoticeMutation,
+  useGetNoticeQuery,
   useUpdateNoticeMutation,
 } from "../redux/features/notice/noticeApi";
 import toast from "react-hot-toast";
@@ -13,6 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const DraggableImageInput = () => {
   const [addNotice] = useAddNoticeMutation();
   const [updateNotice] = useUpdateNoticeMutation();
+  const { refetch } = useGetNoticeQuery();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -59,12 +61,14 @@ const DraggableImageInput = () => {
         }).unwrap();
         if (res.statusCode === 200) {
           toast.success("Notice updated successfully");
+          refetch();
           navigate("/admin/notice");
         }
       } else {
         const res = await addNotice(formData).unwrap();
         if (res.statusCode === 200) {
           toast.success("Notice added successfully");
+          refetch();
           navigate("/admin/notice");
         }
       }

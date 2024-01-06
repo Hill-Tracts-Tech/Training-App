@@ -4,10 +4,12 @@ import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   useAddTeacherMutation,
+  useGetTeacherQuery,
   useUpdateTeacherMutation,
 } from "../../redux/features/teacher/teacherApi";
 
 const TeacherForm = () => {
+  const { refetch } = useGetTeacherQuery();
   const [addTeacher, { isLoading: addLoading }] = useAddTeacherMutation();
   const [updateTeacher, { isLoading: updateLoading }] =
     useUpdateTeacherMutation();
@@ -75,12 +77,14 @@ const TeacherForm = () => {
         }).unwrap();
         if (res.statusCode === 200) {
           toast.success("Teacher updated successfully");
+          refetch();
           navigate("/admin/teacher");
         }
       } else {
         const res = await addTeacher(formData).unwrap();
         if (res.statusCode === 200) {
           toast.success("Teacher added successfully");
+          refetch();
           navigate("/admin/teacher");
         }
       }
