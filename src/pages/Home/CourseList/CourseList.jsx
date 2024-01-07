@@ -1,9 +1,7 @@
-import { DoneAll } from "@mui/icons-material";
-import { courseList } from "../../../Dammydata";
 import center from "../../../assets/img/center.jpg";
 import TextUnderline from "../../../utils/textUnderline";
-import RoundAnimation from "../../../components/RoundAnimation/RoundAnimation";
-import { Link } from "react-router-dom";
+
+import CourseSlider from "../../../components/Slider/CourseSlider";
 
 function CourseList() {
   return (
@@ -28,14 +26,10 @@ function CourseList() {
             <TextUnderline custom_width={150} />
           </div>
           <div className="text-center text-white mt-5">
-            <p>
-              Our fees are the cheapest among similar institutions. Although we
-              <br />
-              take minimal charges, we provide the best quality of education.
-            </p>
+            <p></p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center items-start mt-10">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center items-start mt-10">
           {courseList.map((data) => (
             <div className="overflow-hidden" key={data.id}>
               <div
@@ -84,7 +78,8 @@ function CourseList() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+        <CourseSlider />
       </div>
     </div>
   );

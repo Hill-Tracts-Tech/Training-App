@@ -53,11 +53,11 @@ function Navbar() {
           admin === "/admin/thumbnail" ||
           admin === "/teacher" ||
           admin === "/admin/courses"
-            ? ""
-            : "z-[99999]"
+            ? " w-[90%] mx-auto"
+            : "z-[99999] w-[90%] mx-auto"
         } `}
       >
-        <div className="navbar-start hidden  lg:block">
+        <div className="navbar-start hidden  lg:block ">
           <div className="dropdown">
             <Menu />
             {/* Mobile view */}

@@ -13,11 +13,11 @@ function Courses() {
           <Loader type={""} />
         </>
       ) : (
-        <div className="w-[85%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+        <div className="w-[85%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-6">
           {data?.data.map((course, i) => (
             <div key={course._id}>
               <Link to={`/course/orion_computer_institute/${course._id}`}>
-                <div className=" card card-compact w-80 bg-base-100 shadow-xl">
+                <div className="mt-5 lg:mt-auto card card-compact w-80 bg-base-100 shadow-xl h-[410px]">
                   <figure className="transform-gpu overflow-hidden">
                     <img
                       src={`${import.meta.env.VITE_APP_IMAGE_URL}/courses/${
@@ -30,7 +30,9 @@ function Courses() {
 
                   <div className="card-body">
                     <h2 className="card-title">{course.title}</h2>
-                    <p>{course.desc.slice(0, 90)}...</p>
+                    <p className="text-justify">
+                      {course.desc.slice(0, 90)}...
+                    </p>
                     <div className="card-actions justify-between">
                       <div className="bg-cyan-400 text-white py-3 border-2 rounded-md badge badge-outline">
                         Duration: {course.duration}

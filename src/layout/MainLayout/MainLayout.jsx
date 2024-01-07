@@ -11,7 +11,10 @@ const MainLayout = () => {
     <div>
       <Brand />
       <Navbar />
-      {registor === "/registration" || registor === "/account" ? (
+      {registor === "/registration" ||
+      registor === "/account" ||
+      registor === "/course/orion_selai_proshikhon_center" ||
+      registor === "/course/orion_computer_institute" ? (
         ""
       ) : (
         <Slider />
