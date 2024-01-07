@@ -71,9 +71,9 @@ const Loader = ({ type }) => {
               marginTop: "30px",
             }}
           >
-            <Skeleton count={1} height={"200px"} width={"250px"} />
-            <Skeleton count={1} height={"200px"} width={"500px"} />
-            <Skeleton count={1} height={"200px"} width={"360px"} />
+            <Skeleton count={1} height={"250px"} width={"250px"} />
+            <Skeleton count={1} height={"250px"} width={"500px"} />
+            <Skeleton count={1} height={"250px"} width={"360px"} />
           </div>
         </>
       )}

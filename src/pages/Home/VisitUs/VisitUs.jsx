@@ -1,4 +1,4 @@
-import img from "../../../assets/img/howToVisit.png";
+import img from "../../../assets/img/howToVisit.jpg";
 import TextUnderline from "../../../utils/textUnderline";
 import "./VisitUs.css";
 function VisitUs() {
@@ -6,7 +6,7 @@ function VisitUs() {
     <div className="bg-pattern">
       <div className="w-[85%] flex flex-col md:flex-row mx-auto gap-x-8 gap-y-3 justify-center items-center">
         <div className="w-full md:w-1/2 bounce">
-          <img src={img} alt="" />
+          <img className="visitImg" src={img} alt="" />
         </div>
         <div className="w-full md:w-1/2 p-6">
           <div>

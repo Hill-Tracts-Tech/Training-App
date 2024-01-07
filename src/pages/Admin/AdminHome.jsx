@@ -1,14 +1,16 @@
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PaidIcon from "@mui/icons-material/Paid";
 import SchoolIcon from "@mui/icons-material/School";
+import Greeting from "../../components/time-message/Greeting";
 const AdminHome = () => {
   return (
     <div>
+      <Greeting />
       <div className="flex lg:flex-row flex-col justify-center items-center lg:mr-20  gap-4">
         <div className="card  w-72 h-36 bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-red-500 flex justify-between">
-              <span>Total Stutents :-</span> <PeopleOutlineIcon />
+              <span>Total Students :-</span> <PeopleOutlineIcon />
             </h2>
             <p className="text-xl font-semibold ms-1">
               <b>৳</b> 20
@@ -36,11 +38,17 @@ const AdminHome = () => {
           </div>
         </div>
       </div>
-      <div className="bg-base-100 shadow-xl lg:mr-20  mt-6 lg:ms-5 px-5 lg:px-0">
+    </div>
+  );
+};
+
+export default AdminHome;
+
+/* 
+ <div className="bg-base-100 shadow-xl lg:mr-20  mt-6 lg:ms-5 px-5 lg:px-0">
         <h1 className="text-xl font-semibold">Available Courses :-</h1>
         <div className="overflow-x-auto">
           <table className="table rounded-xl">
-            {/* head */}
             <thead>
               <tr className="bg-gray-300">
                 <th>
@@ -55,7 +63,6 @@ const AdminHome = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
               <tr>
                 <th>
                   <label>
@@ -90,7 +97,6 @@ const AdminHome = () => {
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
               </tr>
-              {/* row 2 */}
               <tr>
                 <th>
                   <label>
@@ -125,7 +131,6 @@ const AdminHome = () => {
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
               </tr>
-              {/* row 3 */}
               <tr>
                 <th>
                   <label>
@@ -160,7 +165,6 @@ const AdminHome = () => {
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
               </tr>
-              {/* row 4 */}
               <tr>
                 <th>
                   <label>
@@ -196,7 +200,6 @@ const AdminHome = () => {
                 </th>
               </tr>
             </tbody>
-            {/* foot */}
             <tfoot>
               <tr>
                 <th></th>
@@ -209,8 +212,5 @@ const AdminHome = () => {
           </table>
         </div>
       </div>
-    </div>
-  );
-};
 
-export default AdminHome;
+*/
