@@ -30,7 +30,7 @@ export const courses = [
 import trainer from "./assets/icons/trainer.png";
 import classes from "./assets/icons/classes.png";
 import project from "./assets/icons/liveProject.png";
-import job from "./assets/icons/job.png";
+// import job from "./assets/icons/job.png";
 import certification from "./assets/icons/certification.png";
 import portal from "./assets/icons/studentPortal.png";
 import timing from "./assets/icons/flexibleTime.png";
@@ -58,13 +58,13 @@ export const facilities = [
     description:
       "Students of our institute are trained to work on Live projects for real clients",
   },
-  {
-    id: 4,
-    icon: `${job}`,
-    title: "100% Job Assistance",
-    description:
-      "At the end of the course, all our students are assured 100% job placement assistance.",
-  },
+  // {
+  //   id: 4,
+  //   icon: `${job}`,
+  //   title: "100% Job Assistance",
+  //   description:
+  //     "At the end of the course, all our students are assured 100% job placement assistance.",
+  // },
   {
     id: 5,
     icon: `${certification}`,
