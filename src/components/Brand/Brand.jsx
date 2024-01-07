@@ -2,7 +2,7 @@ import logo2 from "../../assets/icons/OCI.jpg";
 import logo1 from "../../assets/icons/OSC.jpg";
 function Brand() {
   return (
-    <div className="lg:w-[85%] mx-auto">
+    <div className="lg:w-[90%] mx-auto">
       <div className="flex justify-between p-6">
         <div className="left hidden lg:block ">
           <div className="w-[60px] h-[60px] rounded-full shadow-md">

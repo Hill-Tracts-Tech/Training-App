@@ -14,7 +14,7 @@ function Footer() {
   const location = useLocation();
   const home = location.pathname;
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden border-t-2 mt-16">
       <div style={{ zIndex: "10" }} className="w-[85%] mx-auto">
         <footer className="footer p-10">
           <nav>
