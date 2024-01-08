@@ -26,7 +26,7 @@ const ImageGallery = () => {
   if (isLoading)
     return (
       <div>
-        <Loader type={"Image"} />
+        <Loader type={"AdminImage"} />
       </div>
     );
 

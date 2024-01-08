@@ -1,6 +1,6 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-unused-vars */
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetCoursesQuery } from "../../../redux/features/course/courseApi";
 import { useState } from "react";
 import Loader from "../../../components/Loader/Loader";
@@ -13,23 +13,18 @@ const CourseDetails = () => {
   const cousreDetails = data?.data?.find((item) => item?._id === id);
   let newModule = [];
   if (isLoading) {
-    <Loader type={""} />;
+    <Loader type={"CourseDetails"} />;
   }
   {
     newModule = cousreDetails?.module && JSON?.parse(cousreDetails?.module);
   }
   const { image, designation, about, name } = cousreDetails?.instructor || {};
 
-  const [openAccordion, setOpenAccordion] = useState(null);
-
-  const handleAccordionToggle = (index) => {
-    setOpenAccordion(openAccordion === index ? null : index);
-  };
   console.log(cousreDetails);
   return (
     <div className="w-[85%] mx-auto">
       {isLoading ? (
-        <Loader type={""} />
+        <Loader type={"CourseDetails"} />
       ) : (
         <>
           <div className=" lg:grid grid-cols-12  gap-5">
@@ -49,50 +44,45 @@ const CourseDetails = () => {
               <h1 className="text-md h-[45vh] overflow-y-auto  mt-4 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-gray-200 p-2 text-justify">
                 {cousreDetails?.desc}
               </h1>
-              <div className=" ">
+              <div className="flex justify-between ">
                 {" "}
-                <div className=" relative bottom-0 bg-cyan-400 text-white py-4 border-2 text-xl w-full  rounded-md badge badge-outline">
+                <div className=" shadow relative bottom-0 bg-cyan-400 text-white py-4 border-2 text-xl   rounded-md badge badge-outline">
                   Price: {cousreDetails.price} TK
+                </div>
+                <div className=" shadow my-2 lg:my-auto bg-cyan-400 text-white py-4 border-2 text-lg rounded-md badge badge-outline">
+                  Duration: {cousreDetails.duration}
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="mt-10">
+          <div className="mt-20">
             <div className=" lg:flex justify-between">
               <h1 className=" card-title lg:text-2xl">Course Curriculum :</h1>
-              <div className=" my-2 lg:my-auto bg-cyan-400 text-white py-4 border-2 text-lg rounded-md badge badge-outline">
-                Duration: {cousreDetails.duration}
-              </div>
+              <Link
+                to={"/registration"}
+                className=" shadow hover:text-black my-2 lg:my-auto bg-cyan-400 text-white py-4 border-2 text-lg rounded-md badge badge-outline"
+              >
+                Enroll Now
+              </Link>
             </div>
             {newModule.map((module, index) => (
               <div key={index}>
                 <div
-                  className={`collapse collapse-plus bg-white shadow-md card-bordered rounded-md my-3 ${
-                    openAccordion === index ? "open" : ""
-                  }`}
+                  tabIndex={0}
+                  className="my-3 collapse collapse-plus rounded-lg card-bordered bg-white shadow-md cursor-pointer"
                 >
-                  <input
-                    type="radio"
-                    name="my-accordion-3"
-                    id={`accordion-${index}`}
-                    checked={openAccordion === index}
-                    onChange={() => handleAccordionToggle(index)}
-                  />
-                  <div
-                    className="collapse-title text-md font-medium cursor-pointer"
-                    onClick={() => handleAccordionToggle(index)}
-                  >
+                  <div className="collapse-title text-md font-medium ">
                     {module.title}
                   </div>
                   <div className="collapse-content">
-                    {openAccordion === index && <p>{module.desc}</p>}
+                    <p>{module.desc}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <h1 className="mt-10  card-title lg:text-2xl mb-3">
+
+          <h1 className="mt-20  card-title lg:text-2xl mb-3">
             Course Instructor :
           </h1>
           <div className=" card-bordered lg:p-4 px-2 py-3 rounded-md lg:flex justify-between items-center gap-6">

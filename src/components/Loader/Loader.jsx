@@ -13,10 +13,22 @@ const Loader = ({ type }) => {
       ) : type === "Image" ? (
         <>
           <div>
-            <Skeleton count={1} height={"30px"} width={"15%"} />
-            <div>
-              <Skeleton count={1} height={"100px"} width={"90%"} />
-              <Skeleton count={1} height={"100px"} width={"90%"} />
+            <div className="flex justify-center gap-16">
+              <Skeleton count={1} height={"200px"} width={"330px"} />
+              <Skeleton count={1} height={"200px"} width={"330px"} />
+              <Skeleton count={1} height={"200px"} width={"330px"} />
+            </div>
+          </div>
+        </>
+      ) : type === "AdminImage" ? (
+        <>
+          <div>
+            <Skeleton count={1} height={"40px"} width={"120px"} />
+            <div className="flex justify-start gap-5">
+              <Skeleton count={1} height={"200px"} width={"200px"} />
+              <Skeleton count={1} height={"200px"} width={"200px"} />
+              <Skeleton count={1} height={"200px"} width={"200px"} />
+              <Skeleton count={1} height={"200px"} width={"200px"} />
             </div>
           </div>
         </>
@@ -45,19 +57,50 @@ const Loader = ({ type }) => {
             <Skeleton count={1} height={"200px"} width={"1120px"} />
           </div>
         </>
-      ) : type === "roomDetails" ? (
+      ) : type === "Teacher" ? (
         <>
-          <div className="roomDetails">
-            <Skeleton count={1} height={"270px"} width={"400px"} />
-            <Skeleton count={1} height={"270px"} width={"720px"} />
+          <div className="flex gap-5 w-[90%] mx-auto">
+            <Skeleton count={2} height={"250px"} width={"600px"} />
+            <Skeleton count={2} height={"250px"} width={"550px"} />
           </div>
-          <Skeleton count={1} height={"220px"} width={"100%"} />
         </>
-      ) : type === "restaurantDetails" ? (
-        <div className="restaurantDetails">
-          <Skeleton count={1} height={"430px"} width={"400px"} />
-          <Skeleton count={3} height={"140px"} width={"600px"} />
+      ) : type === "CourseList" ? (
+        <div className="flex gap-12">
+          <Skeleton count={2} height={"340px"} width={"320px"} />
+          <Skeleton count={2} height={"340px"} width={"360px"} />
+          <Skeleton count={2} height={"340px"} width={"350px"} />
         </div>
+      ) : type === "CourseDetails" ? (
+        <>
+          <div className="lg:flex items-center gap-8">
+            <Skeleton count={1} height={"340px"} width={"600px"} />
+            <Skeleton count={1} height={"340px"} width={"500px"} />
+          </div>
+          <div>
+            <div className="lg:flex justify-between mt-20">
+              <Skeleton count={1} height={"60px"} width={"150px"} />
+              <Skeleton count={1} height={"60px"} width={"150px"} />
+            </div>
+            <div className=" mt-20">
+              <Skeleton
+                count={2}
+                marginTop={"10px"}
+                height={"70px"}
+                width={"100%"}
+              />
+              <Skeleton count={2} height={"70px"} width={"100%"} />
+            </div>
+            <div className=" mt-20">
+              <Skeleton count={1} height={"60px"} width={"150px"} />
+              <Skeleton
+                count={1}
+                marginTop={"10px"}
+                height={"200px"}
+                width={"100%"}
+              />
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <div style={{ marginLeft: "100px" }}>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useGetImagesQuery } from "../../redux/features/gallery/galleryApi";
 import { ImageUrl } from "../../utils/imageUrl";
+import Loader from "../../components/Loader/Loader";
 
 const Gallery = () => {
   const { data: images, isLoading, isError, error } = useGetImagesQuery();
@@ -18,7 +19,11 @@ const Gallery = () => {
   let content = null;
 
   if (isLoading) {
-    content = <div>Loading...</div>;
+    content = (
+      <div>
+        <Loader type={"Image"} />
+      </div>
+    );
   } else if (!isLoading && isError) {
     content = <div>{error}</div>;
   } else {
