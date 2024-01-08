@@ -91,7 +91,7 @@ const AdminCourses = () => {
                       </div>
                       <span>{item?.instructor?.name}</span>
                     </td>
-                    <td className="border p-2 text-center">{item?.title}</td>
+                    <td className="border p-2 text-center">{item?.price}</td>
                     <td className="border p-2 text-center">{item?.duration}</td>
                     <td className="border p-2 text-center">
                       <div className="flex justify-center gap-3 items-center">
