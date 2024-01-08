@@ -76,7 +76,7 @@ const CourseSlider = () => {
                           {course.desc.slice(0, 90)}...
                         </p>
                         <div className="card-actions justify-between">
-                          <div className="bg-cyan-400 text-white py-3 border-2 rounded-md badge badge-outline">
+                          <div className="bg-cyan-400  text-white py-3 border-2 rounded-md badge badge-outline">
                             Duration: {course.duration}
                           </div>
                           <div className="bg-cyan-400 text-white py-3 border-2  rounded-md badge badge-outline">

@@ -7,13 +7,13 @@ function Courses() {
   const { data, isLoading } = useGetCoursesQuery();
 
   return (
-    <div className="">
+    <div className="w-[90%] mx-auto">
       {isLoading ? (
         <>
-          <Loader type={""} />
+          <Loader type={"CourseList"} />
         </>
       ) : (
-        <div className="w-[85%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-6">
+        <div className=" flex lg:flex-row flex-col items-center flex-wrap  justify-center  lg:gap-16">
           {data?.data.map((course, i) => (
             <div key={course._id}>
               <Link to={`/course/orion_computer_institute/${course._id}`}>
@@ -34,10 +34,10 @@ function Courses() {
                       {course.desc.slice(0, 90)}...
                     </p>
                     <div className="card-actions justify-between">
-                      <div className="bg-cyan-400 text-white py-3 border-2 rounded-md badge badge-outline">
+                      <div className="bg-cyan-400 shadow text-white py-3 border-2 rounded-md badge badge-outline">
                         Duration: {course.duration}
                       </div>
-                      <div className="bg-cyan-400 text-white py-3 border-2  rounded-md badge badge-outline">
+                      <div className="bg-cyan-400 shadow text-white py-3 border-2  rounded-md badge badge-outline">
                         Price: {course.price}
                       </div>
                     </div>

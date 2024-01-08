@@ -13,6 +13,8 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
 const Registration = () => {
+  // Bangla to English
+  const [lang, setLang] = useState("Eng");
   // get course data
   const { data: courseData } = useGetCoursesQuery();
   const { data: batchData } = useGetAllBatchQuery();
@@ -93,10 +95,42 @@ const Registration = () => {
     formData.append("prescription", uploadimg);
     console.log("Form data");
   };
+
+  const handlerBang = () => {
+    setLang("Bang");
+  };
+  const handlerLang = () => {
+    setLang("Eng");
+  };
+  console.log(lang);
   return (
     <div className="w-[85%] mx-auto mb-9">
-      <div className="bg-white card-bordered shadow-lg px-2 font-semibold rounded-lg w-36 py-2">
-        <p>Click The Icon</p>
+      <div className=" flex justify-between items-center">
+        <p className="bg-white card-bordered shadow-lg px-2 font-semibold rounded-lg  py-2">
+          Click The Icon
+        </p>
+        <div className="flex justify-between items-center gap-3">
+          <button
+            onClick={handlerBang}
+            className={`${
+              lang === "Bang"
+                ? " text-gray-400 font-medium p-2 rounded-lg cursor-not-allowed"
+                : " shadow-2xl bg-cyan-500 text-white font-medium p-2 rounded-lg cursor-pointer"
+            }  `}
+          >
+            বাংলা
+          </button>
+          <button
+            onClick={handlerLang}
+            className={`${
+              lang === "Bang"
+                ? " shadow-2xl bg-cyan-500 text-white font-medium p-2 rounded-lg cursor-pointer"
+                : "text-gray-400 font-medium p-2 rounded-lg cursor-not-allowed "
+            }  `}
+          >
+            English
+          </button>
+        </div>
       </div>
       <div className="lg:grid grid-cols-12 gap-2">
         <div className=" lg:col-span-2 w-[50%] lg:w-auto mb-2 lg:mb-auto hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-blue-500 to-blue-500 rounded-md font-semibold text-white">
@@ -479,11 +513,16 @@ const Registration = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button className="w-[86svw] lg:w-auto hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white">
+                <button className="w-[86vw] lg:w-auto hover:text-black  relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white">
                   {isLoading ? "Loading..." : "Registration"}
                 </button>
               </div>
             </form>
+            <div>
+              <button className=" bg-red-500 p-2 rounded-lg border hover:bg-transparent hover:border-red-500 hover:text-black text-white">
+                Download The Regisration form
+              </button>
+            </div>
           </div>
         </div>
       </div>
