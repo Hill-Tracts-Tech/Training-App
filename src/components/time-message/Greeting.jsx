@@ -18,7 +18,7 @@ const Greeting = () => {
   }, []);
 
   return (
-    <h1 className="text-3xl text-center my-8">
+    <h1 className="text-3xl my-8 ml-24">
       <span className="text-green-400 font-bold"> {greeting}</span>, Welcome To
       Admin Panel
     </h1>
