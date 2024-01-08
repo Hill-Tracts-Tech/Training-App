@@ -2,7 +2,12 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PaidIcon from "@mui/icons-material/Paid";
 import SchoolIcon from "@mui/icons-material/School";
 import Greeting from "../../components/time-message/Greeting";
+import { useGetStatisticQuery } from "../../redux/features/statistic/statisticApi";
 const AdminHome = () => {
+  const { data: statistic, isLoading } = useGetStatisticQuery();
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <div>
       <Greeting />
@@ -13,7 +18,7 @@ const AdminHome = () => {
               <span>Total Students :-</span> <PeopleOutlineIcon />
             </h2>
             <p className="text-xl font-semibold ms-1">
-              <b>৳</b> 20
+              {statistic?.data?.totalStudent}
             </p>
           </div>
         </div>
@@ -23,7 +28,7 @@ const AdminHome = () => {
               <span>Total Income :-</span> <PaidIcon />
             </h2>
             <p className="text-xl font-semibold ms-1">
-              <b>৳</b> 20
+              <b>৳</b> {statistic?.data?.totalPaidAmount}
             </p>
           </div>
         </div>
@@ -33,7 +38,7 @@ const AdminHome = () => {
               <span>Total Teachers :-</span> <SchoolIcon />
             </h2>
             <p className="text-xl font-semibold ms-1">
-              <b>৳</b> 20
+              {statistic?.data?.totalTeacher}
             </p>
           </div>
         </div>
