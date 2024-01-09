@@ -3,10 +3,16 @@ import PaidIcon from "@mui/icons-material/Paid";
 import SchoolIcon from "@mui/icons-material/School";
 import Greeting from "../../components/time-message/Greeting";
 import { useGetStatisticQuery } from "../../redux/features/statistic/statisticApi";
+import Loader from "../../components/Loader/Loader";
 const AdminHome = () => {
   const { data: statistic, isLoading } = useGetStatisticQuery();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader type={"AdminHome"} />
+      </div>
+    );
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   useDeleteRegisterStudentMutation,
   useGetRegisterStudentQuery,
@@ -124,6 +125,7 @@ const Students = () => {
                   <th className="border p-2">Address</th>
                   <th className="border p-2">Email</th>
                   <th className="border p-2">Phone</th>
+                  <th className="border p-2">Payment Status</th>
                   <th className="border p-2">Action</th>
                 </tr>
               </thead>
@@ -142,16 +144,37 @@ const Students = () => {
                       <td className="border p-2">{result?.presentAddress}</td>
                       <td className="border p-2">{result?.email}</td>
                       <td className="border p-2">{result?.phoneNumber1}</td>
+                      <td className="border p-2">
+                        {result?.registrationStatus}
+                      </td>
+
                       <td className="border p-2 text-center">
-                        <div className="flex justify-center gap-3 items-center">
-                          <EditIcon
-                            onClick={() => handleEditClick(result)}
-                            className=" text-blue-400 hover:text-black cursor-pointer"
-                          />
-                          <DeleteIcon
-                            className="text-red-400 hover:text-black cursor-pointer"
-                            onClick={() => handleDelete(result?._id)}
-                          />
+                        <div className="dropdown">
+                          <div tabIndex={0} role="button" className=" ">
+                            {" "}
+                            <MoreVertIcon />
+                          </div>
+                          <ul
+                            tabIndex={0}
+                            className="dropdown-content z-[1] menu px-3 py-4 shadow-lg bg-base-100 rounded-md ms-[-23px]"
+                          >
+                            <div className="flex flex-col justify-start gap-2 ">
+                              <div
+                                onClick={() => handleEditClick(result)}
+                                className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2"
+                              >
+                                <EditIcon className=" " />
+                                <p>Edit</p>
+                              </div>
+                              <div
+                                onClick={() => handleDelete(result?._id)}
+                                className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer"
+                              >
+                                <DeleteIcon className=" " />
+                                <p>Delete</p>
+                              </div>
+                            </div>
+                          </ul>
                         </div>
                       </td>
                     </tr>

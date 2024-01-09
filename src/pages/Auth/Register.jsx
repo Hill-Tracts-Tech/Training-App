@@ -38,9 +38,9 @@ const Register = () => {
   };
 
   return (
-    <div className="h-[800] w-full md:w-1/2 mx-auto flex justify-center items-center shadow-2xl">
-      <div>
-        <h1 className="text-2xl font-semibold text-center">Signup</h1>
+    <div className=" w-full md:w-1/2 mx-auto flex justify-center items-center mt-4">
+      <div className="p-10 card-bordered shadow">
+        <h1 className="text-2xl font-semibold text-center uppercase">Signup</h1>
         <form onSubmit={handleSubmit(handleToSignup)}>
           <div className="form-control w-full">
             <label className="label">
@@ -108,7 +108,11 @@ const Register = () => {
           </div>
 
           <div className="form-control w-full my-3">
-            <input className="btn btn-accent" type="submit" value="Signup" />
+            <input
+              className="btn bg-blue-400 text-white hover:bg-transparent hover:text-black border hover:border-blue-400"
+              type="submit"
+              value="Signup"
+            />
           </div>
 
           <div>

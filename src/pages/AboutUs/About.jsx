@@ -1,7 +1,7 @@
-import aboutUsImage1 from "../../assets/img/trainingCenter.png";
-import aboutUsImage2 from "../../assets/img/trainingCenter.png";
-import aboutUsImage3 from "../../assets/img/trainingCenter.png";
-import aboutUsImage4 from "../../assets/img/trainingCenter.png";
+import aboutUsImage1 from "../../assets/img/howToVisit.jpg";
+import aboutUsImage2 from "../../assets/img/howToVisit.jpg";
+import aboutUsImage3 from "../../assets/img/howToVisit.jpg";
+import aboutUsImage4 from "../../assets/img/howToVisit.jpg";
 
 function About() {
   return (
@@ -53,22 +53,22 @@ function About() {
           <img
             src={aboutUsImage1}
             alt="Gallery Image 1"
-            className="w-full h-auto"
+            className="w-full h-auto rounded-s-2xl"
           />
           <img
             src={aboutUsImage2}
             alt="Gallery Image 2"
-            className="w-full h-auto"
+            className="w-full h-auto rounded-e-2xl"
           />
           <img
             src={aboutUsImage3}
             alt="Gallery Image 3"
-            className="w-full h-auto"
+            className="w-full h-auto rounded-s-2xl"
           />
           <img
             src={aboutUsImage4}
             alt="Gallery Image 4"
-            className="w-full h-auto"
+            className="w-full h-auto rounded-e-2xl"
           />
         </div>
       </div>

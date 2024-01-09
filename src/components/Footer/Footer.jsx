@@ -5,10 +5,12 @@ import {
   Phone,
   Twitter,
   YouTube,
+  ExitToApp,
 } from "@mui/icons-material";
 import RoundAnimation from "../RoundAnimation/RoundAnimation";
 import "./footer.css";
-import { useLocation } from "react-router-dom";
+
+import { Link, useLocation } from "react-router-dom";
 
 function Footer() {
   const location = useLocation();
@@ -78,6 +80,15 @@ function Footer() {
                 <Facebook />
               </a>
             </div>
+          </nav>
+          <nav>
+            <Link
+              to="/login"
+              className="flex text-xl font-bold cursor-pointer hover:text-blue-500 justify-start items-center gap-3  ms-3"
+            >
+              <ExitToApp />
+              <p>Login Here</p>
+            </Link>
           </nav>
         </footer>
         {home === "/" ? (
