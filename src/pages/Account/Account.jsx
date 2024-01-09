@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AppsOutageIcon from "@mui/icons-material/AppsOutage";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
@@ -9,7 +9,7 @@ import SideBar from "./Components/SideBar";
 
 const UserAccount = () => {
   const [status, setStatus] = useState("PD");
-
+  const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
   const studentData = state?.item;
@@ -32,6 +32,10 @@ const UserAccount = () => {
     { "Batch No": studentData.batch?.batchNo },
   ];
 
+  const handleEditClick = (item) => {
+    navigate("/registration", { state: { editMode: true, item } });
+  };
+
   return (
     <div>
       <div className="w-full md:w-[83%] mx-auto  p-4 lg:mb-10">
@@ -48,9 +52,12 @@ const UserAccount = () => {
                 <div className="">
                   <div className="flex justify-between ">
                     <p className="text font-semibold text-xl text-cyan-400">
-                      Information
+                      Student Information
                     </p>
-                    <DriveFileRenameOutlineIcon className="text-cyan-400 hover:text-orange-400" />
+                    <DriveFileRenameOutlineIcon
+                      onClick={() => handleEditClick(studentData)}
+                      className="text-cyan-400 hover:text-orange-400 cursor-pointer"
+                    />
                   </div>
                   <div className="mt-3 border border-t-[1px border-gray-300 border-dashed"></div>
                   <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 gap-3">

@@ -8,10 +8,13 @@ import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
 import {
   useGetRegisterStudentQuery,
   useRegisterStudentMutation,
+  useUpdateRegisterStudentMutation,
 } from "../../redux/features/studentRegistration/studentRegistrationApi";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
+import { ImageUrl } from "../../utils/imageUrl";
+import { handleDownloadRegFrom } from "../../utils";
 const Registration = () => {
   // Bangla to English
   const [lang, setLang] = useState("Eng");
@@ -19,45 +22,111 @@ const Registration = () => {
   const { data: courseData } = useGetCoursesQuery();
   const { data: batchData } = useGetAllBatchQuery();
   const [registerStudent, { isLoading }] = useRegisterStudentMutation();
+  const [updateRegisterStudent] = useUpdateRegisterStudentMutation();
   const { refetch } = useGetRegisterStudentQuery();
   const [active, setActive] = useState(true);
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
+  const {
+    admissionNo,
+    studentId: stdId,
+    studentName,
+    fatherName,
+    motherName,
+    presentAddress,
+    permanentAddress,
+    nationality,
+    religion,
+    phoneNumber1,
+    guardianNo,
+    nidNo,
+    passportNo,
+    dateOfBirth,
+    email,
+    gender,
+    course,
+    batch,
+    image: defaultImage,
+    _id: studentId,
+  } = state?.item || {};
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      admissionNo,
+      stdId,
+      studentName,
+      fatherName,
+      motherName,
+      presentAddress,
+      permanentAddress,
+      nationality,
+      religion,
+      phoneNumber1,
+      guardianNo,
+      nidNo,
+      passportNo,
+      dateOfBirth:
+        dateOfBirth && new Date(dateOfBirth)?.toISOString()?.substr(0, 10),
+      email,
+      gender,
+      course: course?._id,
+      batch: batch?._id,
+    },
+  });
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("image", uploadimg);
-    formData.append("admissionNo", data?.admissionNo);
-    formData.append("studentId", data?.studentId);
-    formData.append("studentName", data?.studentName);
-    formData.append("fatherName", data?.fatherName);
-    formData.append("motherName", data?.motherName);
-    formData.append("permanentAddress", data?.permanentAddress);
-    formData.append("presentAddress", data?.presentAddress);
-    formData.append("nationality", data?.nationality);
-    formData.append("religion", data?.religion);
-    formData.append("phoneNumber1", data?.phoneNumber1);
-    formData.append("guardianNo", data?.guardianNo);
-    formData.append("nidNo", data?.nidNo);
-    formData.append("passportNo", data?.passportNo);
-    formData.append("dateOfBirth", data?.dateOfBirth);
-    formData.append("email", data?.email);
-    formData.append("course", data?.course);
-    formData.append("gender", data?.gender);
-    formData.append("batch", data?.batch);
+    const appendToFormData = (key, value) => {
+      if (value) {
+        formData.append(key, value);
+      }
+    };
+
+    appendToFormData("image", uploadimg);
+    appendToFormData("admissionNo", data?.admissionNo);
+    appendToFormData("studentId", data?.studentId);
+    appendToFormData("studentName", data?.studentName);
+    appendToFormData("fatherName", data?.fatherName);
+    appendToFormData("motherName", data?.motherName);
+    appendToFormData("permanentAddress", data?.permanentAddress);
+    appendToFormData("presentAddress", data?.presentAddress);
+    appendToFormData("nationality", data?.nationality);
+    appendToFormData("religion", data?.religion);
+    appendToFormData("phoneNumber1", data?.phoneNumber1);
+    appendToFormData("guardianNo", data?.guardianNo);
+    appendToFormData("nidNo", data?.nidNo);
+    appendToFormData("passportNo", data?.passportNo);
+    appendToFormData("dateOfBirth", data?.dateOfBirth);
+    appendToFormData("email", data?.email);
+    appendToFormData("course", data?.course);
+    appendToFormData("gender", data?.gender);
+    appendToFormData("batch", data?.batch);
+
     try {
-      const res = await registerStudent(formData).unwrap();
-      if (res.statusCode === 200) {
-        toast.success("Course added successfully");
-        refetch();
-        navigate("/student");
+      if (state?.editMode) {
+        const res = await updateRegisterStudent({
+          studentId,
+          registerStudentData: formData,
+        }).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Student updated successfully");
+          refetch();
+          navigate("/student");
+        }
+      } else {
+        const res = await registerStudent(formData).unwrap();
+        if (res.statusCode === 200) {
+          toast.success("Student added successfully");
+          refetch();
+          navigate("/student");
+        }
       }
     } catch (error) {
       toast.error(error);
@@ -102,7 +171,6 @@ const Registration = () => {
   const handlerLang = () => {
     setLang("Eng");
   };
-  console.log(lang);
   return (
     <div className="w-[85%] mx-auto mb-9">
       <div className=" flex justify-between items-center">
@@ -207,9 +275,9 @@ const Registration = () => {
                     onDrop={handleDrop}
                     onDragOver={handleDragOver}
                   >
-                    {image ? (
+                    {image || defaultImage ? (
                       <img
-                        src={image}
+                        src={image || `${ImageUrl}/students/${defaultImage}`}
                         alt="Uploaded"
                         className="   lg:h-[25vh] h-[30vh] w-[30vw] object-contain"
                       />
@@ -519,8 +587,11 @@ const Registration = () => {
               </div>
             </form>
             <div>
-              <button className=" bg-red-500 p-2 rounded-lg border hover:bg-transparent hover:border-red-500 hover:text-black text-white">
-                Download The Regisration form
+              <button
+                onClick={handleDownloadRegFrom}
+                className=" bg-red-500 p-2 rounded-lg border hover:bg-transparent hover:border-red-500 hover:text-black text-white"
+              >
+                Download The Registration form
               </button>
             </div>
           </div>

@@ -20,7 +20,6 @@ const CourseDetails = () => {
   }
   const { image, designation, about, name } = cousreDetails?.instructor || {};
 
-  console.log(cousreDetails);
   return (
     <div className="w-[85%] mx-auto">
       {isLoading ? (
