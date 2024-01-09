@@ -47,10 +47,15 @@ const Login = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="h-[800] w-full md:ww-1/2 mx-auto flex justify-center items-center shadow-2xl my-10">
+    <div className="h-[800] w-full md:ww-1/2 mx-auto flex justify-center items-center  my-10">
       <div>
-        <h1 className="text-2xl font-semibold text-center">Login</h1>
-        <form onSubmit={handleSubmit(handleToLogin)}>
+        <form
+          onSubmit={handleSubmit(handleToLogin)}
+          className="card-bordered p-10 rounded-md shadow"
+        >
+          <h1 className="text-2xl font-semibold text-center  uppercase">
+            Login
+          </h1>
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Email</span>
@@ -104,7 +109,11 @@ const Login = () => {
           </div>
 
           <div className="form-control w-full my-3">
-            <input className="btn btn-accent" type="submit" value="Login" />
+            <input
+              className="btn bg-blue-400 text-white hover:bg-transparent hover:text-black border hover:border-blue-400"
+              type="submit"
+              value="Login"
+            />
           </div>
 
           <div>

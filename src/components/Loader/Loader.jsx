@@ -32,6 +32,22 @@ const Loader = ({ type }) => {
             </div>
           </div>
         </>
+      ) : type === "AdminHome" ? (
+        <>
+          <div>
+            <div className="lg:ms-20 lg:mb-6">
+              <Skeleton count={1} height={"40px"} width={"720px"} />
+            </div>
+            <div className="flex justify-start gap-5">
+              <Skeleton count={1} height={"150px"} width={"270px"} />
+              <Skeleton count={1} height={"150px"} width={"270px"} />
+              <Skeleton count={1} height={"150px"} width={"270px"} />
+            </div>
+            <div className="flex justify-start gap-5 lg:mt-6">
+              <Skeleton count={1} height={"300px"} width={"845px"} />
+            </div>
+          </div>
+        </>
       ) : type === "Student" ? (
         <>
           <div style={{ marginLeft: "86px" }} className="flex gap-5">

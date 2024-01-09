@@ -6,24 +6,27 @@ import Brand from "../../components/Brand/Brand";
 import Bottombar from "../../components/Bottombar/Bottombar";
 const MainLayout = () => {
   const location = useLocation();
-  const registor = location.pathname;
+  const loc1 = location.pathname.split("/")[1];
+  const loc = location.pathname;
+  const excludeRoute = [
+    "registration",
+    "account",
+    "course",
+    "login",
+    "register",
+  ];
+
   return (
     <div>
-      <Brand />
-      <Navbar />
-      {registor === "/registration" ||
-      registor === "/account" ||
-      registor === "/course/orion_selai_proshikhon_center" ||
-      registor === "/course/orion_computer_institute" ? (
-        ""
-      ) : (
-        <Slider />
-      )}
+      {!loc === ("/login" || "/register") ? <></> : <Brand />}
+      {!loc === ("/login" || "/register") ? <></> : <Navbar />}
+
+      {!excludeRoute.includes(loc1) && <Slider />}
       <div className="lg:hidden">
-        <Bottombar list={""} />
+        {!loc === ("/login" || "/register") ? <></> : <Bottombar list={""} />}
       </div>
       <Outlet />
-      <Footer />
+      {loc === ("/login" || "/register") ? <></> : <Footer />}
     </div>
   );
 };

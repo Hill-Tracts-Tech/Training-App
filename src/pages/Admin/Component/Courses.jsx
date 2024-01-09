@@ -2,6 +2,7 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link, useNavigate } from "react-router-dom";
 import {
   useDeleteCourseMutation,
@@ -49,12 +50,13 @@ const AdminCourses = () => {
       <div>
         <div className="me-20 ps-5 mt-4">
           <Link
-            className="relative shadow-lg top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
+            className=" shadow-md top-2 p-2 px-4   cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
             to="/admin/courseForm"
           >
             Add New Course
           </Link>
-          <table className="w-full border-collapse border overflow-x-scroll mt-5 shadow-lg">
+
+          <table className="w-full border-collapse border overflow-x-scroll mt-3 shadow-lg">
             <thead>
               <tr className=" bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
                 <th className="border p-2">Title</th>
@@ -94,23 +96,40 @@ const AdminCourses = () => {
                     <td className="border p-2 text-center">{item?.price}</td>
                     <td className="border p-2 text-center">{item?.duration}</td>
                     <td className="border p-2 text-center">
-                      <div className="flex justify-center gap-3 items-center">
-                        <label
-                          htmlFor="my_modal_5"
-                          className="text-green-400 hover:text-black-500 cursor-pointer"
-                          onClick={() => datahandler(item?._id)}
+                      <div className="dropdown">
+                        <div tabIndex={0} role="button" className=" ">
+                          {" "}
+                          <MoreVertIcon />
+                        </div>
+                        <ul
+                          tabIndex={0}
+                          className="dropdown-content z-[1] menu px-3 py-4 shadow-lg bg-base-100 rounded-md ms-[-23px]"
                         >
-                          <VisibilityIcon />
-                        </label>
-
-                        <EditIcon
-                          onClick={() => handleEditClick(item)}
-                          className=" text-blue-400 hover:text-black cursor-pointer"
-                        />
-                        <DeleteIcon
-                          className="text-red-400 hover:text-black cursor-pointer"
-                          onClick={() => handleDelete(item?._id)}
-                        />
+                          <div className="flex flex-col justify-start gap-2 ">
+                            <label
+                              htmlFor="my_modal_5"
+                              className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
+                              onClick={() => datahandler(item?._id)}
+                            >
+                              <VisibilityIcon />
+                              <p>Details</p>
+                            </label>
+                            <div className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2">
+                              <EditIcon
+                                onClick={() => handleEditClick(item)}
+                                className=" "
+                              />
+                              <p>Edit</p>
+                            </div>
+                            <div className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer">
+                              <DeleteIcon
+                                className=" "
+                                onClick={() => handleDelete(item?._id)}
+                              />
+                              <p>Delete</p>
+                            </div>
+                          </div>
+                        </ul>
                       </div>
                     </td>
                   </tr>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import vision from "../../assets/img/vision.png";
-import mission from "../../assets/img/mission.png";
+import mission from "../../assets/img/mission.jpg";
 import placement from "../../assets/img/planning.png";
 import TextUnderline from "../../utils/textUnderline";
 function MissionVision() {
@@ -60,7 +60,7 @@ function MissionVision() {
               <img
                 src={tabData?.find((tab) => tab.tab === activeTab)?.imageSrc}
                 alt={activeTab}
-                className="w-full h-auto bounce"
+                className="w-full h-auto bounce rounded"
               />
             </div>
             <div className="w-1/2">
@@ -70,7 +70,9 @@ function MissionVision() {
               <div className="my-7">
                 {tabData?.find((tab) => tab.tab === activeTab)?.underline}
               </div>
-              <p>{tabData?.find((tab) => tab.tab === activeTab)?.content}</p>
+              <p className=" text-justify">
+                {tabData?.find((tab) => tab.tab === activeTab)?.content}
+              </p>
             </div>
           </div>
         </div>
