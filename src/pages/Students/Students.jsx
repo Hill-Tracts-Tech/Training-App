@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import InfoIcon from "@mui/icons-material/Info";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   useDeleteRegisterStudentMutation,
@@ -163,8 +163,8 @@ const Students = () => {
                                 onClick={() => handleEditClick(result)}
                                 className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2"
                               >
-                                <EditIcon className=" " />
-                                <p>Edit</p>
+                                <InfoIcon className=" " />
+                                <p>Info</p>
                               </div>
                               <div
                                 onClick={() => handleDelete(result?._id)}

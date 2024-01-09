@@ -176,7 +176,8 @@ const UserAccount = () => {
                       </div>
                       <div>
                         <p className="text-md inline-block text-gray-400 font-semibold">
-                          Payment Status: {studentData?.registrationStatus}
+                          Payment Status:{" "}
+                          {studentData?.registrationStatus?.toUpperCase()}
                         </p>
                       </div>
                     </div>
