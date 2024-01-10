@@ -18,15 +18,19 @@ const MainLayout = () => {
 
   return (
     <div>
-      {!loc === ("/login" || "/register") ? <></> : <Brand />}
-      {!loc === ("/login" || "/register") ? <></> : <Navbar />}
+      {loc === "/login" || loc === "/register" ? <></> : <Brand />}
+      {loc === "/login" || loc === "/register" ? <></> : <Navbar />}
 
       {!excludeRoute.includes(loc1) && <Slider />}
       <div className="lg:hidden">
-        {!loc === ("/login" || "/register") ? <></> : <Bottombar list={""} />}
+        {loc === "/login" || loc === "/register" ? (
+          <></>
+        ) : (
+          <Bottombar list={""} />
+        )}
       </div>
       <Outlet />
-      {loc === ("/login" || "/register") ? <></> : <Footer />}
+      {loc === "/login" || loc === "/register" ? <></> : <Footer />}
     </div>
   );
 };

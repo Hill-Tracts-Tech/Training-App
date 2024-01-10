@@ -110,79 +110,162 @@ const Students = () => {
               Search
             </button>
           </div>
-          {noResults ? (
-            <p className="text-red-600">
-              No data found. Double check Id or Name
-            </p>
-          ) : (
-            <table className="w-full border-collapse border border-gray-300 overflow-x-scroll">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="border p-2">Student Name</th>
-                  <th className="border p-2">StudentID</th>
-                  <th className="border p-2">Course Name</th>
-                  <th className="border p-2">Batch NO</th>
-                  <th className="border p-2">Address</th>
-                  <th className="border p-2">Email</th>
-                  <th className="border p-2">Phone</th>
-                  <th className="border p-2">Payment Status</th>
-                  <th className="border p-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredResults?.map((result) => {
-                  return (
-                    <tr key={result?._id}>
-                      <td className="border p-2 font-bold">
-                        {result?.studentName}
-                      </td>
-                      <td className="border p-2">{result?.studentId}</td>
-                      <td className="border p-2">
-                        {result?.course?.title} - {result?.course?.duration}
-                      </td>
-                      <td className="border p-2">{result?.batch?.batchNo}</td>
-                      <td className="border p-2">{result?.presentAddress}</td>
-                      <td className="border p-2">{result?.email}</td>
-                      <td className="border p-2">{result?.phoneNumber1}</td>
-                      <td className="border p-2">
-                        {result?.registrationStatus}
-                      </td>
+          <div className="lg:block hidden">
+            {noResults ? (
+              <p className="text-red-600">
+                No data found. Double check Id or Name
+              </p>
+            ) : (
+              <table className="w-full border-collapse border border-gray-300 overflow-x-scroll">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border p-2">Student Name</th>
+                    <th className="border p-2">StudentID</th>
+                    <th className="border p-2">Course Name</th>
+                    <th className="border p-2">Batch NO</th>
+                    <th className="border p-2">Address</th>
+                    <th className="border p-2">Email</th>
+                    <th className="border p-2">Phone</th>
+                    <th className="border p-2">Payment Status</th>
+                    <th className="border p-2">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredResults?.map((result) => {
+                    return (
+                      <tr key={result?._id}>
+                        <td className="border p-2 font-bold">
+                          {result?.studentName}
+                        </td>
+                        <td className="border p-2">{result?.studentId}</td>
+                        <td className="border p-2">
+                          {result?.course?.title} - {result?.course?.duration}
+                        </td>
+                        <td className="border p-2">{result?.batch?.batchNo}</td>
+                        <td className="border p-2">{result?.presentAddress}</td>
+                        <td className="border p-2">{result?.email}</td>
+                        <td className="border p-2">{result?.phoneNumber1}</td>
+                        <td className="border p-2">
+                          {result?.registrationStatus}
+                        </td>
 
-                      <td className="border p-2 text-center">
-                        <div className="dropdown">
-                          <div tabIndex={0} role="button" className=" ">
-                            {" "}
-                            <MoreVertIcon />
-                          </div>
-                          <ul
-                            tabIndex={0}
-                            className="dropdown-content z-[1] menu px-3 py-4 shadow-lg bg-base-100 rounded-md ms-[-23px]"
-                          >
-                            <div className="flex flex-col justify-start gap-2 ">
-                              <div
-                                onClick={() => handleEditClick(result)}
-                                className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2"
-                              >
-                                <InfoIcon className=" " />
-                                <p>Info</p>
-                              </div>
-                              <div
-                                onClick={() => handleDelete(result?._id)}
-                                className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer"
-                              >
-                                <DeleteIcon className=" " />
-                                <p>Delete</p>
-                              </div>
+                        <td className="border p-2 text-center">
+                          <div className="dropdown ">
+                            <div tabIndex={0} role="button" className=" ">
+                              {" "}
+                              <MoreVertIcon />
                             </div>
-                          </ul>
-                        </div>
-                      </td>
+                            <ul
+                              tabIndex={0}
+                              className="dropdown-content z-[1] menu px-3 py-4 shadow-lg bg-base-100 rounded-md ms-[-23px]"
+                            >
+                              <div className="flex flex-col justify-start gap-2 ">
+                                <div
+                                  onClick={() => handleEditClick(result)}
+                                  className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2"
+                                >
+                                  <InfoIcon className=" " />
+                                  <p>Info</p>
+                                </div>
+                                <div
+                                  onClick={() => handleDelete(result?._id)}
+                                  className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer"
+                                >
+                                  <DeleteIcon className=" " />
+                                  <p>Delete</p>
+                                </div>
+                              </div>
+                            </ul>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
+          <div className=" md:hidden  ">
+            {noResults ? (
+              <p className="text-red-600">
+                No data found. Double check Id or Name
+              </p>
+            ) : (
+              <div className=" overflow-x-auto">
+                <table className="w-full border-collapse border border-gray-300 overflow-x-scroll h-full">
+                  <thead>
+                    <tr className="bg-gray-200">
+                      <th className="border p-2">Student Name</th>
+                      <th className="border p-2">StudentID</th>
+                      <th className="border p-2">Course Name</th>
+                      <th className="border p-2">Batch NO</th>
+                      <th className="border p-2">Address</th>
+                      <th className="border p-2">Email</th>
+                      <th className="border p-2">Phone</th>
+                      <th className="border p-2">Payment Status</th>
+                      <th className="border p-2">Action</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          )}
+                  </thead>
+                  <tbody>
+                    {filteredResults?.map((result) => {
+                      return (
+                        <tr key={result?._id}>
+                          <td className="border p-2 font-bold">
+                            {result?.studentName}
+                          </td>
+                          <td className="border p-2">{result?.studentId}</td>
+                          <td className="border p-2">
+                            {result?.course?.title} - {result?.course?.duration}
+                          </td>
+                          <td className="border p-2">
+                            {result?.batch?.batchNo}
+                          </td>
+                          <td className="border p-2">
+                            {result?.presentAddress}
+                          </td>
+                          <td className="border p-2">{result?.email}</td>
+                          <td className="border p-2">{result?.phoneNumber1}</td>
+                          <td className="border p-2">
+                            {result?.registrationStatus}
+                          </td>
+
+                          <td className="border p-2 text-center">
+                            <div className="dropdown dropdown-end">
+                              <div tabIndex={0} role="button" className=" ">
+                                {" "}
+                                <MoreVertIcon />
+                              </div>
+                              <ul
+                                tabIndex={0}
+                                className="dropdown-content z-[1] menu px-3 py-4 shadow-lg bg-base-100 rounded-md ms-[-23px]"
+                              >
+                                <div className="flex flex-col justify-start gap-2 ">
+                                  <div
+                                    onClick={() => handleEditClick(result)}
+                                    className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2"
+                                  >
+                                    <InfoIcon className=" " />
+                                    <p>Info</p>
+                                  </div>
+                                  <div
+                                    onClick={() => handleDelete(result?._id)}
+                                    className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer"
+                                  >
+                                    <DeleteIcon className=" " />
+                                    <p>Delete</p>
+                                  </div>
+                                </div>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

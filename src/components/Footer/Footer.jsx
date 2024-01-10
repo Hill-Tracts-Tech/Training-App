@@ -98,6 +98,7 @@ function Footer() {
               className="w-full hidden lg:block"
             >
               <iframe
+                id="myIframe"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.855568300565!2d91.81917207503444!3d22.359081790762772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd89aaa8239cd%3A0x6e65fa00001dd59f!2sGEC%20More%2C%20Chittagong!5e0!3m2!1sen!2sbd!4v1698037624684!5m2!1sen!2sbd"
                 width="100%"
                 height="450"

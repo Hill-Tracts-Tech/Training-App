@@ -38,16 +38,16 @@ const ImageGallery = () => {
       >
         Add Image
       </Link>
-      <div className="flex flex-wrap mt-6 gap-2 gap-3lex-wrap justify-start bg-white shadow-lg p-5  mr-20">
+      <div className="flex flex-wrap mt-6 gap-2 justify-start bg-white shadow-lg p-5  md:mr-20 mr-4">
         {images?.data?.map((item, index) => (
-          <div key={index} className="w-200px">
+          <div key={index} className="md:w-200px">
             <div>
               <img
                 src={`${import.meta.env.VITE_APP_IMAGE_URL}/gallery/${
                   item.image
                 }`}
                 alt={`Image ${index + 1}`}
-                className=" -z-40 cursor-pointer hover:scale-110 ease-in-out duration-300 h-[160px] w-[200px] rounded-md"
+                className=" -z-40 cursor-pointer hover:scale-110 ease-in-out duration-300 md:h-[160px] md:w-[200px] w-[100vw] rounded-md"
               />
             </div>
             <DeleteIcon

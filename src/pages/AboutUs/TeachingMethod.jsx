@@ -3,14 +3,14 @@ import "./about.css";
 import TextUnderline from "../../utils/textUnderline";
 function TeachingMethod() {
   return (
-    <div className="p-9">
-      <div className="w-[85%] px-4">
+    <div className="md:p-9 mt-6  lg:mt-auto">
+      <div className="md::w-[85%] md:px-4">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-x-10">
           <div className="w-full md:w-[40%] my-9 bounce">
             <img src={img} alt="" />
           </div>
-          <div className="w-full md:w-[60%] px-8">
-            <h2 className="text-3xl bg-[#FF7810] w-[210px] text-center text-white">
+          <div className="w-full text-justify md:w-[60%] md:px-8">
+            <h2 className="text-3xl bg-[#FF7810] md:w-[210px] text-center text-white">
               How We Teach
             </h2>
             <div>

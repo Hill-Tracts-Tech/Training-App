@@ -5,14 +5,14 @@ import aboutUsImage4 from "../../assets/img/howToVisit.jpg";
 
 function About() {
   return (
-    <section className="flex flex-wrap items-center justify-between p-10">
+    <section className="flex flex-wrap items-center justify-between lg:p-10">
       {/* Left Side - About Us Description */}
-      <div className="w-full md:w-2/3 md:pr-10">
+      <div className="w-full text-justify md:w-2/3 md:pr-10">
         <div className="mb-4">
           <h2 className="text-3xl bg-[#FF7810] w-[180px] text-center text-white p-1 rounded-md">
             About Us
           </h2>
-          <h3 className="text-4xl text-blue-500 my-5 font-bold">
+          <h3 className="text-4xl text-blue-500 lg:my-5 font-bold">
             About ORION COMPUTER INSTITUTE
           </h3>
           <p>

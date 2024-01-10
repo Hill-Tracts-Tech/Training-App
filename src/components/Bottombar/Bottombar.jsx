@@ -35,7 +35,7 @@ const Bottombar = ({ list }) => {
         {
           id: 41,
           label: "Orion Selai Proshikhon Center",
-          to: "#",
+          to: "/course/orion_selai_proshikhon_center",
           sibling: [
             {
               id: 411,
@@ -47,7 +47,7 @@ const Bottombar = ({ list }) => {
         {
           id: 42,
           label: "Orion Computer Institute",
-          to: "#",
+          to: "/course/orion_computer_institute",
           sibling: [
             {
               id: 421,
@@ -74,12 +74,7 @@ const Bottombar = ({ list }) => {
       to: "/student",
       icon: <SchoolIcon />,
     },
-    {
-      id: 6,
-      label: "Account",
-      to: "/account",
-      icon: <AccountCircleIcon />,
-    },
+
     {
       id: 7,
       label: "Notice",
@@ -126,6 +121,7 @@ const Bottombar = ({ list }) => {
         >
           {admin === "/admin" ||
           admin === "/admin/teacher" ||
+          admin === "/admin/batch" ||
           admin === "/admin/result" ||
           admin === "/admin/thumbnail" ||
           admin === "/admin/image" ||
@@ -219,16 +215,7 @@ const Bottombar = ({ list }) => {
                               : ""
                           }`}
                         >
-                          <details>
-                            <summary>{subitem.label}</summary>
-                            <ul>
-                              {subitem.sibling.map((s, i) => (
-                                <li key={i}>
-                                  <Link to={s.to}>{s.label}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </details>
+                          <Link to={subitem.to}>{subitem.label}</Link>
                         </li>
                       ))}
                     </ul>

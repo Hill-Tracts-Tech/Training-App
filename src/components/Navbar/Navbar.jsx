@@ -52,6 +52,7 @@ function Navbar() {
           admin === "/admin/notice" ||
           admin === "/admin/thumbnail" ||
           admin === "/teacher" ||
+          admin === "/account" ||
           admin === "/admin/courses"
             ? " w-[90%] mx-auto"
             : "z-[99999] w-[90%] mx-auto"
