@@ -7,7 +7,7 @@ const PublishedResult = () => {
   return (
     <div>
       <h1 className="text-3xl font-semibold p-7">Check Result</h1>
-      {resultData?.data ? (
+      {!resultData?.data ? (
         <p className="text-center text-2xl bg-yellow-200 my-8">
           No Result Published
         </p>
