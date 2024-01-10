@@ -47,7 +47,7 @@ const Login = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="h-[800] w-full md:ww-1/2 mx-auto flex justify-center items-center  my-10">
+    <div className="h-[900px] md:h-full  w-full md:ww-1/2 mx-auto flex justify-center items-center  md:my-10 my-auto ">
       <div>
         <form
           onSubmit={handleSubmit(handleToLogin)}

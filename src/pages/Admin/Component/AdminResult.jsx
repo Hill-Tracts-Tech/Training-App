@@ -52,7 +52,7 @@ const AdminResult = () => {
   return (
     <div>
       <div>
-        <div className="me-20 ps-5 mt-4">
+        <div className="md:me-20 mr-3 ps-5 mt-4">
           <Link
             className="shadow-md top-2 z p-2 px-4 bg-primary  cursor-pointer  bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
             to="/admin/ResultForm"

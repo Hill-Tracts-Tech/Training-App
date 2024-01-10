@@ -55,15 +55,15 @@ function MissionVision() {
               </button>
             ))}
           </div>
-          <div className="flex space-x-4 ease-in duration-300">
-            <div className="w-1/2">
+          <div className="md:flex space-x-4 ease-in duration-300">
+            <div className="md:w-1/2 ms-5 md:ms-auto">
               <img
                 src={tabData?.find((tab) => tab.tab === activeTab)?.imageSrc}
                 alt={activeTab}
                 className="w-full h-auto bounce rounded"
               />
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <h2 className="text-2xl font-bold">
                 {tabData?.find((tab) => tab.tab === activeTab)?.title}
               </h2>
