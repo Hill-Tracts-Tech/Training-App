@@ -7,9 +7,13 @@ import {
   useGetResultQuery,
   useUpdateResultMutation,
 } from "../../redux/features/result/resultApi";
+import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
+import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
 const ResultForm = () => {
   const [addResult] = useAddResultMutation();
   const { refetch } = useGetResultQuery();
+  const { data: courseData } = useGetCoursesQuery();
+  const { data: batchData } = useGetAllBatchQuery();
   const [updateResult] = useUpdateResultMutation();
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
@@ -139,13 +143,27 @@ const ResultForm = () => {
               <label className="text-lg font-semibold mt-2">
                 Course Name :
               </label>
-              <input
+              {/* <input
                 className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
                 placeholder="course name "
                 type="text"
                 value={course}
                 onChange={(e) => setCourse(e.target.value)}
-              />
+              /> */}
+              <select className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black ">
+                <option selected disabled value="MS office">
+                  Select course
+                </option>
+                {courseData?.data?.map((course) => (
+                  <option
+                    key={course._id}
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                  >
+                    {course?.title} - {course?.duration}{" "}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="flex flex-col gap-y-2 w-full">
@@ -153,13 +171,30 @@ const ResultForm = () => {
                 {" "}
                 Batch NO/Name:
               </label>
-              <input
+              {/* <input
                 className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
                 placeholder="EE23-16 "
                 type="text"
                 value={batchNo}
                 onChange={(e) => setBatchNo(e.target.value)}
-              />
+              /> */}
+              <select
+                value={batchNo}
+                className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
+              >
+                <option selected disabled value="@">
+                  Select batch
+                </option>
+                {batchData?.data?.map((batch) => (
+                  <option
+                    onChange={(e) => setBatchNo(e.target.value)}
+                    key={batch._id}
+                    value={batch}
+                  >
+                    {batch?.batchName}
+                  </option>
+                ))}
+              </select>
             </div>
             {course && batchNo ? (
               <>
