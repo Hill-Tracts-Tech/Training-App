@@ -105,18 +105,18 @@ const News = () => {
                               <VisibilityIcon />
                               <p>Details</p>
                             </label>
-                            <div className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2">
-                              <EditIcon
-                                onClick={() => handleEditClick(item)}
-                                className=" "
-                              />
+                            <div
+                              onClick={() => handleEditClick(item)}
+                              className=" hover:text-blue-500  cursor-pointer flex justify-start gap-2"
+                            >
+                              <EditIcon className=" " />
                               <p>Edit</p>
                             </div>
-                            <div className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer">
-                              <DeleteIcon
-                                className=" "
-                                onClick={() => handleDelete(item?._id)}
-                              />
+                            <div
+                              onClick={() => handleDelete(item?._id)}
+                              className="flex justify-start gap-2 hover:text-blue-500  cursor-pointer"
+                            >
+                              <DeleteIcon className=" " />
                               <p>Delete</p>
                             </div>
                           </div>
