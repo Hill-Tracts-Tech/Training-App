@@ -175,9 +175,22 @@ const UserAccount = () => {
                         </p>
                       </div>
                       <div>
-                        <p className="text-md inline-block text-gray-400 font-semibold">
-                          Payment Status:{" "}
-                          {studentData?.registrationStatus?.toUpperCase()}
+                        <p
+                          className={`text-md inline-block text-gray-400 font-semibold`}
+                        >
+                          PAYMENT:{" "}
+                          <span
+                            className={` p-2 rounded-md ${
+                              studentData?.registrationStatus === "pending"
+                                ? "text-red-600 bg-red-100"
+                                : studentData?.registrationStatus ===
+                                  "completed"
+                                ? "text-green-400 bg-green-100"
+                                : "text-yellow-400 bg-yellow-100"
+                            }`}
+                          >
+                            {studentData?.registrationStatus?.toUpperCase()}
+                          </span>
                         </p>
                       </div>
                     </div>

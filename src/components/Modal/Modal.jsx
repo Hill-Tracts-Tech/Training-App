@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useUpdateRegisterStudentMutation } from "../../redux/features/studentRegistration/studentRegistrationApi";
+import {
+  useGetRegisterStudentQuery,
+  useUpdateRegisterStudentMutation,
+} from "../../redux/features/studentRegistration/studentRegistrationApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function PaymentComponent({ coursePrice, paid, id }) {
   const [updateStudentRegistration] = useUpdateRegisterStudentMutation();
+  const { refetch } = useGetRegisterStudentQuery();
   const [paymentAmount, setPaymentAmount] = useState("");
 
   const navigate = useNavigate();
@@ -28,6 +32,7 @@ function PaymentComponent({ coursePrice, paid, id }) {
     }).unwrap();
     if (res.statusCode === 200) {
       toast.success("Payment updated successfully");
+      refetch();
       navigate("/student");
     }
   };
