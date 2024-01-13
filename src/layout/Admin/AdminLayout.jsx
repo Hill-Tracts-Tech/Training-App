@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 import Brand from "../../components/Brand/Brand";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -11,10 +11,12 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AppsIcon from "@mui/icons-material/Apps";
 import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
 import Bottombar from "../../components/Bottombar/Bottombar";
+import { useAuth } from "../../context/useAuth";
 
 const AdminLayout = () => {
   const location = useLocation();
-
+  const { isLoggedIn } = useAuth();
+  console.log(isLoggedIn, "isloading");
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -78,7 +80,7 @@ const AdminLayout = () => {
       </div>
       <div className="flex flex-row-reverse mt-[-20px] h-[100%] ">
         <div className="content md:w-[80%] w-full">
-          <Outlet />
+          {isLoggedIn ? <Outlet /> : <Navigate to={"/login"} />}
         </div>
         <div className="sidebar w-[20%] md:block hidden  ml-20  ">
           <div className="text-black font-semibold breadcrumbs ml-[2rem]"></div>
