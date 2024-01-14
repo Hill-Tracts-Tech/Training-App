@@ -11,10 +11,14 @@ import RoundAnimation from "../RoundAnimation/RoundAnimation";
 import "./footer.css";
 
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/useAuth";
 
 function Footer() {
   const location = useLocation();
   const home = location.pathname;
+
+  const { isLoggedIn, logout } = useAuth();
+
   return (
     <div className="overflow-hidden border-t-2 mt-16">
       <div style={{ zIndex: "10" }} className="w-[85%] mx-auto">
@@ -87,7 +91,7 @@ function Footer() {
               className="flex text-xl font-bold cursor-pointer hover:text-blue-500 justify-start items-center gap-3  ms-3"
             >
               <ExitToApp />
-              <p>Login Here</p>
+              {isLoggedIn ? <p onClick={logout}>Logout</p> : <p>Login</p>}
             </Link>
           </nav>
         </footer>

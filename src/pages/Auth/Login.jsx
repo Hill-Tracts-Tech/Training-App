@@ -1,53 +1,32 @@
-import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useAuth } from "../../context/useAuth";
 
 const Login = () => {
-  const { signIn, googleSignin } = useContext(AuthContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
-
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [loginError, setLoginError] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  console.log(loginEmail);
-  // login with email and password
-  const handleToLogin = (data) => {
-    setLoginError("");
-    console.log(data);
-    signIn(data.email, data.password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        setLoginEmail(data.email);
-        window.alert("Successfully signed in");
-      })
-      .catch((error) => {
-        console.error(error.message);
-        if (error) {
-          setLoginError(error.message);
-        }
-      });
+  const { login, isLoggedIn } = useAuth();
+
+  const handleToLogin = async (data) => {
+    await login(data);
+    toast.success("Login successful");
   };
 
-  //google signIn
+  const navigate = useNavigate();
 
-  const handleGoogleSignIn = () => {
-    googleSignin()
-      .then((result) => {
-        console.log(result.user);
-        navigate(from, { replace: true });
-      })
-      .catch((error) => console.error(error));
-  };
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
-    <div className="h-[900px] md:h-full  w-full md:ww-1/2 mx-auto flex justify-center items-center  md:my-10 my-auto ">
+    <div className="flex justify-center items-center h-[100vh]">
       <div>
         <form
           onSubmit={handleSubmit(handleToLogin)}
@@ -96,46 +75,13 @@ const Login = () => {
                 {errors.password?.message}
               </p>
             )}
-
-            <label>
-              <Link to="" className="text-xs hover:underline">
-                Forget Password?
-              </Link>
-            </label>
           </div>
-
-          <div>
-            {loginError && <p className="text-xs text-red-700">{loginError}</p>}
-          </div>
-
           <div className="form-control w-full my-3">
             <input
               className="btn bg-blue-400 text-white hover:bg-transparent hover:text-black border hover:border-blue-400"
               type="submit"
               value="Login"
             />
-          </div>
-
-          <div>
-            <span>
-              New to Doctor portal?{" "}
-              <Link
-                className="text-primary hover:underline text-xs"
-                to="/register"
-              >
-                Create an account
-              </Link>
-            </span>
-          </div>
-          <div className="form-control w-full my-3">
-            <div className="divider">OR</div>
-
-            <button
-              onClick={handleGoogleSignIn}
-              className="btn btn-outline mt-4"
-            >
-              Continue with google
-            </button>
           </div>
         </form>
       </div>
