@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-// useAuth.jsx
 import { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
@@ -37,6 +36,10 @@ const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 const useAuth = () => {
