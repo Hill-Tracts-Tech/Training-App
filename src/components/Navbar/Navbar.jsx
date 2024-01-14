@@ -1,26 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { menu } from "./Navdata";
-import { useState } from "react";
-import EnquiryModal from "../EnquiryForm/EnquiryForm";
 import Menu from "./menu";
 import "./Navbar.css";
+import { useAuth } from "../../context/useAuth";
 
 function Navbar() {
   const location = useLocation();
-
+  const { isLoggedIn } = useAuth();
   const isActive = (path) => {
     return location.pathname === path;
   };
   const admin = location.pathname;
-  const [isEnquiryModalOpen, setEnquiryModalOpen] = useState(false);
-
-  const openEnquiryModal = () => {
-    setEnquiryModalOpen(!isEnquiryModalOpen);
-  };
-
-  const closeEnquiryModal = () => {
-    setEnquiryModalOpen(false);
-  };
 
   // close dropdown onClick
   document.querySelectorAll("summary").forEach((summary) => {
@@ -71,6 +61,9 @@ function Navbar() {
                       ? "text-orange-500 border-solid border-b-2 border-orange-700"
                       : ""
                   }`}
+                  style={{
+                    display: m?.private === true && !isLoggedIn ? "none" : "",
+                  }}
                 >
                   {m.id === 4 ? (
                     <details>
@@ -118,6 +111,9 @@ function Navbar() {
                     ? "text-orange-500 border-solid border-b-2 border-orange-700"
                     : ""
                 }`}
+                style={{
+                  display: m?.private === true && !isLoggedIn ? "none" : "",
+                }}
               >
                 {m.id === 4 ? (
                   <details>
@@ -144,26 +140,10 @@ function Navbar() {
                 )}
               </li>
             ))}
-            <li>
-              <button
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md font-semibold text-white"
-                onClick={openEnquiryModal}
-              >
-                Enquiry
-              </button>
-            </li>
           </ul>
         </div>
 
         <div className="navbar-end"></div>
-        <div className="ease-in duration-300 ">
-          {isEnquiryModalOpen && (
-            <EnquiryModal
-              isOpen={isEnquiryModalOpen}
-              onClose={closeEnquiryModal}
-            />
-          )}
-        </div>
       </div>
     </>
   );

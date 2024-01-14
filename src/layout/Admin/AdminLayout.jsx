@@ -16,7 +16,6 @@ import { useAuth } from "../../context/useAuth";
 const AdminLayout = () => {
   const location = useLocation();
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn, "isloading");
   const isActive = (path) => {
     return location.pathname === path;
   };

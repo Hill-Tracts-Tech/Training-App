@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
-// useAuth.jsx
 import { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import toast from "react-hot-toast";
 
 const AuthContext = createContext();
 
@@ -39,10 +39,14 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    toast.error("useAuth must be used within an AuthProvider");
   }
   return context;
 };

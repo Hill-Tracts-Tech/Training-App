@@ -10,8 +10,11 @@ import { useGetAllBatchQuery } from "../../redux/features/batch/batchApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import { useAuth } from "../../context/useAuth";
+import { Redirection } from "../../hoc/PrivateRoute";
 
 const Students = () => {
+  const { isLoggedIn } = useAuth();
   const { data: students, isLoading } = useGetRegisterStudentQuery();
   const { data: batchData } = useGetAllBatchQuery();
   const [deleteStudent] = useDeleteRegisterStudentMutation();
@@ -32,6 +35,9 @@ const Students = () => {
     handleSearch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
+
+  // protect route
+  Redirection(isLoggedIn, navigate);
 
   const handleSearch = () => {
     const query = search.toLowerCase().trim();
