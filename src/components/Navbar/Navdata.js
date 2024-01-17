@@ -8,6 +8,7 @@ export const menu = [
     id: 2,
     label: "Admin",
     to: "/admin",
+    private: true,
   },
   {
     id: 3,
@@ -18,6 +19,7 @@ export const menu = [
     id: 4,
     label: "Courses",
     to: "#",
+    private: true,
     submenu: [
       {
         id: 41,
@@ -59,6 +61,7 @@ export const menu = [
     id: 5,
     label: "Students",
     to: "/student",
+    private: true,
   },
 
   {

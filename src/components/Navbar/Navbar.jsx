@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { menu } from "./Navdata";
-
 import "./Navbar.css";
+import { useAuth } from "../../context/useAuth";
 
 function Navbar() {
   const location = useLocation();
-
+  const { isLoggedIn } = useAuth();
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -61,6 +61,9 @@ function Navbar() {
                     ? "text-orange-500 border-solid border-b-2 border-orange-700"
                     : ""
                 }`}
+                style={{
+                  display: m?.private === true && !isLoggedIn ? "none" : "",
+                }}
               >
                 {m.id === 4 ? (
                   <details>
