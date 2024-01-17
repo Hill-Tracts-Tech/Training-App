@@ -44,7 +44,7 @@ const Registration = () => {
     phoneNumber1,
     guardianNo,
     nidNo,
-    passportNo,
+    birthCertificate,
     dateOfBirth,
     email,
     gender,
@@ -72,7 +72,7 @@ const Registration = () => {
       phoneNumber1,
       guardianNo,
       nidNo,
-      passportNo,
+      birthCertificate,
       dateOfBirth:
         dateOfBirth && new Date(dateOfBirth)?.toISOString()?.substr(0, 10),
       email,
@@ -102,7 +102,7 @@ const Registration = () => {
     appendToFormData("phoneNumber1", data?.phoneNumber1);
     appendToFormData("guardianNo", data?.guardianNo);
     appendToFormData("nidNo", data?.nidNo);
-    appendToFormData("passportNo", data?.passportNo);
+    appendToFormData("birthCertificate", data?.birthCertificate);
     appendToFormData("dateOfBirth", data?.dateOfBirth);
     appendToFormData("email", data?.email);
     appendToFormData("course", data?.course);
@@ -228,13 +228,13 @@ const Registration = () => {
           <div className=" text-center ">
             {active ? (
               <>
-                <h1 className="text-2xl font-semibold uppercase ">
+                <h1 className="text-2xl font-semibold uppercase cursor-not-allowed  ">
                   Orion Selai Proshikhon center
                 </h1>
               </>
             ) : (
               <>
-                <h1 className="text-2xl py-4 lg:py-auto font-semibold uppercase ">
+                <h1 className="text-2xl py-4 lg:py-auto font-semibold uppercase cursor-not-allowed  ">
                   Orion computer Institute
                 </h1>
               </>
@@ -252,7 +252,7 @@ const Registration = () => {
             >
               <div className=" lg:flex justify-between">
                 <div className="lg:flex block join mb-5 lg:mb-auto">
-                  <button className=" uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className=" uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Admission No
                   </button>
                   <input
@@ -266,7 +266,7 @@ const Registration = () => {
                 </div>
               </div>
               <div className="lg:flex justify-between">
-                <div className="lg:mt-[200px] my-3 bg-gradient-to-r h-[100%] uppercase  line-clamp-4  from-blue-500  to-cyan-500  py-2 px-2 lg:w-[30vw] w-[85vw] text-center  text-white text-lg rounded-lg font-semibold">
+                <div className="lg:mt-[200px] my-3 bg-gradient-to-r h-[100%] uppercase cursor-not-allowed   line-clamp-4  from-blue-500  to-cyan-500  py-2 px-2 lg:w-[30vw] w-[85vw] text-center  text-white text-lg rounded-lg font-semibold">
                   Application Form for Admission
                 </div>
                 <div>
@@ -316,7 +316,7 @@ const Registration = () => {
               </div>
 
               <div className="join">
-                <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                   Student Name
                 </button>
                 <input
@@ -331,7 +331,7 @@ const Registration = () => {
               </div>
 
               <div className="join">
-                <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                   Father's Name
                 </button>
                 <input
@@ -345,7 +345,7 @@ const Registration = () => {
                 />
               </div>
               <div className="join">
-                <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                   Mother's Name
                 </button>
                 <input
@@ -359,7 +359,7 @@ const Registration = () => {
                 />
               </div>
               <div className="join">
-                <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                   Permanent Address
                 </button>
                 <input
@@ -373,7 +373,7 @@ const Registration = () => {
                 />
               </div>
               <div className="join">
-                <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                   Present Address
                 </button>
                 <input
@@ -388,7 +388,7 @@ const Registration = () => {
               </div>
               <div className="lg:flex justify-between gap-2 ">
                 <div className="join lg:mb-auto mb-3">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Student Id
                   </button>
                   <input
@@ -402,7 +402,7 @@ const Registration = () => {
                   />
                 </div>
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Batch Name:
                   </button>
                   <select
@@ -423,7 +423,7 @@ const Registration = () => {
               </div>
               <div className="lg:flex justify-between gap-2 ">
                 <div className="join lg:mb-auto mb-3">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Nationality
                   </button>
                   <input
@@ -437,7 +437,7 @@ const Registration = () => {
                   />
                 </div>
                 <div className="join">
-                  <button className="uppercase btn join-item  lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item  lg:w-[188px]">
                     Religion
                   </button>
                   <select
@@ -459,7 +459,7 @@ const Registration = () => {
 
               <div className="lg:flex justify-between gap-2">
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Phone Number
                   </button>
                   <input
@@ -473,7 +473,7 @@ const Registration = () => {
                   />
                 </div>
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Guardian Number
                   </button>
                   <input
@@ -489,7 +489,7 @@ const Registration = () => {
               </div>
               <div className="lg:flex justify-between gap-2">
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     National ID (If any)
                   </button>
                   <input
@@ -501,7 +501,7 @@ const Registration = () => {
                   />
                 </div>
                 <div className="join">
-                  <button className="uppercase btn join-item  lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item  lg:w-[188px]">
                     Course
                   </button>
                   <select
@@ -522,19 +522,19 @@ const Registration = () => {
               </div>
               <div className="lg:flex justify-between gap-2">
                 <div className="join">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
-                    Passport No (If any):
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
+                    birth certificate:
                   </button>
                   <input
                     type="number"
                     className="lg:w-[28vw] w-[43vw] input input-bordered join-item"
-                    placeholder="passport no"
+                    placeholder="birth certificate"
                     required
-                    {...register("passportNo")}
+                    {...register("birthCertificate")}
                   />
                 </div>
                 <div className="join lg:mt-auto mt-3">
-                  <button className="uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item rounded-r-full lg:w-[188px]">
                     Date of Birth
                   </button>
                   <input
@@ -550,7 +550,7 @@ const Registration = () => {
               </div>
               <div className="lg:flex justify-between gap-2">
                 <div className="join lg:mb-auto mb-2">
-                  <button className=" uppercase btn join-item rounded-r-full lg:w-[188px]">
+                  <button className=" uppercase cursor-not-allowed  btn  join-item rounded-r-full lg:w-[188px]">
                     E-mail
                   </button>
                   <input
@@ -562,7 +562,7 @@ const Registration = () => {
                   />
                 </div>
                 <div className="join">
-                  <button className="uppercase btn join-item  lg:w-[188px]">
+                  <button className="uppercase cursor-not-allowed  btn join-item  lg:w-[188px]">
                     Gender
                   </button>
                   <select
