@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { menu } from "./Navdata";
-import Menu from "./menu";
 import "./Navbar.css";
 import { useAuth } from "../../context/useAuth";
 
@@ -11,6 +10,10 @@ function Navbar() {
     return location.pathname === path;
   };
   const admin = location.pathname;
+
+  // const closeEnquiryModal = () => {
+  //   setEnquiryModalOpen(false);
+  // };
 
   // close dropdown onClick
   document.querySelectorAll("summary").forEach((summary) => {
@@ -48,61 +51,8 @@ function Navbar() {
             : "z-[99999] w-[90%] mx-auto"
         } `}
       >
-        <div className="navbar-start hidden  lg:block ">
-          <div className="dropdown">
-            <Menu />
-            {/* Mobile view */}
-            <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-[300px]">
-              {menu.map((m) => (
-                <li
-                  key={m.id}
-                  className={`${
-                    isActive(`${m.to}`)
-                      ? "text-orange-500 border-solid border-b-2 border-orange-700"
-                      : ""
-                  }`}
-                  style={{
-                    display: m?.private === true && !isLoggedIn ? "none" : "",
-                  }}
-                >
-                  {m.id === 4 ? (
-                    <details>
-                      <summary>{m.label}</summary>
-                      <ul className="p-2 w-[250px]">
-                        {m.submenu.map((subitem) => (
-                          <li
-                            key={subitem.id}
-                            className={`${
-                              isActive(`${subitem.to}`)
-                                ? "text-orange-500 border-solid border-b-2 border-orange-700"
-                                : ""
-                            }`}
-                          >
-                            <details>
-                              <summary>{subitem.label}</summary>
-                              <ul>
-                                {subitem.sibling.map((s, i) => (
-                                  <li key={i}>
-                                    <Link to={s.to}>{s.label}</Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </details>
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  ) : (
-                    <Link to={m.to}>{m.label}</Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div></div>
-        <div className="navbar-center hidden lg:flex shadow-md rounded-md mb-9">
-          <ul className="menu menu-horizontal px-1 gap-x-4 bg-white">
+        <div className="text-center hidden lg:flex shadow-md rounded-md mb-9 w-[98%] justify-center mx-auto bg-white">
+          <ul className="menu menu-horizontal px-1 gap-x-4  ">
             {menu.map((m) => (
               <li
                 key={m.id}
@@ -142,8 +92,6 @@ function Navbar() {
             ))}
           </ul>
         </div>
-
-        <div className="navbar-end"></div>
       </div>
     </>
   );

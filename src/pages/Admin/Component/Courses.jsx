@@ -40,7 +40,7 @@ const AdminCourses = () => {
 
   if (isLoading)
     return (
-      <div>
+      <div className="">
         <Loader type={"List"} />
       </div>
     );
