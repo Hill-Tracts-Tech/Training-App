@@ -29,7 +29,6 @@ const ResultForm = () => {
   } = state?.item || {};
   const [course, setCourse] = useState(defaultCourse ? defaultCourse : "");
   const [batchNo, setBatchNo] = useState(defaultBatchNo ? defaultBatchNo : "");
-
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
@@ -52,6 +51,7 @@ const ResultForm = () => {
     uploadimg && formData.append("file", uploadimg);
     course && formData.append("courseName", course);
     batchNo && formData.append("batchNo", batchNo);
+    console.log(batchNo);
     try {
       if (state?.editMode) {
         const res = await updateResult({
@@ -150,16 +150,16 @@ const ResultForm = () => {
                 value={course}
                 onChange={(e) => setCourse(e.target.value)}
               /> */}
-              <select className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black ">
+              <select
+                className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black "
+                value={course}
+                onChange={(e) => setCourse(e.target.value)}
+              >
                 <option selected disabled value="MS office">
                   Select course
                 </option>
                 {courseData?.data?.map((course) => (
-                  <option
-                    key={course._id}
-                    value={course}
-                    onChange={(e) => setCourse(e.target.value)}
-                  >
+                  <option key={course._id} value={course._id}>
                     {course?.title} - {course?.duration}{" "}
                   </option>
                 ))}
@@ -179,18 +179,15 @@ const ResultForm = () => {
                 onChange={(e) => setBatchNo(e.target.value)}
               /> */}
               <select
-                value={batchNo}
                 className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
+                value={batchNo}
+                onChange={(e) => setBatchNo(e.target.value)}
               >
-                <option selected disabled value="@">
+                <option selected value="@">
                   Select batch
                 </option>
                 {batchData?.data?.map((batch) => (
-                  <option
-                    onChange={(e) => setBatchNo(e.target.value)}
-                    key={batch._id}
-                    value={batch}
-                  >
+                  <option key={batch._id} value={batch._id}>
                     {batch?.batchName}
                   </option>
                 ))}

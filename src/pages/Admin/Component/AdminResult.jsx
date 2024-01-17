@@ -20,7 +20,7 @@ const AdminResult = () => {
     const singleItem = resultData?.data?.find((item) => item?._id === id);
     setEye(singleItem);
   };
-
+  console.log(resultData);
   // file identified
   const isPDF = (fileName) => {
     return fileName?.toLowerCase().endsWith(".pdf");
@@ -77,9 +77,11 @@ const AdminResult = () => {
                       <p>{i + 1}</p>
                     </td>
                     <td className="border p-2 text-center">
-                      {item?.courseName}
+                      {item?.courseName?.title}
                     </td>
-                    <td className="border p-2 text-center">{item?.batchNo}</td>
+                    <td className="border p-2 text-center">
+                      {item?.batchNo?.batchName}
+                    </td>
                     <td className="border p-2 text-center font-bold flex justify-center items-center">
                       {isPDF(item?.file) ? (
                         <a
