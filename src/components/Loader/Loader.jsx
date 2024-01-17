@@ -81,7 +81,7 @@ const Loader = ({ type }) => {
           </div>
         </>
       ) : type === "CourseList" ? (
-        <div className="flex gap-12">
+        <div className="flex gap-12 ">
           <Skeleton count={2} height={"340px"} width={"320px"} />
           <Skeleton count={2} height={"340px"} width={"360px"} />
           <Skeleton count={2} height={"340px"} width={"350px"} />
