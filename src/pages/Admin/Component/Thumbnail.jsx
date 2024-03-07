@@ -11,8 +11,10 @@ import {
 import toast from "react-hot-toast";
 
 import Loader from "../../../components/Loader/Loader";
+import { useAuth } from "../../../context/useAuth";
 
 const Thumbnail = () => {
+  const { setActiveZ } = useAuth();
   const { data: thumbnailData, isLoading, refetch } = useGetThumbnailsQuery();
   const [deleteThumbnail] = useDeleteThumbnailsMutation();
   const [eye, setEye] = useState({});
@@ -100,6 +102,7 @@ const Thumbnail = () => {
                               htmlFor="my_modal_5"
                               onClick={() => datahandler(item?._id)}
                               className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
+                              onChange={setActiveZ("")}
                             >
                               <VisibilityIcon />
                               <p>Details</p>

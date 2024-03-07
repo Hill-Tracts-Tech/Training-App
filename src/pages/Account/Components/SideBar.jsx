@@ -26,13 +26,12 @@ const SideBar = ({ studentData, setStatus, status }) => {
           studentData?.registrationStatus === "pending" ? "Draft" : "Paid"
         }
       ></div>
-      <div className="text-center md:text-left mb-5 border-[3px] border-cyan-400 rounded-full">
-        <img
-          src={`${ImageUrl}/students/${studentData?.image}` || img}
-          alt={img}
-          className="w-36 h-34 rounded-full border-gradient"
-        />
+      <div className="avatar mb-3">
+        <div className="w-32 rounded-full ring ring-cyan-400 ring-offset-base-100 ring-offset-2">
+          <img src={`${ImageUrl}/students/${studentData?.image}` || img} />
+        </div>
       </div>
+
       <div
         onClick={handlerPD}
         className={`text-center flex justify-start cursor-pointer items-center gap-3 text-lg font-semibold px-3 ${
