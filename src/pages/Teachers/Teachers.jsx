@@ -2,8 +2,10 @@ import { useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import { useGetTeacherQuery } from "../../redux/features/teacher/teacherApi";
 import { ImageUrl } from "../../utils/imageUrl";
+import { useAuth } from "../../context/useAuth";
 
 const Teachers = () => {
+  const { setActiveZ } = useAuth();
   const { data: teachers, isLoading, isError, error } = useGetTeacherQuery();
   const [eye, setEye] = useState({});
 
@@ -31,6 +33,7 @@ const Teachers = () => {
                 htmlFor="my_modal_5"
                 className="hover:text-blue-500  cursor-pointer"
                 onClick={() => datahandler(teacher?._id)}
+                onChange={setActiveZ("")}
               >
                 <div
                   key={teacher.name}
