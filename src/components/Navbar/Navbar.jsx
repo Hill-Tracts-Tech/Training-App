@@ -5,7 +5,8 @@ import { useAuth } from "../../context/useAuth";
 
 function Navbar() {
   const location = useLocation();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, active } = useAuth();
+  console.log(active);
   const isActive = (path) => {
     return location.pathname === path;
   };
@@ -42,16 +43,17 @@ function Navbar() {
         className={`navbar sticky top-0 ${
           admin === "/admin/teacher" ||
           admin === "/admin/result" ||
+          admin === "/admin/batch" ||
           admin === "/admin/notice" ||
           admin === "/admin/thumbnail" ||
           admin === "/teacher" ||
           admin === "/account" ||
           admin === "/admin/courses"
-            ? " w-[90%] mx-auto"
-            : "z-[99999] w-[90%] mx-auto"
+            ? ` w-[90%] mx-auto ${active == "z" ? "z-[999]" : ""} `
+            : "z-[99999] w-[90%]  mx-auto"
         } `}
       >
-        <div className="text-center hidden lg:flex shadow-md rounded-md mb-9 w-[98%] justify-center mx-auto bg-white">
+        <div className="text-center mt-[-8px] hidden lg:flex shadow-md rounded-md mb-9 w-[98%] justify-center mx-auto bg-white">
           <ul className="menu menu-horizontal px-1 gap-x-4  ">
             {menu.map((m) => (
               <li

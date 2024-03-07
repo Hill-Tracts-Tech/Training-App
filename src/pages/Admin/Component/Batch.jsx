@@ -11,8 +11,10 @@ import {
   useDeleteBatchMutation,
   useGetAllBatchQuery,
 } from "../../../redux/features/batch/batchApi";
+import { useAuth } from "../../../context/useAuth";
 
 const Batch = () => {
+  const { setActiveZ } = useAuth();
   const { data: batchData, isLoading, refetch } = useGetAllBatchQuery();
   const [deleteBatch] = useDeleteBatchMutation();
   const [eye, setEye] = useState({});
@@ -96,6 +98,7 @@ const Batch = () => {
                               htmlFor="my_modal_5"
                               className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
                               onClick={() => datahandler(item?._id)}
+                              onChange={setActiveZ("")}
                             >
                               <VisibilityIcon />
                               <p>Details</p>

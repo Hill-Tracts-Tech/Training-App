@@ -6,8 +6,10 @@ import { useState } from "react";
 import PaymentComponent from "../../components/Modal/Modal";
 
 import SideBar from "./Components/SideBar";
+import { useAuth } from "../../context/useAuth";
 
 const UserAccount = () => {
+  const { setActiveZ } = useAuth();
   const [status, setStatus] = useState("PD");
   const navigate = useNavigate();
   const location = useLocation();
@@ -162,6 +164,7 @@ const UserAccount = () => {
                       <label
                         htmlFor="payment_modal"
                         className="text-cyan-400 cursor-pointer"
+                        onChange={setActiveZ("")}
                       >
                         <PaymentsIcon className="text-cyan-400 hover:text-orange-400" />
                       </label>

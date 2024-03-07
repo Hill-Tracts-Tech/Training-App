@@ -10,8 +10,10 @@ import {
   useGetTeacherQuery,
 } from "../../../redux/features/teacher/teacherApi";
 import Loader from "../../../components/Loader/Loader";
+import { useAuth } from "../../../context/useAuth";
 
 const AdminTeacher = () => {
+  const { setActiveZ } = useAuth();
   const { data: teacherData, isLoading, refetch } = useGetTeacherQuery();
   const [deleteTeacher] = useDeleteTeacherMutation();
   const [eye, setEye] = useState({});
@@ -105,6 +107,7 @@ const AdminTeacher = () => {
                                 htmlFor="my_modal_5"
                                 className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
                                 onClick={() => datahandler(item?._id)}
+                                onChange={setActiveZ("")}
                               >
                                 <VisibilityIcon />
                                 <p>Details</p>
