@@ -147,23 +147,28 @@ const CourseForm = () => {
   const courseDuration = [
     {
       id: 1,
-      value: "3 month",
+      value1: "January-June (06 m)",
     },
     {
       id: 2,
-      value: "6 month",
+      value1: "January-March (03 month)",
     },
     {
       id: 3,
-      value: "1 year",
+      value1: "April-june (03 Month)",
     },
+
     {
       id: 4,
-      value: "2 year",
+      value1: "July-December (06 Month)",
     },
     {
       id: 5,
-      value: "4 year",
+      value1: "July-september (03 Month)",
+    },
+    {
+      id: 6,
+      value1: "October-December (03 Month)",
     },
   ];
 
@@ -278,14 +283,14 @@ const CourseForm = () => {
                   Course Duration
                 </label>
                 <select
-                  className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
+                  className="py-2 outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
                   value={duration}
                   onChange={(e) => setDuration(e.target.value)}
                 >
                   <option value="">Select duration</option>
                   {courseDuration?.map((course) => (
                     <option key={course.id} value={course.value}>
-                      {course.value}{" "}
+                      {course.value1}{" "}
                     </option>
                   ))}
                 </select>
