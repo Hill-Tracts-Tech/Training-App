@@ -34,6 +34,18 @@ export const menu = [
         ],
       },
       {
+        id: 41,
+        label: "NSDA",
+        to: "/course/NSDA",
+        sibling: [
+          {
+            id: 411,
+            label: "Dress Making",
+            to: "/course/dress",
+          },
+        ],
+      },
+      {
         id: 42,
         label: "Orion Computer Institute",
         to: "/course/orion_computer_institute",

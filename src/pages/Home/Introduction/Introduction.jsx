@@ -1,38 +1,49 @@
-import img from "../../../assets/img/trainingCenter.png";
-import { AccessTime, Check, NetworkPing } from "@mui/icons-material";
+import img from "../../../assets/img/OSPI1.jpg";
+import logo from "../../../assets/icons/OSC.jpg";
 import TextUnderline from "../../../utils/textUnderline";
 import "./Introduction.css";
+import { parm1 } from "../../../Dammydata";
 function Introduction() {
   return (
     <div className="bg-pattern lg:p-9">
       <div className="w-[85%] mx-auto lg:px-4">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-x-10">
           <div className="w-full md:w-[40%] my-9 bounce">
-            <img src={img} alt="" />
+            <img
+              src={logo}
+              alt="Banner"
+              className="bg-white p-2 fixed w-[35%] hidden lg:flex rounded-full z-[999] mt-[-50px] ms-[-70px]"
+            />
+            <img src={img} alt="Banner" className="w-full rounded-xl " />
           </div>
-          <div className="w-full md:w-[60%] px-8">
-            <h2 className="text-3xl bg-[#FF7810] w-[120px] rounded-md p-1 text-center text-white">
+          <div className="w-full md:w-[60%] lg:px-8">
+            <h2 className="lg:ms-[-30px] text-3xl bg-[#FF7810] w-[120px] rounded-md p-1 text-center text-white">
               We Are
             </h2>
-            <div>
+            <div className="lg:ms-[-30px]">
               <h1 className="text-4xl text-blue-600 my-5 font-bold">
-                ORION COMPUTER INSTITUTE
+                ORION SELAI PROSHIKHON CENTER
               </h1>
               <TextUnderline custom_width={150} />
-              <p className="my-5 text-justify">
-                We are the{" "}
-                <span className="font-bold">
-                  best computer institute in Habra
-                </span>{" "}
-                providing courses in Graphics Design, Web Design, Web
-                Development, and Basic Computer Training. Our job oriented
-                courses are created and taught by experts in the industry. Our
-                Website Design training in Habra is provided with real time
-                examples and make sure our students participate in Live projects
-                for actual clients so that they gain 100% practical knowledge
-                and understand the subject completely.
+              <p className="mt-5 text-justify lg:text-lg lg:w-[468px]">
+                {parm1.slice(0, 400)}...
               </p>
-              <div className="flex justify-start gap-x-3">
+              <br />
+              <p className=" mt-3 text-justify lg:text-lg">
+                <p className=" text-xl font-semibold ">Respectful</p>
+                <p className="">Engineer Iti Ara Khatun. </p>
+                <p className="">
+                  {" "}
+                  Diploma Engineer in Civil Technology & <br />
+                  M.Sc. in Social Science.
+                </p>
+                <p className="text-blue-600 font-semibold">
+                  Chief Director
+                  <br />
+                  Orion Selai Proshikhon Centre (OSPC)
+                </p>
+              </p>
+              {/* <div className="flex justify-start gap-x-3">
                 <span>
                   <Check
                     style={{
@@ -100,7 +111,7 @@ function Introduction() {
                     <p className="text-xl">Hour Training</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
