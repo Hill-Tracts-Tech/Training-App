@@ -1,6 +1,7 @@
 import "./Banner.css";
 import OCI1 from "../../../assets/img/OCI1.jpg";
 import logo from "../../../assets/icons/OCI.jpg";
+
 import "./Banner.css";
 import { Link } from "react-router-dom";
 import TextUnderline from "../../../utils/textUnderline";
@@ -8,20 +9,21 @@ import { parm } from "../../../Dammydata";
 function Banner() {
   return (
     <div className="bg-transparent">
-      <div className="w-[85%] mx-auto lg:p-4 p-2 flex flex-wrap items-center justify-start lg:gap-6">
+      <div className="w-[85%] mx-auto  p-2 lg:flex  items-center justify-between lg:gap-12">
         <div className="w-full md:w-1/2">
           <div className="my-5">
             <h2 className="text-3xl bg-[#FF7810] w-[120px] rounded-md p-1 text-center text-white">
               We Are
             </h2>
-            <h1 className="text-4xl text-blue-600 my-5 font-bold">
+            <img src={logo} alt="" className="h-28 mt-10" />
+            <h1 className="lg:text-4xl text-xl text-blue-600 my-5 font-bold">
               ORION COMPUTER INSTITUTE
             </h1>
             <TextUnderline custom_width={150} />
           </div>
           <div className="my-4">
             {" "}
-            <p className="lg:w-[450px] text-justify lg:text-lg">
+            <p className=" text-justify lg:text-lg">
               {parm.slice(0, 400)}...
               <br />
               <p className="mt-3 text-xl font-semibold">Respectful</p>
@@ -39,13 +41,8 @@ function Banner() {
             Know More
           </Link>
         </div>
-        <div className="bg-shape mt-10 lg:mt-auto md:mt-auto flex justify-center bounce">
-          <img src={OCI1} alt="Banner" className="w-full h-[75%] rounded-xl" />
-          <img
-            src={logo}
-            alt="Banner"
-            className="h-[35%] hidden lg:block rounded-full z-50 mt-[-30px] ms-[-80px]"
-          />
+        <div className=" mt-8  bounce">
+          <img src={OCI1} alt="Banner" className="w-full  rounded-xl" />
         </div>
       </div>
     </div>
