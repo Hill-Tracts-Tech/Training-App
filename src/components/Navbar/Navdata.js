@@ -19,7 +19,6 @@ export const menu = [
     id: 4,
     label: "Courses",
     to: "#",
-    private: true,
     submenu: [
       {
         id: 42,
