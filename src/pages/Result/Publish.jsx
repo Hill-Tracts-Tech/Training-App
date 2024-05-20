@@ -3,11 +3,14 @@ import moment from "moment";
 import { useGetResultQuery } from "../../redux/features/result/resultApi";
 
 const PublishedResult = () => {
-  const { data: resultData } = useGetResultQuery();
+  const { data: resultData, isLoading } = useGetResultQuery();
+  console.log(resultData);
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <div>
       <h1 className="text-3xl font-semibold p-7">Check Result</h1>
-      {!resultData?.data ? (
+      {resultData?.data?.length === 0 ? (
         <p className="text-center text-2xl bg-yellow-200 my-8">
           No Result Published
         </p>
@@ -22,7 +25,7 @@ const PublishedResult = () => {
             className="w-full border flex justify-center items-center text-[#4262a8] font-semibold text-xl"
           >
             <h1>
-              {resultData?.data[0]?.courseName} result published at{" "}
+              {resultData?.data[0]?.courseName?.title} result published at{" "}
               {moment(resultData?.data[0]?.createdAt).format("LLLL")}
             </h1>
           </marquee>
@@ -42,7 +45,7 @@ const PublishedResult = () => {
                       className="cursor-pointer hover:underline"
                       rel="noreferrer"
                     >
-                      {result.courseName} - {result.batchNo} -{" "}
+                      {result.courseName.title} - {result.batchNo.batchNo} -{" "}
                       {moment(result?.createdAt).format("LL")}
                       <Download className="bounce" />
                     </a>

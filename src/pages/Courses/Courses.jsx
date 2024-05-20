@@ -1,11 +1,21 @@
 /* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { useGetCoursesQuery } from "../../redux/features/course/courseApi";
 
 function Courses() {
-  const { data, isLoading } = useGetCoursesQuery();
+  const { category } = useParams();
+  let courseType;
 
+  if (category === "orion_computer_institute") {
+    courseType = "1";
+  } else if (category === "orion_selai_proshikhon_center") {
+    courseType = "2";
+  }
+
+  const { data, isLoading } = useGetCoursesQuery(courseType);
+
+  console.log(data, "courseData");
   return (
     <div className="w-[90%] mx-auto">
       {isLoading ? (

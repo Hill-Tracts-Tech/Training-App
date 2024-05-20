@@ -11,7 +11,8 @@ export const courseApi = baseApi.injectEndpoints({
       invalidatesTags: ["course"],
     }),
     getCourses: builder.query({
-      query: () => "/course",
+      query: (courseType) =>
+        `/course?${courseType && `courseType=${courseType}`}`,
     }),
     updateCourse: builder.mutation({
       query: ({ courseId, courseData }) => ({

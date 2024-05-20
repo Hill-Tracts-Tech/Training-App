@@ -22,6 +22,7 @@ const CourseForm = () => {
 
   const {
     title: defaultTitle,
+    courseType: defaultCourseType,
     desc: defaultDesc,
     price: defaultPrice,
     instructor: defaultInstructor,
@@ -34,6 +35,9 @@ const CourseForm = () => {
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
   const [title, setTitle] = useState(defaultTitle ? defaultTitle : "");
+  const [courseType, setCourseType] = useState(
+    defaultCourseType ? defaultCourseType : ""
+  );
   const [price, setPrice] = useState(defaultPrice ? defaultPrice : "");
   const [description, setDescription] = useState(
     defaultDesc ? defaultDesc : ""
@@ -71,6 +75,9 @@ const CourseForm = () => {
     }
     if (description) {
       formData.append("desc", description);
+    }
+    if (courseType) {
+      formData.append("courseType", courseType);
     }
     if (title) {
       formData.append("title", title);
@@ -250,6 +257,18 @@ const CourseForm = () => {
                     </option>
                   ))}
                 </select>
+                <label className="text-lg font-semibold mt-2">
+                  Course Type
+                </label>
+                <select
+                  className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"
+                  value={courseType}
+                  onChange={(e) => setCourseType(e.target.value)}
+                >
+                  <option value="">Select Course Type</option>
+                  <option value="1">ORION COMPUTER INSTITUTE</option>
+                  <option value="2">ORION SELAI PROSHIKHON CENTER</option>
+                </select>
               </div>
 
               <div className="flex flex-col gap-y-2">
@@ -264,7 +283,6 @@ const CourseForm = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-
                 <label className="text-lg font-semibold mt-2">Price</label>
                 <input
                   className="outline-none border bordered-2 rounded-md p-2 bg-slate-100 text-black"

@@ -18,13 +18,14 @@ import { handleDownloadRegFrom } from "../../utils";
 const Registration = () => {
   // Bangla to English
   const [lang, setLang] = useState("Eng");
+  const [active, setActive] = useState(true);
+
   // get course data
-  const { data: courseData } = useGetCoursesQuery();
+  const { data: courseData } = useGetCoursesQuery(active ? "1" : "2");
   const { data: batchData } = useGetAllBatchQuery();
   const [registerStudent, { isLoading }] = useRegisterStudentMutation();
   const [updateRegisterStudent] = useUpdateRegisterStudentMutation();
   const { refetch } = useGetRegisterStudentQuery();
-  const [active, setActive] = useState(true);
   const [image, setImage] = useState(null);
   const [uploadimg, setUpLoadimg] = useState(null);
 
@@ -135,7 +136,6 @@ const Registration = () => {
 
   const handleState = (type) => {
     const delay = 500;
-    console.log(type);
 
     setTimeout(() => {
       if (type === "OCI") {
@@ -208,7 +208,7 @@ const Registration = () => {
                 <img
                   onClick={() => handleState("OCI")}
                   className="h-12 duration-1000 shadow-xl rounded-full"
-                  src={logo1}
+                  src={logo2}
                 />
                 <div></div>
               </>
@@ -218,7 +218,7 @@ const Registration = () => {
                 <img
                   onClick={() => handleState("OSP")}
                   className="h-12 duration-1000   shadow-xl  rounded-full"
-                  src={logo2}
+                  src={logo1}
                 />
               </>
             )}
@@ -226,7 +226,7 @@ const Registration = () => {
         </div>
         <div className=" col-span-10 flex items-center justify-center  hover:text-black  relative shadow-lg top-2  bg-primary  cursor-pointer  bg-gradient-to-r  from-blue-500  to-cyan-500 rounded-md font-semibold text-white">
           <div className=" text-center ">
-            {active ? (
+            {!active ? (
               <>
                 <h1 className="text-2xl font-semibold uppercase ">
                   Orion Selai Proshikhon center
