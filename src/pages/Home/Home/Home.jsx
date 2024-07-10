@@ -12,10 +12,10 @@ import "./Home.css";
 const Home = () => {
   return (
     <div>
-      <Member />
       <Banner />
       <Introduction />
 
+      <Member />
       <Facilities />
       <VisitUs />
       {/* <CourseList /> */}
