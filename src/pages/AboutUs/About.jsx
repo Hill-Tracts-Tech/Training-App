@@ -15,13 +15,38 @@ function About() {
           <h3 className="text-4xl text-blue-500 lg:my-5 font-bold">
             About ORION COMPUTER INSTITUTE
           </h3>
-          <p>
-            ORION COMPUTER INSTITUTE is the best Computer Center in Habra with
-            special focus in Website Design and Development. We are situated at
-            Saptapally, Khudiram Basu Road, about 1km from Habra Station. Our
-            goal is to provide cost-Effective, Quality & Real time Training
-            courses to our students and help them in their professional career.
-            Factors that makes us best are:
+          <p className=" overflow-y-auto h-[300px] ">
+            The Present age is Information and Communication Technology. In
+            Today’s age, everything is Stagnant except Computer Education. We
+            are Determined to Develop a healthy culture by nurturing our
+            thousand years of history, heritage, education and culture. It is
+            our aim to create intelligent technical and creative generation in
+            view of the responsibility of this immense power. Keeping this
+            objective in mind, We have established a technical education
+            institute named Orion Computer Institute , Which is affiliated to
+            the Bangladesh Technical Education Board , Under The Government of
+            the People’s Republic of Bangladesh , in Ward No 06 in Satkania
+            Municipality. We always strive to bring the 20th century modern
+            style to the new generation, We are trying to give International
+            Information Technology Knowledge. Now Plans have been Undertaken to
+            Encourage Technical Creativity and Progressive Technology, So that
+            we also have a small role in Building a Prosperous Society and
+            State. The new generation is far ahead in their dream journey today.
+            Their creative and technical initiative have had a considerable
+            impact on the formation of modern society. As a result, Computer
+            Technology at all levels has been able to reach the door of
+            everyone. The source of motivation for the new generation is the
+            computer based on modern technology, which will play a greater role
+            in fulfilling their dreams. Today’s youth spend half of the time
+            they spend unnecessarily on Face book or mobile if they search on
+            Google and spend on IT education , Then one day he himself will see
+            new possibilities for his career. No major degree is required to
+            take this Opportunity. It is possible to establish yourself as an
+            efficient and IT professional by doing some basic computer course
+            with strong interest and hard work. Besides we are always active in
+            offering new and up-to-date IT related courses. Hopefully through
+            technical education we will be able to open the doors of success in
+            the ICT sector. Inshallah.
           </p>
         </div>
 
@@ -48,7 +73,7 @@ function About() {
       </div>
 
       {/* Right Side - Photo Gallery */}
-      <div className="w-full md:w-1/3">
+      <div className="w-full md:w-1/3 lg:mt-[-240px]">
         <div className="grid grid-cols-2 gap-2">
           <img
             src={aboutUsImage1}

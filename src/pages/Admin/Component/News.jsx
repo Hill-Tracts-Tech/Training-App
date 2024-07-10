@@ -10,8 +10,10 @@ import {
 } from "../../../redux/features/notice/noticeApi";
 import toast from "react-hot-toast";
 import Loader from "../../../components/Loader/Loader";
+import { useAuth } from "../../../context/useAuth";
 
 const News = () => {
+  const { setActiveZ } = useAuth();
   const [deleteNotice] = useDeleteNoticeMutation();
   const { data: newsData, isLoading, refetch } = useGetNoticeQuery();
   const [eye, setEye] = useState({});
@@ -101,6 +103,7 @@ const News = () => {
                               htmlFor="my_modal_5"
                               className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
                               onClick={() => datahandler(item?._id)}
+                              onChange={setActiveZ("")}
                             >
                               <VisibilityIcon />
                               <p>Details</p>

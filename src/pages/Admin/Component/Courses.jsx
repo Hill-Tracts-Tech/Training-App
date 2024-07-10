@@ -11,8 +11,10 @@ import {
 import toast from "react-hot-toast";
 
 import Loader from "../../../components/Loader/Loader";
+import { useAuth } from "../../../context/useAuth";
 
 const AdminCourses = () => {
+  const { setActiveZ } = useAuth();
   const { data: courses, isLoading, refetch } = useGetCoursesQuery();
   const [deleteCourse] = useDeleteCourseMutation();
   const [eye, setEye] = useState({});
@@ -40,7 +42,7 @@ const AdminCourses = () => {
 
   if (isLoading)
     return (
-      <div>
+      <div className="">
         <Loader type={"List"} />
       </div>
     );
@@ -110,6 +112,7 @@ const AdminCourses = () => {
                               htmlFor="my_modal_5"
                               className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
                               onClick={() => datahandler(item?._id)}
+                              onChange={setActiveZ("")}
                             >
                               <VisibilityIcon />
                               <p>Details</p>

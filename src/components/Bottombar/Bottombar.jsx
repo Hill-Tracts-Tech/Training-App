@@ -106,6 +106,26 @@ const Bottombar = ({ list }) => {
       icon: <InfoIcon />,
     },
   ];
+  // close dropdown onClick
+  document.querySelectorAll("ul").forEach((ul) => {
+    ul.addEventListener("click", (event) => {
+      document.querySelectorAll("li").forEach((details) => {
+        if (details !== event.target.parentNode) {
+          details.removeAttribute("open");
+        }
+      });
+    });
+  });
+
+  // Close the dropdown when clicking outside the dropdown
+  document.addEventListener("click", (event) => {
+    const dropdown = document.querySelector(".dropdown");
+    if (!dropdown.contains(event.target)) {
+      document.querySelectorAll("li").forEach((details) => {
+        details.removeAttribute("open");
+      });
+    }
+  });
   return (
     <div className=" bg-white z-50 w-full px-5 py-2 flex justify-between border-t-2 bg-b   fixed bottom-0">
       <div className="dropdown dropdown-top dropdown-start">

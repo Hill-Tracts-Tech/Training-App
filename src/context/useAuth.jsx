@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [active, setActiveZ] = useState("z");
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const authKey = localStorage.getItem("authKey");
     return !!authKey;
@@ -33,7 +35,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, login, logout, active, setActiveZ }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -1,16 +1,20 @@
 import { Link, useLocation } from "react-router-dom";
 import { menu } from "./Navdata";
-import Menu from "./menu";
 import "./Navbar.css";
 import { useAuth } from "../../context/useAuth";
 
 function Navbar() {
   const location = useLocation();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, active } = useAuth();
+  console.log(active);
   const isActive = (path) => {
     return location.pathname === path;
   };
   const admin = location.pathname;
+
+  // const closeEnquiryModal = () => {
+  //   setEnquiryModalOpen(false);
+  // };
 
   // close dropdown onClick
   document.querySelectorAll("summary").forEach((summary) => {
@@ -39,70 +43,18 @@ function Navbar() {
         className={`navbar sticky top-0 ${
           admin === "/admin/teacher" ||
           admin === "/admin/result" ||
+          admin === "/admin/batch" ||
           admin === "/admin/notice" ||
           admin === "/admin/thumbnail" ||
           admin === "/teacher" ||
           admin === "/account" ||
           admin === "/admin/courses"
-            ? " w-[90%] mx-auto"
-            : "z-[99999] w-[90%] mx-auto"
+            ? ` w-[90%] mx-auto ${active == "z" ? "z-[999]" : ""} `
+            : "z-[99999] w-[90%]  mx-auto"
         } `}
       >
-        <div className="navbar-start hidden  lg:block ">
-          <div className="dropdown">
-            <Menu />
-            {/* Mobile view */}
-            <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-[300px]">
-              {menu.map((m) => (
-                <li
-                  key={m.id}
-                  className={`${
-                    isActive(`${m.to}`)
-                      ? "text-orange-500 border-solid border-b-2 border-orange-700"
-                      : ""
-                  }`}
-                  style={{
-                    display: m?.private === true && !isLoggedIn ? "none" : "",
-                  }}
-                >
-                  {m.id === 4 ? (
-                    <details>
-                      <summary>{m.label}</summary>
-                      <ul className="p-2 w-[250px]">
-                        {m.submenu.map((subitem) => (
-                          <li
-                            key={subitem.id}
-                            className={`${
-                              isActive(`${subitem.to}`)
-                                ? "text-orange-500 border-solid border-b-2 border-orange-700"
-                                : ""
-                            }`}
-                          >
-                            <details>
-                              <summary>{subitem.label}</summary>
-                              <ul>
-                                {subitem.sibling.map((s, i) => (
-                                  <li key={i}>
-                                    <Link to={s.to}>{s.label}</Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </details>
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  ) : (
-                    <Link to={m.to}>{m.label}</Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div></div>
-        <div className="navbar-center hidden lg:flex shadow-md rounded-md mb-9">
-          <ul className="menu menu-horizontal px-1 gap-x-4 bg-white">
+        <div className="text-center mt-[-8px] hidden lg:flex shadow-md rounded-md mb-9 w-[98%] justify-center mx-auto bg-white">
+          <ul className="menu menu-horizontal px-1 gap-x-4  ">
             {menu.map((m) => (
               <li
                 key={m.id}
@@ -142,8 +94,6 @@ function Navbar() {
             ))}
           </ul>
         </div>
-
-        <div className="navbar-end"></div>
       </div>
     </>
   );

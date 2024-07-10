@@ -11,7 +11,9 @@ import {
 
 import Loader from "../../../components/Loader/Loader";
 import toast from "react-hot-toast";
+import { useAuth } from "../../../context/useAuth";
 const AdminResult = () => {
+  const { setActiveZ } = useAuth();
   const { data: resultData, isLoading, refetch } = useGetResultQuery();
   const [deleteResult] = useDeleteResultMutation();
   const [eye, setEye] = useState({});
@@ -119,6 +121,7 @@ const AdminResult = () => {
                               htmlFor="my_modal_5"
                               className="hover:text-blue-500  cursor-pointer flex justify-start gap-2"
                               onClick={() => datahandler(item?._id)}
+                              onChange={() => setActiveZ("")}
                             >
                               <VisibilityIcon />
                               <p>Details</p>

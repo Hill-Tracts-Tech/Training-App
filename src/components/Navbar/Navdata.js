@@ -21,6 +21,30 @@ export const menu = [
     to: "#",
     submenu: [
       {
+        id: 41,
+        label: "Orion Selai Proshikhon Center",
+        to: "/course/orion_selai_proshikhon_center",
+        sibling: [
+          {
+            id: 411,
+            label: "Dress Making",
+            to: "/course/dress",
+          },
+        ],
+      },
+      {
+        id: 41,
+        label: "NSDA",
+        to: "/course/NSDA",
+        sibling: [
+          {
+            id: 411,
+            label: "Dress Making",
+            to: "/course/dress",
+          },
+        ],
+      },
+      {
         id: 42,
         label: "Orion Computer Institute",
         to: "/course/orion_computer_institute",
