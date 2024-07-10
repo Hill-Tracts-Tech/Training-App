@@ -21,7 +21,7 @@ function CourseList() {
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-4xl text-white my-5 font-bold">
               Our Unique Factors Makes Us <br />
-              Leaders In Website Training
+              Leaders In Our Institute
             </h1>
             <TextUnderline custom_width={150} />
           </div>

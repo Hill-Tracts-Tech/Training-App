@@ -19,8 +19,8 @@ function Facilities() {
             </div>
             <div className="flex flex-col justify-center items-center">
               <h1 className="text-4xl text-[#1C2045] my-5 font-bold">
-                Course Fees Chart For Learn
-                <br /> Computer Academy
+                Our Facilities
+                {/* <br /> Computer Academy */}
               </h1>
               <TextUnderline custom_width={150} />
             </div>
